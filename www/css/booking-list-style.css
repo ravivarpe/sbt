@@ -1,0 +1,191 @@
+/*************************user card background****************************/
+
+.user-booking-view-box {
+    /*background: rgba(255, 255, 255, 0.1);*/
+    background-color: rgba(54, 25, 25, .4);
+    box-shadow: 0 10px 10px -5px #000000;
+    margin-top: 5px;
+    line-height: 60%;
+}
+
+.vehicle-icon-fort-param{
+    color: #3399FF;
+    /*font-size: 15px;*/
+}
+
+.booking-address-element-font {
+    /*position: absolute;*/
+    
+    color: #ffffff;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-align: center;
+    /*bottom: 15px;*/
+    /*margin-left: -17px;*/
+}
+
+
+.booking-large-element-font {
+    /*position: absolute;*/
+    
+    color: #ffffff;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-align: center;
+    /*bottom: 15px;*/
+    /*margin-left: -17px;*/
+}
+
+.booking-status-indication-font {
+    /*position: absolute;*/
+    
+    
+    /*text-transform: uppercase;*/
+    /*font-family: italic, Helvetica, sans-serif;*/
+    font-style: italic;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-align: center;
+    /*bottom: 15px;*/
+    /*margin-left: -17px;*/
+}
+
+.booking-confirm-status {
+	color: #00FF00 ;
+}
+
+.booking-cancel-status {
+	color: #0000FF ;
+}
+
+.booking-pending-status {
+	color: #FFFF00 ;
+}
+
+.booking-waiting-status {
+	color: #00FFFF  ;
+}
+
+.booking-inprogress-status {
+    color: #00FFFF  ;
+}
+
+.booking-complete-status {
+    color: #2F4F4F  ;
+}
+
+.booking-postpone-status {
+    color: #2F4F4F  ;
+}
+
+.booking-delivery-status {
+	color: #2F4F4F  ;
+}
+
+/**********************************buttons***********************************************/
+.bookings-request-status-button{
+    height: 5px;
+    width: 10px;
+    background-color: #4a87ee;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border: 1px solid #4a87ee;
+    border-radius: 3px;
+    box-shadow: 0 5px 5px -5px #000000;
+    text-decoration: none;
+}
+
+.bookings-details-button-grey{
+    height: 5px;
+    width: 10px;
+    background-color: #696969;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border: 1px solid #696969;
+    border-radius: 3px;
+    box-shadow: 0 5px 5px -5px #000000;
+    text-decoration: none;
+}
+
+.bookings-request-status-font {
+    /*position: relative;*/
+    /*bottom: 15px;*/
+    
+    color: #ffffff;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 7px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+/****************************************************************************************/
+
+/***********************booking modal****************************************************/
+
+.booking-status-modal-size{
+  /*width: 50%;*/
+  /*height: 50px;*/
+  margin-top: 20%;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+
+
+.booking-modal-close-icon{
+    font-size: 20px;
+}
+
+
+
+/****************************************************************************************/
+
+/*************************booking details*************************************************/
+
+.booking-details-large-font {
+    /*position: absolute;*/
+    
+    color: #ffffff;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-align: center;
+    /*bottom: 15px;*/
+    /*margin-left: -17px;*/
+}
+
+.booking-details-lt-color-box {
+    /*background: rgba(255, 255, 255, 0.1);*/
+    background-color: rgba(54, 25, 25, .4);
+    box-shadow: 0 10px 10px -5px #000000;
+    margin-top: 5px;
+    /*line-height: 60%;*/
+}
+
+.booking-details-ht-color-box {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 10px -5px #000000;
+    margin-top: 20px;
+}
+/***************menu page***************************************************************/
+.header-background-image {
+    background: url('../img/test-image-1.png') repeat;
+    /*border: 2px solid black;*/
+    
+    background-size: 100% 100%;
+    box-shadow: 0 5px 5px -5px #000000;
+    border-bottom: 1px solid black;
+    /*background-color: #8F0529;*/
+}
+/****************************************************************************************/
+

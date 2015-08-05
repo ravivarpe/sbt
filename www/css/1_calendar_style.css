@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div.relative {
+    position: relative;
+    width: 420px;
+    height: 180px;
+    border: 1px solid #5C5C5C;
+    //background-color: #5C5C5C;
+    opacity: 0.6;
+    //padding: 5px;
+    box-shadow: 3px 3px #000000;
+    //border-radius: 5px;
+    //margin: -1px;
+} 
+
+div.header {    
+    position: absolute;
+    background-color: #000000;
+    //float: left;
+    width: 420px;
+    height: 40px;
+    //padding: 25px;
+    //border-right: 1px solid black;
+    border-bottom: 1px solid red;
+    opacity: 0.7;
+    //margin: -1px;
+}
+
+div.absolute {    
+    position: absolute;
+    background-color: #000000;
+    float: left;
+    width: 60px;
+    height: 70px;
+    //padding: 25px;
+    //border-right: 1px solid black;
+    //border-bottom: 1px solid black;
+    opacity: 0.7;
+    //margin: -1px;
+
+
+}
+
+div.font{
+    position: relative;
+    //text-align: center;
+    //vertical-align: middle;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    font-weight: 500;
+    //margin: auto;
+     display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 1.5px;
+}
+
+.day-font{
+    position: absolute;
+    top: 0;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    //margin: auto;
+     display: flex;
+    //align-items: top;
+    //justify-content: center;
+    //letter-spacing: 1.5px;
+}
+
+
+</style>
+</head>
+<body>
+
+<h2>position: absolute;</h2>
+
+<p>An element with position: absolute; is positioned relative to the nearest positioned ancestor (instead of positioned relative to the viewport, like fixed):</p>
+
+<div class="relative">
+<div class="header font">YEAR</div>
+<div class="absolute font" ><span class="day-font">SUN</span>01</div>
+<div class="absolute font" ><span class="day-font">SUN</span>02</div>
+<div class="absolute font"><span class="day-font">SUN</span>03</div>
+<div class="absolute font"><span class="day-font">SUN</span>04</div>
+<div class="absolute font"><span class="day-font">SUN</span>05</div>
+<div class="absolute font"><span class="day-font">SUN</span>06</div>
+<div class="absolute font"><span class="day-font">SUN</span>07</div>
+<div class="absolute font"><span class="day-font">SUN</span>08</div>
+<div class="absolute font"><span class="day-font">SUN</span>09</div>
+<div class="absolute font"><span class="day-font">SUN</span>10</div>
+<div class="absolute font"><span class="day-font">SUN</span>11</div>
+<div class="absolute font"><span class="day-font">SUN</span>12</div>
+<div class="absolute font"><span class="day-font">SUN</span>13</div>
+<div class="absolute font"><span class="day-font">SUN</span>14</div>
+
+
+
+
+</div>
+
+</body>
+</html>

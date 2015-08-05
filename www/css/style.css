@@ -1,0 +1,63 @@
+/* Empty. Add your own CSS if you like */
+.logo-size{
+	height: 40px;
+	width: 100px;
+	
+}
+
+
+.image-size{
+	height: 10px;
+	width: 50;
+	
+}
+
+
+.holder  {
+
+  width: 200px;
+  height: 150px;
+  /*border: solid 1px;*/
+  text-shadow: white 0px 0px 2px;
+  font-size: 16px;
+  background-size: 150px;
+
+}
+
+.custom-icon-20px {
+  font-size: 20px;
+  color : black;
+}
+
+.pick-drop-icon-20px-grey {
+  font-size: 30px;
+  color : grey;
+}
+
+.pick-drop-icon-20px-red {
+  font-size: 30px;
+  color : #8F0529;
+}
+
+.pick-icon-20px-red {
+  font-size: 20px;
+  color : #8F0529;
+}
+
+.icon-padding{
+  padding-left: 10px; 
+}
+
+.title-color-font {
+  font-size: 15px;
+  color : #8F0529;
+}
+
+.color-filler{
+  color : #8F0529;
+}
+
+.see-more-filler{
+  font-size: 11px;
+}
+

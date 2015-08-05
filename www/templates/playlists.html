@@ -1,0 +1,12 @@
+<ion-view view-title="CarOne">
+	<ion-nav-title>
+      <img class= "logo-size" src="img/carone_logo.png">
+    </ion-nav-title>
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
+        {{playlist.title}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
