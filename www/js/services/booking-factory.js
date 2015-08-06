@@ -133,7 +133,11 @@ angular.module('starter.bookingList')
     }
 
     factoryObj.convertSecsToDate =function(dateInSecs){
-        return new Date(dateInSecs*1000).toString();
+        var dateInfo = new Date(dateInSecs*1000);
+        var month = ("0" + dateInfo.getMonth()).slice(-2);
+        var dateNum = ("0" + dateInfo.getDate()).slice(-2);
+
+        return (dateNum + "/" + month + "/" + dateInfo.getFullYear());
     }
 
 

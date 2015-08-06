@@ -2,13 +2,14 @@
 
 .user-booking-view-box {
     /*background: rgba(255, 255, 255, 0.1);*/
+    
     background-color: rgba(54, 25, 25, .4);
     box-shadow: 0 10px 10px -5px #000000;
     margin-top: 5px;
     line-height: 60%;
 }
 
-.vehicle-icon-fort-param{
+.vehicle-icon-fort-param {
     color: #3399FF;
     /*font-size: 15px;*/
 }
@@ -27,7 +28,6 @@
     /*margin-left: -17px;*/
 }
 
-
 .booking-large-element-font {
     /*position: absolute;*/
     
@@ -44,10 +44,9 @@
 
 .booking-status-indication-font {
     /*position: absolute;*/
-    
-    
     /*text-transform: uppercase;*/
     /*font-family: italic, Helvetica, sans-serif;*/
+    
     font-style: italic;
     font-size: 15px;
     font-weight: 600;
@@ -58,39 +57,39 @@
 }
 
 .booking-confirm-status {
-	color: #00FF00 ;
+    color: #00FF00;
 }
 
 .booking-cancel-status {
-	color: #0000FF ;
+    color: #0000FF;
 }
 
 .booking-pending-status {
-	color: #FFFF00 ;
+    color: #FFFF00;
 }
 
 .booking-waiting-status {
-	color: #00FFFF  ;
+    color: #00FFFF;
 }
 
 .booking-inprogress-status {
-    color: #00FFFF  ;
+    color: #00FFFF;
 }
 
 .booking-complete-status {
-    color: #2F4F4F  ;
+    color: #2F4F4F;
 }
 
 .booking-postpone-status {
-    color: #2F4F4F  ;
+    color: #2F4F4F;
 }
 
 .booking-delivery-status {
-	color: #2F4F4F  ;
+    color: #2F4F4F;
 }
-
 /**********************************buttons***********************************************/
-.bookings-request-status-button{
+
+.bookings-request-status-button {
     height: 5px;
     width: 10px;
     background-color: #4a87ee;
@@ -103,7 +102,7 @@
     text-decoration: none;
 }
 
-.bookings-details-button-grey{
+.bookings-details-button-grey {
     height: 5px;
     width: 10px;
     background-color: #696969;
@@ -128,26 +127,20 @@
     letter-spacing: 1px;
 }
 /****************************************************************************************/
-
 /***********************booking modal****************************************************/
 
-.booking-status-modal-size{
-  /*width: 50%;*/
-  /*height: 50px;*/
-  margin-top: 20%;
-  background: rgba(255, 255, 255, 0.1);
+.booking-status-modal-size {
+    /*width: 50%;*/
+    /*height: 50px;*/
+    
+    margin-top: 20%;
+    background: rgba(255, 255, 255, 0.1);
 }
 
-
-
-.booking-modal-close-icon{
+.booking-modal-close-icon {
     font-size: 20px;
 }
-
-
-
 /****************************************************************************************/
-
 /*************************booking details*************************************************/
 
 .booking-details-large-font {
@@ -166,6 +159,7 @@
 
 .booking-details-lt-color-box {
     /*background: rgba(255, 255, 255, 0.1);*/
+    
     background-color: rgba(54, 25, 25, .4);
     box-shadow: 0 10px 10px -5px #000000;
     margin-top: 5px;
@@ -177,9 +171,92 @@
     box-shadow: 0 10px 10px -5px #000000;
     margin-top: 20px;
 }
+
+.booking-details-color-box-param {
+    margin-top: 5px;
+    line-height: 70%;
+}
+
+.dotted {
+    border-right: 1px solid black;
+    height: 100%;
+
+}
+/*booking status*/
+
+.booking-details-circle-dot-para {
+    font-size: 30px;
+    color: #f0b840;
+    margin-left: 1px;
+}
+
+.booking-details-circle-nodot-para {
+    font-size: 15px;
+    color: #f0b840;
+    margin-left: 7px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+
+.booking-details-dotted-line {
+ /* width: 100px;
+  height: 100px;
+  border: 1px solid red;*/
+  border-top: 3px solid #4a87ee;
+  border-top-style: dashed;
+  /*font-size: 6px;*/
+  height: 10px;
+  width: 35px;
+  /*color: #4a87ee;*/
+  margin-left: -9px;
+  margin-top: 3px;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.booking-details-line-status-margin {
+    margin-left: 5%;
+}
+
+.booking-details-status-element-font {
+    /*position: absolute;*/
+    
+    color: #ffffff;
+    /*text-transform: uppercase;*/
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-align: center;
+    margin-top: 10px;
+
+}
+
+.bookings-details-action-button {
+    height: 20px;
+    width: 50px;
+    background-color: #4a87ee;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    border: 1px solid #4a87ee;
+    border-radius: 3px;
+    box-shadow: 0 5px 5px -5px #000000;
+    text-decoration: none;
+    margin-top: 5px;
+    /*margin-left: 10px;*/
+}
+
+/****************/
 /***************menu page***************************************************************/
+
 .header-background-image {
-    background: url('../img/test-image-1.png') repeat;
+    background: url('../img/bg_image.png') repeat;
     /*border: 2px solid black;*/
     
     background-size: 100% 100%;
@@ -188,4 +265,3 @@
     /*background-color: #8F0529;*/
 }
 /****************************************************************************************/
-

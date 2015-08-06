@@ -6,14 +6,10 @@
     <ion-content scrollbar-y="false" has-bouncing="true" class="home-background-image">
         <div ng-controller="booking-details-ctrl">
             <ion-list>
-                <div class="list card booking-details-ht-color-box">
+                <div class="list card booking-details-ht-color-box booking-details-color-box-param">
                     <div class="row">
                         <div class="col">
-                            <span class="booking-details-large-font">{{bookingListItem.UserName}}</span>
-                        </div>
-                        <div class="col">
-                            <span class="booking-details-large-font">Status:&nbsp</span>
-                            <span class="booking-status-indication-font {{bookingListItem.BookingStatusColor}}">{{bookingListItem.BookingStatusString}}</span>
+                            <span class="booking-large-element-font">Booking date:&nbsp<span class="date-element-font">{{HeaderBookingDate}}</span></span>
                         </div>
                     </div>
                 </div>
@@ -31,7 +27,7 @@
                     <div class="row">
                         <div class="col">
                             <span class="booking-details-large-font">Address:&nbsp</span>
-                            <br>
+                            <!-- <br> -->
                             <span class="booking-address-element-font">{{bookingListItem.UserAddress}}, {{bookingListItem.ZipCode}}</span>
                         </div>
                     </div>
@@ -53,6 +49,42 @@
                             <span class="booking-details-large-font">Service:&nbsp</span>
                             <span class="booking-address-element-font">Regular, Washing</span>
                         </div>
+                    </div>
+                </div>
+                <div class="list card booking-details-ht-color-box booking-details-color-box-param">
+                    <div class="booking-details-line-status-margin">
+                        <div class="row">
+                            <div class="col col-10 test-box-line">
+                                <div class="ion-android-radio-button-on booking-details-circle-dot-para"></div>
+                            </div>
+                            <div class="col col-60 test-box-line">
+                                <div class="booking-details-status-element-font">Pending request</div>
+                            </div>
+                            <div class="col col-25 test-box-line">
+                                <a href="#" style="text-decoration: none;">
+                                    <div class="bookings-details-action-button bookings-request-status-font">Action</div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-10 test-box-line">
+                                <div class="booking-details-dotted-line"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-10 test-box-line">
+                                <div class="ion-record booking-details-circle-nodot-para"></div>
+                            </div>
+                            <div class="col col-60 test-box-line">
+                                <div class="booking-details-status-element-font">Pending request</div>
+                            </div>
+                            <div class="col col-25 test-box-line">
+                                <a href="#" style="text-decoration: none;">
+                                    <div class="bookings-details-action-button bookings-request-status-font">Action</div>
+                                </a>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </ion-list>

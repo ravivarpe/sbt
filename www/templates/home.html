@@ -8,7 +8,7 @@
                 </span>
             </div>
         </div> -->
-        <img class="vehito-logo-font" src="img/vehito_logo.png">
+        <img class="vehito-logo-font" src="img/vehito_logo_f.png">
     </ion-nav-title>
     <ion-content scrollbar-y="false" has-bouncing="true" class="home-background-image">
         <div ng-controller="homeCtrl_1">
@@ -77,19 +77,19 @@
                     <div class="col col-50 col-offset-25 ">
                         <span ng-if="PendingServices > 0">                                                                       
                                     <span class="date-element-font">{{PendingServices}}</span>
-                        <span class="col-box-day"> Pending Vehicle Services</span>
+                        <span class="col-box-day home-booking-button-text"> Pending Vehicle Services</span>
                         <span class="booking-pending-service-indicator"></span>
                         <br>
                         </span>
                         <span ng-if="PendingRequests > 0">
                                     <span class="date-element-font">{{PendingRequests}}</span>
-                        <span class="col-box-day"> Pending Booking Requests</span>
+                        <span class="col-box-day home-booking-button-text"> Pending Booking Requests</span>
                         <span class="booking-pending-request-indicator"></span>
                         <br>
                         </span>
                         <span ng-if="PendingRequests === 0 && PendingServices === 0">                                    
                                     <span class="date-element-font">NO </span>
-                        <span class="col-box-day">Pending Requests</span>
+                        <span class="col-box-day home-booking-button-text">Pending Requests</span>
                         </span>
                         <!-- <i class="ion-record pending-service-count-details"></i> -->
                     </div>

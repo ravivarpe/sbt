@@ -7,8 +7,10 @@
 
 .vehito-logo-font{
     /*position: relative;*/
-     width: 40px;
-     height: 40px;
+     width: 240px;
+     height: 140px;
+     margin-top: -48px;
+     margin-left: -40px;
 }
 .vehito-logo-text-font{
     color: #FFF500;
@@ -125,6 +127,10 @@
     letter-spacing: 1px;
 }
 
+.home-booking-button-text{
+    letter-spacing: .7px;
+}
+
 .date-element-font {
     /*position: absolute;*/
     
@@ -160,7 +166,7 @@
 }
 
 .test-box-line {
-    border: 1px solid white;
+    /*border: 1px solid white;*/
 }
 
 .calendar-year-alignment {
@@ -193,7 +199,7 @@
 }
 
 .home-background-image {
-    background: url('../img/test-image-1.png') repeat;
+    background: url('../img/bg_image.png') repeat;
     /*border: 2px solid black;*/
     
     background-size: 100% 100%;
