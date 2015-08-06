@@ -172,9 +172,17 @@
     margin-top: 20px;
 }
 
+.booking-details-status-color-box {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 10px -5px #000000;
+    margin-top: 20px;
+    padding-bottom: 10px;
+}
+
+
 .booking-details-color-box-param {
     margin-top: 5px;
-    line-height: 70%;
+    line-height: 60%;
 }
 
 .dotted {
@@ -184,13 +192,35 @@
 }
 /*booking status*/
 
-.booking-details-circle-dot-para {
+.booking-details-circle-dot-yellow {
     font-size: 30px;
     color: #f0b840;
     margin-left: 1px;
 }
 
-.booking-details-circle-nodot-para {
+.booking-details-circle-dot-green {
+    font-size: 30px;
+    color: #66cc33 ;
+    margin-left: 1px;
+}
+
+.booking-details-circle-nodot-yellow {
+    font-size: 15px;
+    color: #f0b840;
+    margin-left: 7px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.booking-details-circle-nodot-green {
+    font-size: 15px;
+    color: #66cc33 ;
+    margin-left: 7px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.booking-details-circle-nodot-grey {
     font-size: 15px;
     color: #f0b840;
     margin-left: 7px;
@@ -210,7 +240,7 @@
   width: 35px;
   /*color: #4a87ee;*/
   margin-left: -9px;
-  margin-top: 3px;
+  margin-top: 10px;
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
   -o-transform: rotate(90deg);
@@ -231,7 +261,7 @@
     font-size: 13px;
     font-weight: 500;
     letter-spacing: 1.5px;
-    text-align: center;
+    /*text-align: center;*/
     margin-top: 10px;
 
 }
@@ -250,6 +280,10 @@
     text-decoration: none;
     margin-top: 5px;
     /*margin-left: 10px;*/
+}
+
+.booking-details-row-height{
+    height: 30px;
 }
 
 /****************/

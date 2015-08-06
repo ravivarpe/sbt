@@ -13,37 +13,37 @@
                         </div>
                     </div>
                 </div>
-                <div class="list card booking-details-lt-color-box" ng-repeat="bookingListItem in bookingListArray">
+                <div class="list card booking-details-lt-color-box" ng-repeat="bookingDetailsItem in bookingDetailsArray">
                     <!-- <div class="list card user-booking-view-box"> -->
                     <div class="row">
                         <div class="col">
-                            <span class="booking-details-large-font">{{bookingListItem.UserName}}</span>
+                            <span class="booking-details-large-font">{{bookingDetailsItem.UserName}}</span>
                         </div>
                         <div class="col">
                             <span class="booking-details-large-font">Status:&nbsp</span>
-                            <span class="booking-status-indication-font {{bookingListItem.BookingStatusColor}}">{{bookingListItem.BookingStatusString}}</span>
+                            <span class="booking-status-indication-font {{bookingDetailsItem.BookingStatusColor}}">{{bookingDetailsItem.BookingStatusString}}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <span class="booking-details-large-font">Address:&nbsp</span>
                             <!-- <br> -->
-                            <span class="booking-address-element-font">{{bookingListItem.UserAddress}}, {{bookingListItem.ZipCode}}</span>
+                            <span class="booking-address-element-font">{{bookingDetailsItem.UserAddress}}, {{bookingDetailsItem.ZipCode}}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <i class="ion-iphone vehicle-icon-fort-param"></i>
-                            <span class="booking-details-large-font">&nbsp{{bookingListItem.PhoneNumber}}</span>
+                            <span class="booking-details-large-font">&nbsp{{bookingDetailsItem.PhoneNumber}}</span>
                         </div>
                         <div class="col">
-                            <span class="booking-details-large-font">{{bookingListItem.PickDropString}}</span>
+                            <span class="booking-details-large-font">{{bookingDetailsItem.PickDropString}}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <i class="ion-model-s vehicle-icon-fort-param"></i>
-                            <span class="booking-address-element-font">&nbsp{{bookingListItem.VehicleModel}}&nbsp{{bookingListItem.YoF}}</span>
+                            <span class="booking-address-element-font">&nbsp{{bookingDetailsItem.VehicleModel}}&nbsp{{bookingDetailsItem.YoF}}</span>
                         </div>
                         <div class="col">
                             <span class="booking-details-large-font">Service:&nbsp</span>
@@ -51,42 +51,106 @@
                         </div>
                     </div>
                 </div>
-                <div class="list card booking-details-ht-color-box booking-details-color-box-param">
-                    <div class="booking-details-line-status-margin">
-                        <div class="row">
-                            <div class="col col-10 test-box-line">
-                                <div class="ion-android-radio-button-on booking-details-circle-dot-para"></div>
-                            </div>
-                            <div class="col col-60 test-box-line">
-                                <div class="booking-details-status-element-font">Pending request</div>
-                            </div>
-                            <div class="col col-25 test-box-line">
-                                <a href="#" style="text-decoration: none;">
-                                    <div class="bookings-details-action-button bookings-request-status-font">Action</div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col col-10 test-box-line">
-                                <div class="booking-details-dotted-line"></div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col col-10 test-box-line">
-                                <div class="ion-record booking-details-circle-nodot-para"></div>
-                            </div>
-                            <div class="col col-60 test-box-line">
-                                <div class="booking-details-status-element-font">Pending request</div>
-                            </div>
-                            <div class="col col-25 test-box-line">
-                                <a href="#" style="text-decoration: none;">
-                                    <div class="bookings-details-action-button bookings-request-status-font">Action</div>
-                                </a>
-                            </div>
-                        </div>
 
-                    </div>
+
+
+
+
+
+
+
+
+
+                
+                <div class="list card booking-details-status-color-box booking-details-color-box-param">
+                    <span ng-repeat="bookingStatusItem in bookingStatusArrayItems">
+                        <span ng-if="bookingStatusItem.statusIndex > 2 && bookingStatusItem.iconType > 0">
+                            <div class="row booking-details-row-height">
+                                <div class="col col-10">
+                                    <div class="booking-details-dotted-line"></div>
+                                </div>
+                            </div>
+                        </span>
+                        <div class="row booking-details-row-height">
+                            <div class="col col-10">
+                                <span ng-if="bookingStatusItem.iconType === 1">
+                                    <span ng-if="bookingStatusItem.statusInfo === 0 || bookingStatusItem.statusInfo === 4">
+                                        <div class="ion-android-radio-button-on booking-details-circle-dot-yellow"></div>
+                                    </span>
+                                <span ng-if="bookingStatusItem.statusInfo === 1">
+                                        <div class="ion-android-radio-button-on booking-details-circle-dot-green"></div>
+                                    </span>
+                                </span>
+                                <span ng-if="bookingStatusItem.iconType === 2">
+                                    <span ng-if="bookingStatusItem.statusInfo === 0 || bookingStatusItem.statusInfo === 4">
+                                        <div class="ion-record booking-details-circle-nodot-yellow"></div>
+                                    </span>
+                                <span ng-if="bookingStatusItem.statusInfo === 1">
+                                        <div class="ion-record booking-details-circle-nodot-green"></div>
+                                    </span>
+                                <span ng-if="bookingStatusItem.statusInfo === 2">
+                                        <div class="ion-record booking-details-circle-nodot-grey"></div>
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="col col-60">
+                                <div class="booking-details-status-element-font">{{bookingStatusItem.statusString}}</div>
+                            </div>
+                            <span ng-if="bookingStatusItem.statusInfo === 0 || bookingStatusItem.statusInfo === 4">
+                                <div class="col col-25">
+                                    <a href="#" style="text-decoration: none;" ng-click="openBookingStatusModal(bookingStatusItem)">
+                                        <div class="bookings-details-action-button bookings-request-status-font">Action</div>
+                                    </a>
+                                </div>
+                            </span>
+                        </div>
+                    </span>
                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- <div class="list card booking-details-ht-color-box booking-details-color-box-param">
+                    <div class="row">
+                        <div class="col col-10">
+                            <div class="ion-android-radio-button-on booking-details-circle-dot-yellow"></div>
+                        </div>
+                        <div class="col col-60">
+                            <div class="booking-details-status-element-font">Completed vehicle service</div>
+                        </div>
+                        <div class="col col-25">
+                            <a href="#" style="text-decoration: none;">
+                                <div class="bookings-details-action-button bookings-request-status-font">Action</div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-10">
+                            <div class="booking-details-dotted-line"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-10">
+                            <div class="ion-record booking-details-circle-nodot-yellow"></div>
+                        </div>
+                        <div class="col col-60">
+                            <div class="booking-details-status-element-font">Pending request</div>
+                        </div>
+                        <div class="col col-25">
+                            <a href="#" style="text-decoration: none;">
+                                <div class="bookings-details-action-button bookings-request-status-font">Action</div>
+                            </a>
+                        </div>
+                    </div>
+                </div> -->
             </ion-list>
         </div>
     </ion-content>
