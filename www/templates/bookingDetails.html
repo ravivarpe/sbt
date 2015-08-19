@@ -5,8 +5,9 @@
     </ion-nav-title>
     <ion-content scrollbar-y="false" has-bouncing="true" class="home-background-image">
         <div ng-controller="booking-details-ctrl">
+            <div ng-controller="booking-details-modal-ctrl">
             <ion-list>
-                <div class="list card booking-details-ht-color-box booking-details-color-box-param">
+                <div class="list card booking-details-status-color-box booking-details-color-box-param">
                     <div class="row">
                         <div class="col">
                             <span class="booking-large-element-font">Booking date:&nbsp<span class="date-element-font">{{HeaderBookingDate}}</span></span>
@@ -75,15 +76,15 @@
                             <div class="col col-10">
                                 <span ng-if="bookingStatusItem.iconType === 1">
                                     <span ng-if="bookingStatusItem.statusInfo === 0 || bookingStatusItem.statusInfo === 4">
-                                        <div class="ion-android-radio-button-on booking-details-circle-dot-yellow"></div>
+                                        <div class="ion-android-radio-button-on booking-details-circle-dot-grey"></div>
                                     </span>
                                 <span ng-if="bookingStatusItem.statusInfo === 1">
-                                        <div class="ion-android-radio-button-on booking-details-circle-dot-green"></div>
+                                        <div class="ion-android-radio-button-on booking-details-circle-dot-yellow"></div>
                                     </span>
                                 </span>
                                 <span ng-if="bookingStatusItem.iconType === 2">
                                     <span ng-if="bookingStatusItem.statusInfo === 0 || bookingStatusItem.statusInfo === 4">
-                                        <div class="ion-record booking-details-circle-nodot-yellow"></div>
+                                        <div class="ion-record booking-details-circle-nodot-grey"></div>
                                     </span>
                                 <span ng-if="bookingStatusItem.statusInfo === 1">
                                         <div class="ion-record booking-details-circle-nodot-green"></div>
@@ -96,10 +97,10 @@
                             <div class="col col-60">
                                 <div class="booking-details-status-element-font">{{bookingStatusItem.statusString}}</div>
                             </div>
-                            <span ng-if="bookingStatusItem.statusInfo === 0 || bookingStatusItem.statusInfo === 4">
+                            <span ng-if="bookingStatusItem.statusInfo === 4">
                                 <div class="col col-25">
-                                    <a href="#" style="text-decoration: none;" ng-click="openBookingStatusModal(bookingStatusItem)">
-                                        <div class="bookings-details-action-button bookings-request-status-font">Action</div>
+                                    <a href="#" style="text-decoration: none;" ng-click="bookingDetailStatusModal(bookingStatusItem)">
+                                        <div class="bookings-details-action-button bookings-request-status-font">Update</div>
                                     </a>
                                 </div>
                             </span>
@@ -121,7 +122,7 @@
                 <!-- <div class="list card booking-details-ht-color-box booking-details-color-box-param">
                     <div class="row">
                         <div class="col col-10">
-                            <div class="ion-android-radio-button-on booking-details-circle-dot-yellow"></div>
+                            <div class="ion-android-radio-button-on booking-details-circle-dot-grey"></div>
                         </div>
                         <div class="col col-60">
                             <div class="booking-details-status-element-font">Completed vehicle service</div>
@@ -139,7 +140,7 @@
                     </div>
                     <div class="row">
                         <div class="col col-10">
-                            <div class="ion-record booking-details-circle-nodot-yellow"></div>
+                            <div class="ion-record booking-details-circle-nodot-grey"></div>
                         </div>
                         <div class="col col-60">
                             <div class="booking-details-status-element-font">Pending request</div>
@@ -152,6 +153,7 @@
                     </div>
                 </div> -->
             </ion-list>
+            </div>
         </div>
     </ion-content>
 </ion-view>

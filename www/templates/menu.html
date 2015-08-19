@@ -11,36 +11,32 @@
         <ion-nav-view name="menuContent"></ion-nav-view>
     </ion-side-menu-content>
     <ion-side-menu side="right">
-        <ion-header-bar class="nav-title-slide-ios7" align-title="center">
-            <h1 class="title color-filler"> Menu</h1>
-        </ion-header-bar>
-        <ion-content>
-            <ion-list>
-                <ion-item menu-close ng-click="login()">
-                    <i class="ion-android-person title-color-font">    Login</i>
-                </ion-item>
-                <ion-item menu-close href="#/vendor-app/home">
-                    <i class="ion-home title-color-font">    Home</i>
-                </ion-item>
-                <ion-item menu-close href="#/app/carServices">
-                    <i class="ion-android-car title-color-font">    Regular Service</i>
-                </ion-item>
-                <ion-item menu-close href="#/app/browse">
-                    <i class="ion-wrench title-color-font">    Body shop</i>
-                </ion-item>
-                <ion-item menu-close href="#/app/playlists">
-                    <i class="ion-pricetags title-color-font">    Deals/Offers</i>
-                </ion-item>
-                <ion-item menu-close href="#/app/playlists">
-                    <i class="ion-umbrella title-color-font">    Insurance</i>
-                </ion-item>
-                <ion-item menu-close href="#/app/playlists">
-                    <i class="ion-cash title-color-font">    My Coupons</i>
-                </ion-item>
-                <ion-item menu-close href="#/app/playlists">
-                    <i class="ion-android-settings title-color-font">    Account Settings</i>
-                </ion-item>
-            </ion-list>
-        </ion-content>
+        <div ng-controller="side-menu-ctrl">
+            <ion-header-bar class="nav-title-slide-ios7" align-title="center">
+                <h1 class="title color-filler"> Menu</h1>
+            </ion-header-bar>
+            <ion-content>
+                <ion-list>
+                    <ion-item menu-close ng-click="login()">
+                        <i class="ion-android-person title-color-font">&nbsp&nbspLogin</i>
+                    </ion-item>
+                    <ion-item menu-close href="#/vendor-app/home">
+                        <i class="ion-home title-color-font">&nbsp&nbspHome</i>
+                    </ion-item>
+                    <ion-item menu-close ui-sref="vendor-app.bookingList({ calendarDetails: DateInSeconds })">
+                        <i class="ion-android-car title-color-font">&nbsp&nbspBooking Details</i>
+                    </ion-item>
+                    <ion-item menu-close href="#/app/browse">
+                        <i class="ion-wrench title-color-font">&nbsp&nbspServices Settings</i>
+                    </ion-item>
+                    <ion-item menu-close href="#/app/playlists">
+                        <i class="ion-pricetags title-color-font">&nbsp&nbspHoliday Settings</i>
+                    </ion-item>
+                    <ion-item menu-close href="#/app/playlists">
+                        <i class="ion-android-settings title-color-font">&nbsp&nbspAccount Settings</i>
+                    </ion-item>
+                </ion-list>
+            </ion-content>
+        </div>
     </ion-side-menu>
 </ion-side-menus>

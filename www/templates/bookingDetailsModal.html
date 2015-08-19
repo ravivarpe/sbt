@@ -5,7 +5,7 @@
     <ion-content>
         <div class="row">
             <div class="col">
-                <a href="#" ng-click="closeBookingModal()"><i class="icon ion-checkmark-circled booking-details-circle-dot-green"></i></a>
+                <a href="#" ng-click="updateBookingModal()"><i class="icon ion-checkmark-circled booking-details-circle-dot-green"></i></a>
             </div>
             <div class="col col-10 col-offset-85">
                 <a href="#" ng-click="closeBookingModal()"><i class="icon ion-close-circled booking-details-circle-dot-grey"></i></a>
@@ -13,7 +13,7 @@
         </div>
         <form ng-submit="doLogin()">
             <!-- //////////////////////////////////////////pickup logic//////////////////////////////////////////////////// -->
-            <div ng-if="detailsStatusInfo.pickUpProgressStatus === true">
+            <div ng-if="modalDisplayInfo.statusIndex === vehiclePickupIndex">
                 <div class="list">
                     <div class="row">
                         <div class="col col-10">
@@ -43,15 +43,14 @@
                             <a href="#"><i class="icon ion-folder booking-details-circle-dot-yellow"></i></a>
                         </div>
                     </div>
-
                 </div>
             </div>
             <!-- //////////////////////////////////////////vehicle got picked logic/////////////////////////////////////// -->
-            <div ng-if="detailsStatusInfo.GeneralStatus === true">
-                <div class="list">
-                    <ion-radio class="booking-modal-radio-bg" icon="icon ion-record" ng-model="choice" ng-value="'A'">Choose A</ion-radio>
-                    <ion-radio class="booking-modal-radio-bg" icon="icon ion-record" ng-model="choice" ng-value="'B'">Choose B</ion-radio>
-                    <ion-radio class="booking-modal-radio-bg" icon="icon ion-record" ng-model="choice" ng-value="'C'">Choose C</ion-radio>
+            <div ng-repeat="detailsItem in BookingDetailsModalEnableArray">
+                <div ng-if="modalDisplayInfo.statusIndex === detailsItem.index">
+                    <div ng-repeat="items in detailsItem.state">
+                        <ion-radio class="booking-modal-radio-bg" icon="icon ion-record" ng-model="choice" ng-value="items.id">{{items.option}}</ion-radio>
+                    </div>
                 </div>
             </div>
         </form>

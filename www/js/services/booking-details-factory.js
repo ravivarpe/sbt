@@ -19,19 +19,46 @@ angular.module('starter.bookingDetails')
     factoryObj.iconWithDotCircle = "";
     factoryObj.lastCount;
 
-    factoryObj.sumOfAllStatus = factoryObj.requestPending |
-        factoryObj.confirmRequest |
+    factoryObj.sumOfAllStatus = factoryObj.requestPending ;
+        // factoryObj.confirmRequest ;
         // factoryObj.cancelRequest | 
-        factoryObj.sendPersonForPickup |
-        factoryObj.personPickedVehicle |
-        factoryObj.receivedCarFromUser |
-        factoryObj.serviceInProgress |
+        // factoryObj.sendPersonForPickup |
+        // factoryObj.personPickedVehicle |
+        // factoryObj.receivedCarFromUser |
+        // factoryObj.serviceInProgress |
         // factoryObj.waitingForUserResponse | 
-        factoryObj.serviceComplete |
-        factoryObj.personPickedVehicleForDelivery |
-        factoryObj.devliveredVehicle |
-        factoryObj.userPaidFullAmount;
+        // factoryObj.serviceComplete ;
+        // factoryObj.personPickedVehicleForDelivery |
+        // factoryObj.devliveredVehicle |
+        // factoryObj.userPaidFullAmount;
 
+
+
+
+  // factoryObj.stateInfo = [
+  //   { id: factoryObj.confirmRequest, options:[{1:"Confirm booking"}, {2:"Vehicle not Supported"}, {4:"Insufficient Staff"}, {6:"Un-expected Holiday"}] },
+  //   { id: factoryObj.sendPersonForPickup, options:[{1:"Initiated vehicle pickup"}, {2:"Cancelled due Un-expected holiday"}] },
+  //   { id: factoryObj.personPickedVehicle, options:[{1:"Vehicle got picked"}, {2:"User is not reachable"}, {4:"User cancelled service"}] },
+  //   { id: factoryObj.receivedCarFromUser, options:[{1:"Vehicle received for service"}] },
+  //   { id: factoryObj.serviceInProgress, options:[{1:"Service in progress"}, {2:"Waiting for user response"}, {4:"Service got postponed"}] },
+  //   { id: factoryObj.serviceComplete, options:[{1:"Service completed"}, {2:"Service got postponed"}, {3:"Service cancelled"}] },
+  //   { id: factoryObj.personPickedVehicleForDelivery, options:[{1:"Vehicle Drop in progress"}, {2:"Vehicle Drop initiated"}, {3:"Drop got postponed"}] },
+  //   { id: factoryObj.devliveredVehicle, options:[{1:"Vehicle delivered"}, {2:"User not reachable"}] },
+  //   { id: factoryObj.userPaidFullAmount, options:[{1:"Amount paid"}] }
+  // ];
+
+
+  factoryObj.stateDetails = [
+    {index:factoryObj.confirmRequest, state:[{option:"Confirm booking", id:1}, {option:"Vehicle not Supported", id:2}, {option:"Insufficient Staff", id:4}, {option:"Un-expected Holiday", id:6}]},
+    {index:factoryObj.sendPersonForPickup, state:[{option:"Initiated vehicle pickup", id:1}, {option:"Cancelled due Un-expected holiday", id:2}]},
+    {index:factoryObj.personPickedVehicle, state:[{option:"Vehicle got picked", id:1}, {option:"User is not reachable", id:2}, {option:"User cancelled service", id:4}]},
+    {index:factoryObj.receivedCarFromUser, state:[{option:"Vehicle received for service", id:1}]},
+    {index:factoryObj.serviceInProgress, state:[{option:"Service in progress", id:1}, {option:"Waiting for user response", id:2}, {option:"Service got postponed", id:4}]},
+    {index:factoryObj.serviceComplete, state:[{option:"Service completed", id:1}, {option:"Service got postponed", id:2}, {option:"Service cancelled", id:4}]},
+    {index:factoryObj.personPickedVehicleForDelivery, state:[{option:"Vehicle Drop in progress", id:1}, {option:"Vehicle Drop initiated", id:2}, {option:"Drop got postponed", id:4}]},
+    {index:factoryObj.devliveredVehicle, state:[{option:"Vehicle delivered", id:1}, {option:"User not reachable", id:2}]},
+    {index:factoryObj.userPaidFullAmount, state:[{option:"Amount paid", id:1}]}
+  ];
 
 
     factoryObj.bookingStatusArray = ["Request Pending",
@@ -52,6 +79,7 @@ angular.module('starter.bookingDetails')
     factoryObj.setBookingLiveStatus = function(scope, bookingStatus) {
         // console.log(factoryObj.sumOfAllStatus);
         // console.log();
+        factoryObj.lastCount = 0;
         for (var i = 1; i < factoryObj.bookingStatusArray.length; i++) {
             var bookingStatusArrayObj = {};
             bookingStatusArrayObj.iconType = 0;
@@ -67,7 +95,7 @@ angular.module('starter.bookingDetails')
                 bookingStatusArrayObj.statusIndex = 0x1 << i;
                 scope.bookingStatusArrayItems.push(bookingStatusArrayObj);
                 // console.log(bookingStatusArrayObj);
-                factoryObj.lastCount = i;
+                factoryObj.lastCount++;
             } else {
                 index = (0x1 << i);
                 if (factoryObj.setPickUpDropInfo(scope, index) == 0)
@@ -79,24 +107,20 @@ angular.module('starter.bookingDetails')
                 factoryObj.setDisplayIconInfo(index, bookingStatusArrayObj);
 
                 bookingStatusArrayObj.statusString = factoryObj.bookingStatusArray[i - 1];
-                bookingStatusArrayObj.statusInfo = 2;
+                bookingStatusArrayObj.statusInfo = 0;
                 bookingStatusArrayObj.statusIndex = 0x1 << i;
                 scope.bookingStatusArrayItems.push(bookingStatusArrayObj);
-                // console.log(bookingStatusArrayObj);
-                factoryObj.lastCount = i;
-            }
-        }
-        var bookingStatusArrayObj = {};
-        factoryObj.lastCount++;
-        if (factoryObj.lastCount != (factoryObj.bookingStatusArray.length - 1)) {
-
-            factoryObj.setDisplayIconInfo(factoryObj.lastCount, bookingStatusArrayObj);
-            bookingStatusArrayObj.statusString = factoryObj.bookingStatusArray[factoryObj.lastCount - 1];
-            bookingStatusArrayObj.statusInfo = 4;
-            bookingStatusArrayObj.statusIndex = 0x1 << factoryObj.lastCount;
-            scope.bookingStatusArrayItems.push(bookingStatusArrayObj);
+                
+                
+            //     console.log(i);
             // console.log(bookingStatusArrayObj);
+            }
+
         }
+        // console.log(factoryObj.lastCount);
+        scope.bookingStatusArrayItems[factoryObj.lastCount].statusInfo = 4;
+        
+
     }
 
     factoryObj.setPickUpDropInfo = function(scope, index) {

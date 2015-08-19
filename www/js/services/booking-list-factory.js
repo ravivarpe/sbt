@@ -42,7 +42,7 @@ angular.module('starter.bookingList')
         userBookingInfoObj.BookingStatus = 2;
         factoryObj.setBookingStatusInfo(userBookingInfoObj);
 
-        userBookingInfoObj.PickDrop = 2;
+        userBookingInfoObj.PickDrop = 3;
         factoryObj.setPickDropStatus(userBookingInfoObj);
 
         userBookingInfoObj.MinServiceAmount = 2000;

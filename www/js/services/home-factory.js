@@ -18,7 +18,7 @@ angular.module('starter.home')
         scope.VendorRatingValue = rating;
     };
 
-    factoryObj.setVendorLikesInfo = function(scope, likeCount){
+    factoryObj.setVendorLikesInfo = function(scope, likeCount) {
         scope.VendorLikeValue = likeCount;
     };
 
@@ -72,7 +72,7 @@ angular.module('starter.home')
         factoryObj.getCurrentDayNumber(yearInNumber, monthInNumber, 1);
 
 
-        
+
 
         scope.calendarArray.length = 0;
         for (var i = 1; i <= factoryObj.noOfDaysInMonth; i++) {
@@ -81,11 +81,11 @@ angular.module('starter.home')
             if (i % 2) {
                 dayInformation.requestPending = 20;
                 dayInformation.vehiclePending = 3;
-            }else{
+            } else {
                 dayInformation.requestPending = 1;
                 dayInformation.vehiclePending = 0;
             }
-            if(i==1){
+            if (i == 1) {
                 dayInformation.requestPending = 0;
                 dayInformation.vehiclePending = 0;
             }
@@ -100,9 +100,9 @@ angular.module('starter.home')
 
         dateObj = new Date();
         factoryObj.setDayStatusInfo(scope, scope.calendarArray[dateObj.getDate() - 1]);
-        
+
         // factoryObj.getTimeInSeconds(yearInNumber, monthInNumber, dateObj.getDate(),0,0,0 );
-        scope.DateInSeconds = scope.calendarArray[dateObj.getDate()-1];
+        scope.DateInSeconds = scope.calendarArray[dateObj.getDate() - 1];
         // console.log(scope.DateInSeconds);
 
         scope.calendarTable.rowCount = ((factoryObj.noOfDaysInMonth / 7) > Math.round(factoryObj.noOfDaysInMonth / 7)) ? Math.round(factoryObj.noOfDaysInMonth / 7) + 1 : Math.round(factoryObj.noOfDaysInMonth / 7);
@@ -119,6 +119,28 @@ angular.module('starter.home')
         scope.PendingServices = dayInformation.vehiclePending;
         scope.DateInSeconds = dayInformation;
         // console.log(factoryObj.timeInSeconds);
+    }
+
+
+    factoryObj.getCurrentDayObj = function(scope, yearInNumber, monthInNumber) {
+        factoryObj.getNumberOfDaysInMonth(yearInNumber, monthInNumber);
+        factoryObj.getCurrentDayNumber(yearInNumber, monthInNumber, 1);
+        dateObj = new Date();
+        var dayInformation = {};
+        dayInformation.dayNumber = dateObj.getDate();
+
+        dayInformation.requestPending = 20;
+        dayInformation.vehiclePending = 3;
+
+
+        dayInformation.year = yearInNumber;
+        dayInformation.month = monthInNumber;
+        dayInformation.dayName = factoryObj.dayArrayInfo[0];
+
+
+        scope.DateInSeconds = dayInformation;
+        // scope.calendarArray[dateObj.getDate() - 1];
+
     }
 
     return factoryObj;

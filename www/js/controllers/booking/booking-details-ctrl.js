@@ -8,7 +8,7 @@ angular.module('starter.bookingDetails', ['ionic'])
 	$scope.bookingDetailsArray.push($stateParams.bookingDetailsInfo);
 	$scope.HeaderBookingDate = $stateParams.bookingDetailsInfo.VehicleDeliveryTimeFormat;
  //    BookingListFact.setCalendarDayInfo($scope);
-    console.log($scope);
+    // console.log($scope);
 
     BookingDetailsFact.setBookingLiveStatus($scope, BookingDetailsFact.sumOfAllStatus);
 });
