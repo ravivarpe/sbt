@@ -26,6 +26,16 @@ angular.module('starter')
             }
         })
 
+    .state('vendor-app.serviceConfig', {
+        url: "/serviceConfig",
+        views: {
+            'menuContent': {
+                templateUrl: "templates/serviceConfig.html",
+                // controller: 'homeCtrl'
+            }
+        }
+    })
+
     .state('vendor-app.bookingList', {
         url: "/home/booking",
         params: {

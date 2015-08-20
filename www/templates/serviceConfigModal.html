@@ -1,0 +1,44 @@
+<ion-modal-view class="setting-status-modal-size">
+    <ion-content scrollbar-y="false" has-bouncing="true">
+        <div class="row">
+            <div class="col">
+                <a href="#" ng-click="updateServiceModal()"><i class="icon ion-checkmark-circled booking-details-circle-dot-green"></i></a>
+            </div>
+            <div class="col col-10 col-offset-85">
+                <a href="#" ng-click="closeServiceModal()"><i class="icon ion-close-circled booking-details-circle-dot-grey"></i></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-offset-25">
+                <i class="setting-modal-heading">{{localString.SupportedServices}}</i>
+            </div>
+        </div>
+        <div class="row" ng-repeat="item in serviceListArrayItems">
+            <span ng-if="item.checked === true">
+                <span class="service-type-element-font">{{ item.ServiceType }}</span>
+            <br>
+            <div ng-repeat="subItem in item.SubServices">
+                <span ng-if="subItem.checked === true">
+                        <span class="sub-type-element-font">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{ subItem.service }}</span>
+                </span>
+            </div>
+            </span>
+        </div>
+        <div class="row">
+            <div class="col col-offset-25">
+                <i class="setting-modal-heading">{{localString.SupportedVehicles}}</i>
+            </div>
+        </div>
+        <div class="row" ng-repeat="item in vehicleListArrayItems">
+            <span ng-if="item.checked === true">
+                <span class="service-type-element-font">{{ item.ServiceType }}</span>
+            <br>
+            <div ng-repeat="subItem in item.SubServices">
+                <span ng-if="subItem.checked === true">
+                        <span class="sub-type-element-font">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{ subItem.service }}</span>
+                </span>
+            </div>
+            </span>
+        </div>
+    </ion-content>
+</ion-modal-view>

@@ -1,0 +1,44 @@
+<ion-view>
+    <ion-nav-title>
+        <span class="booking-details-large-font">Service Settings</span>
+    </ion-nav-title>
+    <ion-content scrollbar-y="false" has-bouncing="true" class="home-background-image">
+        <div ng-controller="service-config-ctrl">
+            <div ng-controller="service-config-modal-ctrl">
+                <button class="button button-full button-assertive" ng-click="serviceStatusModal()">
+                    {{localString.ApplyButton}}
+                </button>
+                <ion-toggle class="item-bg-settings-header" ng-model="localString.serviceChecked" ng-checked="localString.serviceChecked">
+                    <span class="service-type-element-font">{{localString.SupportedServices}}</span>
+                </ion-toggle>
+                <div ng-if="localString.serviceChecked === true">
+                    <div ng-repeat="item in serviceListArrayItems">
+                        <ion-toggle class="item-bg-settings" ng-model="item.checked" ng-checked="item.checked">
+                            <span class="service-type-element-font">{{ item.ServiceType }}</span>
+                        </ion-toggle>
+                        <div ng-if="item.checked === true">
+                            <ion-checkbox class="item-bg-settings" ng-repeat="subItem in item.SubServices" ng-model="subItem.checked" ng-checked="subItem.checked">
+                                <span class="sub-type-element-font">{{ subItem.service }}</span>
+                            </ion-checkbox>
+                        </div>
+                    </div>
+                </div>
+                <ion-toggle class="item-bg-settings-header" ng-model="localString.vehicleChecked" ng-checked="localString.vehicleChecked">
+                    <span class="service-type-element-font">{{localString.SupportedVehicles}}</span>
+                </ion-toggle>
+                <div ng-if="localString.vehicleChecked === true">
+                    <div ng-repeat="item in vehicleListArrayItems">
+                        <ion-toggle class="item-bg-settings" ng-model="item.checked" ng-checked="item.checked">
+                            <span class="service-type-element-font">{{ item.ServiceType }}</span>
+                        </ion-toggle>
+                        <div ng-if="item.checked === true">
+                            <ion-checkbox class="item-bg-settings" ng-repeat="subItem in item.SubServices" ng-model="subItem.checked" ng-checked="subItem.checked">
+                                <span class="sub-type-element-font">{{ subItem.service }}</span>
+                            </ion-checkbox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
