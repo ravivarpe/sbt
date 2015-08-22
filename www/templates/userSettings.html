@@ -1,0 +1,70 @@
+<ion-view>
+    <ion-nav-title>
+        <span class="booking-details-large-font">User Settings</span>
+    </ion-nav-title>
+    <ion-content scrollbar-y="false" has-bouncing="true" class="home-background-image">
+        <div ng-controller="user-settings-ctrl" class="controller-placing">
+            <!-- personal information -->
+            <div class="row bg-item-divide-setting">
+                <div class="col col-90 item-heading-user-info">
+                    <span>{{personalInfo.Heading}}</span>
+                </div>
+                <div class="col col-10">
+                    <span ionic-expand-arrow-switcher class="icon expand-toggle-arrow-font ion-chevron-up" on-icon="ion-chevron-up" off-icon="ion-chevron-down" ng-model="personalInfo.Checked"></span>
+                </div>
+            </div>
+            <div class="list" ng-if="personalInfo.Checked === true">
+                <label class="item item-input">
+                    <input type="text" ng-model="personalInfo.userName" placeholder="User Name *">
+                </label>
+                <label class="item item-input">
+                    <input type="text" ng-model="personalInfo.userTitle" placeholder="Title *">
+                </label>
+                <label class="item item-input">
+                    <textarea ng-model="personalInfo.userDescription" placeholder="Description *"></textarea>
+                </label>
+                <label class="item item-input">
+                    <input type="number" ng-model="personalInfo.UserYoE" placeholder="Year of establishment (YYYY) *">
+                </label>
+            </div>
+            <!-- personal information -->
+            <div style="margin-top: 10px;">
+                <div class="row bg-item-divide-setting">
+                    <div class="col col-90 item-heading-user-info">
+                        <span>{{contactInfo.Heading}}</span>
+                    </div>
+                    <div class="col col-10">
+                        <span ionic-expand-arrow-switcher class="icon expand-toggle-arrow-font ion-chevron-down" on-icon="ion-chevron-down" off-icon="ion-chevron-up" ng-model="contactInfo.Checked"></span>
+                    </div>
+                </div>
+                <div class="list" ng-if="contactInfo.Checked === true">
+                    <label class="item item-input">
+                        <input type="tel" ng-model="contactInfo.userMobileNumber" placeholder="Mobile Number *">
+                    </label>
+                    <label class="item item-input">
+                        <input type="email" ng-model="contactInfo.userEmailID" placeholder="Email ID *">
+                    </label>
+                    <label class="item item-input">
+                        <textarea ng-model="contactInfo.userAddress" placeholder="Address *"></textarea>
+                        <a href="#"><i class="icon ion-ios-location"></i></a>
+                    </label>
+                    <label class="item item-input">
+                        <input type="text" id="Autocomplete" class="form-control" ng-autocomplete ng-model="contactInfo.userCity" placeholder="City *">
+                    </label>
+
+
+
+                    <label class="item item-input">
+                        <input type="tel" ng-model="contactInfo.userAltMobileNumber" placeholder="Alternate Mobile Number">
+                    </label>
+                    <label class="item item-input">
+                        <input type="tel" ng-model="contactInfo.userLandlineNumber" placeholder="Landline Number">
+                    </label>
+                    <label class="item item-input">
+                        <input type="tel" ng-model="contactInfo.userFaxNumber" placeholder="Fax Number">
+                    </label>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

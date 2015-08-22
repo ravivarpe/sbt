@@ -27,14 +27,23 @@ angular.module('starter')
         })
 
     .state('vendor-app.serviceConfig', {
-        url: "/serviceConfig",
-        views: {
-            'menuContent': {
-                templateUrl: "templates/serviceConfig.html",
-                // controller: 'homeCtrl'
+            url: "/serviceConfig",
+            views: {
+                'menuContent': {
+                    templateUrl: "templates/serviceConfig.html",
+                    // controller: 'homeCtrl'
+                }
             }
-        }
-    })
+        })
+        .state('vendor-app.userSettings', {
+            url: "/userSettings",
+            views: {
+                'menuContent': {
+                    templateUrl: "templates/userSettings.html",
+                    // controller: 'homeCtrl'
+                }
+            }
+        })
 
     .state('vendor-app.bookingList', {
         url: "/home/booking",
@@ -51,4 +60,5 @@ angular.module('starter')
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/vendor-app/home');
     // $urlRouterProvider.otherwise('/vendor-app/home/booking/1');
+    // $urlRouterProvider.otherwise('/vendor-app/userSettings');
 });

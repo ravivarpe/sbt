@@ -1,19 +1,18 @@
 .service-config-box {
     background: rgba(255, 255, 255, 0.1);
     box-shadow: 0 10px 10px -5px #000000;
-    margin-top: 10px; 
+    margin-top: 10px;
 }
 
-.item-bg-settings{
-	background-color: rgba(54, 25, 25, .1);
+.item-bg-settings {
+    background-color: rgba(54, 25, 25, .1);
 }
 
-.item-bg-settings-header{
+.item-bg-settings-header {
     background-color: rgba(240, 184, 64, .7);
 }
 
 .service-type-element-font {
-    
     color: #ffffff;
     text-transform: uppercase;
     font-family: Arial, Helvetica, sans-serif;
@@ -26,7 +25,6 @@
 }
 
 .sub-type-element-font {
-    
     color: #ffffff;
     text-transform: uppercase;
     font-family: Arial, Helvetica, sans-serif;
@@ -40,12 +38,13 @@
 
 .toggle-cos {
     /*font-size: 30px;*/
+    
     color: #f0b840;
     /*margin-left: 1px;*/
 }
 
-.setting-modal-heading{
-        color: #f0b840;
+.setting-modal-heading {
+    color: #f0b840;
     text-transform: uppercase;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
@@ -60,4 +59,51 @@
     
     margin-top: 12%;
     background-color: rgba(54, 25, 25, .9);
+}
+/************************************************************************************************************************************************************/
+/************************************************************************************************************************************************************/
+/************************************************************************user settings***********************************************************************/
+/************************************************************************************************************************************************************/
+/************************************************************************************************************************************************************/
+
+.controller-placing {
+    /*background: url('../img/blue_2.png') repeat;    */
+    /*background-size: 100% 100%;*/
+    /*box-shadow: 0 5px 5px -5px #000000;*/
+    /*border-bottom: 1px solid black;*/
+    margin-top: 10px;
+    
+}
+
+.expand-toggle-arrow-font {
+    /*border: 1px solid white;*/
+    
+    color: #ffffff;
+    font-size: 25px;
+    /*border: 1px solid white;*/
+    /*margin-bottomx: 10px;*/
+    /*float: right;*/
+}
+
+.bg-item-divide-setting{
+    background-color: rgba(54, 25, 25, .5);
+    /*padding-top: 10px;*/
+    /*padding-bottom: 5px;*/
+}
+.bg-item-divide-setting-secondary{
+    background-color: rgba(54, 25, 25, .5);
+    /*padding-top: 10px;*/
+    /*padding-bottom: 5px;*/
+    /*margin-top: 30px;*/
+}
+
+.item-heading-user-info {
+    color: #f0b840;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    /*text-align: center;*/
+    padding-top: 9px;
 }
