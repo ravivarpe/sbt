@@ -1,16 +1,21 @@
 angular.module('starter.home')
 
 
-.controller('calendar-ctrl', function($scope, CalendarDetailsFact, VendorInfoFact) {
+.controller('calendar-ctrl', function($scope, $http, CalendarDetailsFact, VendorInfoFact) {
 
 
+
+    /*********************************http information*************************************************************************/
+
+
+    // CalendarDetailsFact.getCalenarDayWiseInfo("94541329261440333885234");
+
+
+
+    /**********************************calendar information*********************************************************************/
+    $scope.calendarArray = [];
     $scope.calendarTable = {};
     $scope.calendarTable.dayCount = 7;
-
-
-
-
-    $scope.calendarArray = [];
     var dayArrayInfo = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
     var monthArrayInfo = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
@@ -18,32 +23,16 @@ angular.module('starter.home')
     var date = new Date();
 
     CalendarDetailsFact.setCalendarDayInfo($scope, date.getFullYear(), (date.getMonth() + 1));
-    
+    CalendarDetailsFact.getCalenarDayWiseInfo("94541329261440333885234", $scope);
 
-    // CalendarDetailsFact.getNumberOfDaysInMonth(date.getFullYear(), (date.getMonth() + 1));
-    // CalendarDetailsFact.getCurrentDayNumber(date.getFullYear(), date.getMonth() + 1, 1);
-    // console.log(CalendarDetailsFact.currentDayNumber);
 
-    // for (var i = 1; i <= CalendarDetailsFact.noOfDaysInMonth; i++) {
-    //     var dayInformation = {};
-    //     dayInformation.dayNumber = i;
-    //     dayInformation.requestPending = true;
-    //     dayInformation.vehiclePending = false;
-    //     dayInformation.dayName = dayArrayInfo[CalendarDetailsFact.currentDayNumber % 7];
-    //     // console.log(dayArrayInfo[CalendarDetailsFact.currentDayNumber%7]);
-    //     CalendarDetailsFact.currentDayNumber++;
-    //     $scope.calendarArray.push(dayInformation);
-    // }
 
-    // $scope.calendarTable.rowCount = ((CalendarDetailsFact.noOfDaysInMonth / 7) > Math.round(CalendarDetailsFact.noOfDaysInMonth / 7)) ? Math.round(CalendarDetailsFact.noOfDaysInMonth / 7) + 1 : Math.round(CalendarDetailsFact.noOfDaysInMonth / 7);
 
-    // console.log($scope.calendarTable.rowCount);
 
-    // console.log($scope.calendarArray);
 
     $scope.calendarYear = date.getFullYear();
     $scope.calendarMonth = monthArrayInfo[date.getMonth()];
-    
+
     VendorInfoFact.setVendorRatingInfo($scope, 3);
     VendorInfoFact.setVendorLikesInfo($scope, 20);
 
@@ -85,7 +74,7 @@ angular.module('starter.home')
         console.log("dec arrow got clicked");
     }
 
-    $scope.DateInformation = function(dateInfo){
+    $scope.DateInformation = function(dateInfo) {
         // console.log(dateInfo);
         CalendarDetailsFact.setDayStatusInfo($scope, dateInfo);
 

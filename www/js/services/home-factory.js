@@ -25,15 +25,29 @@ angular.module('starter.home')
     return factoryObj;
 })
 
-.factory('CalendarDetailsFact', function() {
+.factory('CalendarDetailsFact', function(httpOperationFact, stringDBrepo) {
     var factoryObj = {};
     factoryObj.noOfDaysInMonth = '';
     factoryObj.currentDayNumber = '';
     factoryObj.timeInSeconds = '';
     factoryObj.dayArrayInfo = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
     factoryObj.monthArrayInfo = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    factoryObj.serverRespose = [];
+/***********************************************************************************************************/
+    factoryObj.getCalenarDayWiseInfo = function(uniqueId, scope) {
+        var response;
+        httpOperationFact.sendHttpGetRequest(stringDBrepo.vBookingStatusCount(uniqueId))
+            .then(function(data) {
+                    // console.log(data);
+                    factoryObj.serverRespose = data;
+                    factoryObj.setRequestPendingCount(scope, data);
+                },
+                function(response) {
+                    console.log('albums retrieval failed.')
+                });
+    };
 
-
+/************************************************************************************************************/
     factoryObj.getNumberOfDaysInMonth = function(yearInNumber, monthInNumber) {
         dateObj = new Date();
         dateObj.setFullYear(yearInNumber);
@@ -67,28 +81,31 @@ angular.module('starter.home')
     };
 
 
+    factoryObj.setRequestPendingCount = function(scope, data){
+
+        for(var i in data){
+            // var json = JSON.parse(data[i]);
+            // console.log(data[i]);
+            scope.calendarArray[i].requestPending= 1;
+            scope.calendarArray[i].vehiclePending= 1;
+        }
+    };
+
     factoryObj.setCalendarDayInfo = function(scope, yearInNumber, monthInNumber) {
         factoryObj.getNumberOfDaysInMonth(yearInNumber, monthInNumber);
         factoryObj.getCurrentDayNumber(yearInNumber, monthInNumber, 1);
 
 
-
+        //http request for getting data
 
         scope.calendarArray.length = 0;
         for (var i = 1; i <= factoryObj.noOfDaysInMonth; i++) {
             var dayInformation = {};
             dayInformation.dayNumber = i;
-            if (i % 2) {
-                dayInformation.requestPending = 20;
-                dayInformation.vehiclePending = 3;
-            } else {
-                dayInformation.requestPending = 1;
-                dayInformation.vehiclePending = 0;
-            }
-            if (i == 1) {
-                dayInformation.requestPending = 0;
-                dayInformation.vehiclePending = 0;
-            }
+
+            dayInformation.requestPending = 0;
+            dayInformation.vehiclePending = 0;
+
 
             dayInformation.year = yearInNumber;
             dayInformation.month = monthInNumber;

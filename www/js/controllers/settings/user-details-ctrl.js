@@ -1,4 +1,4 @@
-angular.module('starter.userSettings', ['ionic'])
+angular.module('starter.userSettings', ['ionic', 'ngMessages'])
 
 
 .controller('user-settings-ctrl', function($scope) {
@@ -6,9 +6,9 @@ angular.module('starter.userSettings', ['ionic'])
     // $scope.checkedInfo = true;
     $scope.personalInfo = {};
     $scope.contactInfo = {};
-    $scope.personalInfo.Checked = true;
+    $scope.personalInfo.Checked = false;
     $scope.personalInfo.Heading = "Personal information";
-    $scope.contactInfo.Checked = false;
+    $scope.contactInfo.Checked = true;
     $scope.contactInfo.Heading = "Contact information";
 
     $scope.options = {
