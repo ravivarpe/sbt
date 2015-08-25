@@ -16,6 +16,7 @@ angular.module('starter.home')
     $scope.calendarArray = [];
     $scope.calendarTable = {};
     $scope.calendarTable.dayCount = 7;
+    $scope.daySelectHighlighter = "calendar-col-box";
     var dayArrayInfo = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
     var monthArrayInfo = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
@@ -23,7 +24,7 @@ angular.module('starter.home')
     var date = new Date();
 
     CalendarDetailsFact.setCalendarDayInfo($scope, date.getFullYear(), (date.getMonth() + 1));
-    CalendarDetailsFact.getCalenarDayWiseInfo("94541329261440333885234", $scope);
+    
 
 
 
@@ -55,6 +56,7 @@ angular.module('starter.home')
 
         CalendarDetailsFact.setCalendarDayInfo($scope, currentYearNumber, (currentMonthNumber + 1));
         console.log("inc arrow got clicked");
+        
     }
 
     $scope.DecrementMonthArrow = function() {
@@ -72,11 +74,13 @@ angular.module('starter.home')
         CalendarDetailsFact.setCalendarDayInfo($scope, currentYearNumber, (currentMonthNumber + 1));
 
         console.log("dec arrow got clicked");
+        
     }
 
     $scope.DateInformation = function(dateInfo) {
-        // console.log(dateInfo);
+        // console.log(dateInfo);        
         CalendarDetailsFact.setDayStatusInfo($scope, dateInfo);
+        CalendarDetailsFact.highlightSelectedDay($scope,dateInfo.dayNumber-1);
 
     }
 

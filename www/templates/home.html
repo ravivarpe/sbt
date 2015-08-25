@@ -17,7 +17,7 @@
                     <div class="item-input-inset ">
                         <label class="item-input-wrapper search-box-sizing">
                             <i class="icon ion-ios-search placeholder-icon"></i>
-                            <input type="search" placeholder="Search">
+                            <input type="search" style="color:white;" placeholder="Search">
                         </label>
                     </div>
                 </div>
@@ -49,17 +49,17 @@
                         <span class="ion-chevron-right calendar-arrow-box"></span>
                     </div>
                 </div>
-                <div ng-repeat="i in [] | range:calendarTable.rowCount" value="{{$rowIndex=$index}}">
+                <!-- <div ng-repeat="i in [] | range:calendarTable.rowCount" value="{{$rowIndex=$index}}"> -->
                     <!-- {{$test=$index}} -->
-                    <div class="row calendar-row-box">
-                        <div ng-repeat="n in [] | range:calendarTable.dayCount" value="{{$dateNumber= ($rowIndex*7)+($index+1)}}">
+                    <div ng-repeat="i in [] | range:calendarTable.rowCount" value="{{$rowIndex=$index}}" class="row calendar-row-box">
+                        <div ng-repeat="n in [] | range:calendarTable.dayCount" value="{{$dateNumber= ($rowIndex*7)+($index+1)}}" class="col col-12 {{calendarArray[$dateNumber-1].daySelectHighlighter}}" >
                             <!-- {{$index+1}}  -->
                             <!-- {{$test1= ($test*7)+$index}} -->
                             <div ng-if="$dateNumber <= calendarTable.totalDayCount">
-                                <div class="col col-12 calendar-col-box" ng-click='DateInformation(calendarArray[$dateNumber-1])' id={{( "0"+$dateNumber).slice(-2)}}>
-                                    <span class="col-box-day">{{calendarArray[$dateNumber-1].dayName}}</span>
-                                    <br><span class="date-element-font">{{("0"+$dateNumber).slice(-2)}}</span>
-                                    <br>
+                                <div ng-click='DateInformation(calendarArray[$dateNumber-1])' id={{( "0"+$dateNumber).slice(-2)}}>
+                                    <span class="col-box-day">&nbsp&nbsp{{calendarArray[$dateNumber-1].dayName}}</span>
+                                    <br><span class="date-element-font">&nbsp{{("0"+$dateNumber).slice(-2)}}</span>
+                                    <br>&nbsp
                                     <span ng-if="calendarArray[$dateNumber-1].vehiclePending > 0">
                                     <span class="booking-pending-service-indicator"></span>
                                     </span>
@@ -70,7 +70,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                <!-- </div> -->
             </div>
             <div class="day-information-box">
                 <div class="row">
@@ -94,7 +94,8 @@
                         <!-- <i class="ion-record pending-service-count-details"></i> -->
                     </div>
                     <div class="col">
-                        <a ui-sref="vendor-app.bookingList({ calendarDetails: DateInSeconds })" class="bookings-details-button"> <span class="col-box-day">Bookings</span></a>
+                        <a ui-sref="vendor-app.bookingList({ calendarDetails: DateInSeconds })" ionic-button-click-toggle class="bookings-details-button" on-icon="bookings-details-button" off-icon="bookings-details-button-fade"> <span class="col-box-day">Bookings</span></a>
+                        <!-- <a ui-sref="vendor-app.bookingList({ calendarDetails: DateInSeconds })" class="hvr-fade"><span class="col-box-day">Bookings</span></a> -->
                     </div>
                 </div>
             </div>
