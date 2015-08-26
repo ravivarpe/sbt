@@ -24,6 +24,7 @@ angular.module('starter.home')
     var date = new Date();
 
     CalendarDetailsFact.setCalendarDayInfo($scope, date.getFullYear(), (date.getMonth() + 1));
+    VendorInfoFact.getCalenarDayWiseInfo("94541329261440333885234", $scope);
     
 
 
@@ -34,8 +35,8 @@ angular.module('starter.home')
     $scope.calendarYear = date.getFullYear();
     $scope.calendarMonth = monthArrayInfo[date.getMonth()];
 
-    VendorInfoFact.setVendorRatingInfo($scope, 3);
-    VendorInfoFact.setVendorLikesInfo($scope, 20);
+    // VendorInfoFact.setVendorRatingInfo($scope, 3);
+    // VendorInfoFact.setVendorLikesInfo($scope, 20);
 
     var currentMonthNumber = date.getMonth();
     var currentYearNumber = date.getFullYear();

@@ -13,6 +13,7 @@
      margin-left: -40px;
 }
 .vehito-logo-text-font{
+
     color: #FFF500;
     text-transform: uppercase;
     width: 60px;
@@ -115,9 +116,10 @@
     /*height: 30px;*/
     /*background-color: #8F0529; */
     /*opacity: 0.9;   */
-    
-    background-color: rgba(54, 25, 25, .5);
-    box-shadow: 0 10px 10px -5px #000000;
+    width: 100%;
+    color: white;
+    /*background-color: rgba(54, 25, 25, .5);*/
+    /*box-shadow: 0 10px 10px -5px #000000;*/
 }
 
 .search-input-margin {
@@ -138,6 +140,11 @@
     font-size: 7px;
     font-weight: 500;
     letter-spacing: 1px;
+}
+
+.day-details-container{
+    /*margin-left: 6em;*/
+    text-align: center;
 }
 
 .home-booking-button-text{
@@ -182,6 +189,7 @@
     line-height: 85%;
     /*border: 1px solid white;*/
     background: #8F0529;
+    border-radius: .5em;
     /*width: 100px;*/
 }
 .test-box-line {
@@ -197,13 +205,13 @@
     /*position: absolute;*/
     /*border: 1px solid white;*/
     
-    width: 100%;
+    width: 84%;
     /*height: 50px;*/
     
     margin-top: -15px;
     /*background: rgba(54, 25, 25, .6);*/
     
-    /*margin-left: 7%;*/
+    margin-left: 5%;
     /*background-image: url('../img/images.jpg');*/
     /*text-align: center;
     vertical-align: middle;*/
@@ -219,10 +227,15 @@
 }
 
 .home-background-image {
+    /*background: url('../img/blue_2.png') no-repeat center center fixed; 
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;*/
     background: url('../img/blue_2.png') repeat;
     /*border: 2px solid black;*/
-    
-    background-size: 100% 100%;
+    background-size: cover;
+    /*background-size: 100% 100%;*/
     /*background-color: #8F0529;*/
 }
 
@@ -230,6 +243,13 @@
     /*border: 1px solid white;*/
     
     color: #ffffff;
+    font-size: 30px;
+}
+
+.calendar-arrow-box-fade {
+    /*border: 1px solid white;*/
+    
+    color: #8F0529;
     font-size: 30px;
 }
 

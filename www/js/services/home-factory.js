@@ -9,7 +9,7 @@ angular.module('starter.home')
     return factoryObj;
 })
 
-.factory('VendorInfoFact', function() {
+.factory('VendorInfoFact', function(httpOperationFact, stringDBrepo) {
     var factoryObj = {};
     factoryObj.ratingValue = '';
     factoryObj.likesValue = '';
@@ -20,6 +20,20 @@ angular.module('starter.home')
 
     factoryObj.setVendorLikesInfo = function(scope, likeCount) {
         scope.VendorLikeValue = likeCount;
+    };
+
+    factoryObj.getCalenarDayWiseInfo = function(uniqueId, scope) {
+        var response;
+        httpOperationFact.sendHttpGetRequest(stringDBrepo.vRatingAndLikeDetails(uniqueId))
+            .then(function(data) {
+                    // console.log(data);
+                    // {"Rating":0,"Likes":150037560}
+                    factoryObj.setVendorLikesInfo(scope, data.Likes);
+                    factoryObj.setVendorRatingInfo(scope, data.Rating);
+                },
+                function(response) {
+                    console.log('albums retrieval failed.')
+                });
     };
 
     return factoryObj;
@@ -34,7 +48,7 @@ angular.module('starter.home')
     factoryObj.dayArrayInfo = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
     factoryObj.monthArrayInfo = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     factoryObj.serverRespose = [];
-/***********************************************************************************************************/
+    /***********************************************************************************************************/
     factoryObj.getCalenarDayWiseInfo = function(uniqueId, scope, month, year) {
         var response;
         // console.log(stringDBrepo.vBookingStatusCount(uniqueId, month, year));
@@ -49,7 +63,10 @@ angular.module('starter.home')
                 });
     };
 
-/************************************************************************************************************/
+
+
+
+    /************************************************************************************************************/
     factoryObj.getNumberOfDaysInMonth = function(yearInNumber, monthInNumber) {
         dateObj = new Date();
         dateObj.setFullYear(yearInNumber);
@@ -83,23 +100,22 @@ angular.module('starter.home')
     };
 
 
-    factoryObj.setRequestPendingCount = function(scope, data, month){
+    factoryObj.setRequestPendingCount = function(scope, data, month) {
         var dateObj = new Date();
-        for(var i in data){
+        for (var i in data) {
             // var json = JSON.parse(data[i]);
             // console.log(data[i].count.service);
-            scope.calendarArray[i].requestPending= data[i].count.request | 1;
-            scope.calendarArray[i].vehiclePending= data[i].count.service | 1;
+            scope.calendarArray[i].requestPending = data[i].count.request;
+            scope.calendarArray[i].vehiclePending = data[i].count.service;
         }
-        if(dateObj.getMonth() == (month-1)){
+        if (dateObj.getMonth() == (month - 1)) {
             scope.calendarArray[dateObj.getDate() - 1].daySelectHighlighter = "calendar-col-box-selected";
             factoryObj.setDayStatusInfo(scope, scope.calendarArray[dateObj.getDate() - 1]);
-        }            
-        else{
+        } else {
             scope.calendarArray[0].daySelectHighlighter = "calendar-col-box-selected";
             factoryObj.setDayStatusInfo(scope, scope.calendarArray[0]);
         }
-            
+
     };
 
     factoryObj.setCalendarDayInfo = function(scope, yearInNumber, monthInNumber) {
@@ -128,7 +144,7 @@ angular.module('starter.home')
             scope.calendarArray.push(dayInformation);
         }
 
-        // dateObj = new Date();
+        var dateObj = new Date();
         // factoryObj.setDayStatusInfo(scope, scope.calendarArray[dateObj.getDate() - 1]);
 
         // factoryObj.getTimeInSeconds(yearInNumber, monthInNumber, dateObj.getDate(),0,0,0 );
@@ -141,6 +157,14 @@ angular.module('starter.home')
         scope.calendarTable.totalDayCount = factoryObj.noOfDaysInMonth;
 
         factoryObj.getCalenarDayWiseInfo("94541329261440333885234", scope, monthInNumber, yearInNumber);
+        if (dateObj.getMonth() == (monthInNumber - 1)) {
+            scope.calendarArray[dateObj.getDate() - 1].daySelectHighlighter = "calendar-col-box-selected";
+            factoryObj.setDayStatusInfo(scope, scope.calendarArray[dateObj.getDate() - 1]);
+        } else {
+            scope.calendarArray[0].daySelectHighlighter = "calendar-col-box-selected";
+            factoryObj.setDayStatusInfo(scope, scope.calendarArray[0]);
+        }
+
         // console.log(factoryObj.noOfDaysInMonth);
     }
 
@@ -176,8 +200,8 @@ angular.module('starter.home')
     };
 
 
-    factoryObj.highlightSelectedDay = function(scope, dayNumber){
-        for(var i in scope.calendarArray){
+    factoryObj.highlightSelectedDay = function(scope, dayNumber) {
+        for (var i in scope.calendarArray) {
             scope.calendarArray[i].daySelectHighlighter = "calendar-col-box";
         }
         scope.calendarArray[dayNumber].daySelectHighlighter = "calendar-col-box-selected";
