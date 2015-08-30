@@ -21,7 +21,7 @@ angular.module('starter.home')
     factoryObj.setVendorLikesInfo = function(scope, likeCount) {
         scope.VendorLikeValue = likeCount;
     };
-
+    /***************************************************************http menthods******************************************************************************************/
     factoryObj.getCalenarDayWiseInfo = function(uniqueId, scope) {
         var response;
         httpOperationFact.sendHttpGetRequest(stringDBrepo.vRatingAndLikeDetails(uniqueId))
@@ -35,6 +35,19 @@ angular.module('starter.home')
                     console.log('albums retrieval failed.')
                 });
     };
+
+    factoryObj.getBookingInfoUsingMobileNumber = function(uniqueId, scope, mobileNumber) {
+        var response;
+        httpOperationFact.sendHttpGetRequest(stringDBrepo.vsearchByMobileNumber(uniqueId, mobileNumber))
+            .then(function(data) {
+                    console.log(data);
+
+                },
+                function(response) {
+                    console.log('albums retrieval failed.')
+                });
+    };
+    /*********************************************************************************************************************************************************/
 
     return factoryObj;
 })
@@ -62,6 +75,8 @@ angular.module('starter.home')
                     console.log('albums retrieval failed.')
                 });
     };
+
+
 
 
 
@@ -133,8 +148,9 @@ angular.module('starter.home')
 
             dayInformation.requestPending = 0;
             dayInformation.vehiclePending = 0;
+            dayInformation.searchMobileNumber = 0;
 
-
+            dayInformation.dateInSecs = factoryObj.getTimeInSeconds(yearInNumber, monthInNumber, i,0,0,0 );
             dayInformation.year = yearInNumber;
             dayInformation.month = monthInNumber;
             dayInformation.dayName = factoryObj.dayArrayInfo[factoryObj.currentDayNumber % 7];
@@ -148,8 +164,8 @@ angular.module('starter.home')
         // factoryObj.setDayStatusInfo(scope, scope.calendarArray[dateObj.getDate() - 1]);
 
         // factoryObj.getTimeInSeconds(yearInNumber, monthInNumber, dateObj.getDate(),0,0,0 );
-        // scope.DateInSeconds = scope.calendarArray[dateObj.getDate() - 1];
-        // console.log(scope.DateInSeconds);
+        // scope.SelectedDateBookingInfo = scope.calendarArray[dateObj.getDate() - 1];
+        // console.log(scope.calendarArray);
 
         scope.calendarTable.rowCount = ((factoryObj.noOfDaysInMonth / 7) > Math.round(factoryObj.noOfDaysInMonth / 7)) ? Math.round(factoryObj.noOfDaysInMonth / 7) + 1 : Math.round(factoryObj.noOfDaysInMonth / 7);
 
@@ -173,7 +189,7 @@ angular.module('starter.home')
         // console.log(dayInformation.vehiclePending);
         scope.PendingRequests = dayInformation.requestPending;
         scope.PendingServices = dayInformation.vehiclePending;
-        scope.DateInSeconds = dayInformation;
+        scope.SelectedDateBookingInfo = dayInformation;
         // console.log(factoryObj.timeInSeconds);
     }
 
@@ -187,14 +203,14 @@ angular.module('starter.home')
 
         dayInformation.requestPending = 20;
         dayInformation.vehiclePending = 3;
-
+        dayInformation.searchMobileNumber = 0;
 
         dayInformation.year = yearInNumber;
         dayInformation.month = monthInNumber;
         dayInformation.dayName = factoryObj.dayArrayInfo[0];
+        dayInformation.dateInSecs = factoryObj.getTimeInSeconds(yearInNumber, monthInNumber, dayInformation.dayNumber,0,0,0 );
 
-
-        scope.DateInSeconds = dayInformation;
+        scope.SelectedDateBookingInfo = dayInformation;
         // scope.calendarArray[dateObj.getDate() - 1];
 
     };

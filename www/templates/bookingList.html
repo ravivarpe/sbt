@@ -7,15 +7,16 @@
         <div ng-controller="booking-list-ctrl">
             <div ng-controller="booking-list-modal-ctrl">
                 <ion-list>
+
                     <div class="list card booking-details-status-color-box booking-details-color-box-param">
                         <div class="row">
                             <div class="col">
-                                <span class="booking-large-element-font">Booking date:&nbsp<span class="date-element-font">{{HeaderBookingDate}}</span></span>
-                            </div> 
+                                <span class="booking-large-element-font">{{HeaderTitle}}:&nbsp<span class="date-element-font">{{HeaderDetails}}</span></span>
+                            </div>
                         </div>
                     </div>
                     <div class="list card user-booking-view-box" ng-repeat="bookingListItem in bookingListArray">
-                    <!-- <div class="list card user-booking-view-box"> -->
+                        <!-- <div class="list card user-booking-view-box"> -->
                         <div class="row">
                             <div class="col">
                                 <span class="booking-large-element-font">{{bookingListItem.UserName}}</span>
@@ -28,7 +29,7 @@
                         <div class="row">
                             <div class="col">
                                 <span class="booking-large-element-font">Address:&nbsp</span>
-                                <span class="booking-address-element-font">{{bookingListItem.UserAddress}}, {{bookingListItem.ZipCode}}</span>
+                                <span class="booking-address-element-font">{{bookingListItem.FullAddress}}</span>
                             </div>
                         </div>
                         <div class="row">
@@ -52,7 +53,6 @@
                         </div>
                         <div class="row">
                             <div class="col col-25 col-offset-50"><a ui-sref="vendor-app.bookingDetails({ bookingDetailsInfo: bookingListItem})" class="bookings-details-button-grey"><span class="bookings-request-status-font">Details</span></a></div>
-
                             <div class="col col-25"><a href="#" class="bookings-request-status-button" ng-click="bookingStatusModal()"><span class="bookings-request-status-font">{{bookingListItem.requestAcceptString}}</span></a></div>
                         </div>
                     </div>

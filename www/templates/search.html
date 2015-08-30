@@ -1,5 +1,27 @@
-<ion-view view-title="Search">
-  <ion-content>
-    <h1>Search</h1>
-  </ion-content>
-</ion-view>
+<ion-modal-view class="search-modal-content-bg">
+    <ion-header-bar class="header-background-image">
+        <div class="row">            
+            <div class="col col-60">
+                <form name="searchForm" ng-submit="searchForm.$valid && searchByMobile(MoblieNumber)">
+                    <label class="item item-input search-box-sizing">
+                        <i class="icon ion-ios-search placeholder-icon"></i>
+                        <div class="search-form-par">
+                        <input  type="search" style="color:white;" ng-model="MoblieNumber" placeholder="Search by mobile number" ng-pattern="onlyNumbers" ng-blur="closeSearchModal()"></div>
+                    </label>
+                </form>
+            </div>
+            <div class="col col-10">
+                <div style="margin-top: -10px; margin-left: -10px;">
+                <button class="button button-icon ion-android-search button-positive" ng-click="searchByMobile(MoblieNumber)"></button>
+                </div>
+            </div>
+            <div class="col col-10">
+                <div style="margin-top: -10px; margin-left: -10px;">
+                <button class="button button-icon ion-android-cancel button-positive" ng-click="closeSearchModal()"></button>
+                </div>
+            </div>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+    </ion-content>
+</ion-modal-view>

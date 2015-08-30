@@ -1,7 +1,7 @@
 angular.module('starter.bookingList')
 
 
-.factory('BookingListFact', function() {
+.factory('BookingListFact', function(httpOperationFact, stringDBrepo) {
     var factoryObj = {};
 
     // factoryObj.bookingSlotIdTagString = "SlotId";
@@ -26,10 +26,99 @@ angular.module('starter.bookingList')
     // factoryObj.bookingUserVehicleYoFManuTagString = "YoF";
     // factoryObj.bookingUserRatedIndicationTagString = "RatingFlag";
 
+    /*************************************************************Http methods************************************************************/
+    factoryObj.getBookingInfoUsingDate = function(uniqueId, scope, dateInSecs) {
+        var response;
+        // console.log(stringDBrepo.vBookingStatusCount(uniqueId, month, year));
+        httpOperationFact.sendHttpGetRequest(stringDBrepo.vBookingInfoViaDay(uniqueId, dateInSecs))
+            .then(function(data) {
+                    // console.log(data);
+                    factoryObj.showReceivedBookingInfo(scope, data);
+                },
+                function(response) {
+                    console.log('albums retrieval failed.')
+                });
+    };
+
+    factoryObj.getUserBookingDetailsUsingMobileNum = function(uniqueId, scope, mobileNumber) {
+        var response;
+        // console.log(stringDBrepo.vBookingStatusCount(uniqueId, month, year));
+        httpOperationFact.sendHttpGetRequest(stringDBrepo.vsearchByMobileNumber(uniqueId, mobileNumber))
+            .then(function(data) {
+                    console.log(data);
+                    factoryObj.showReceivedBookingInfo(scope, data);
+                },
+                function(response) {
+                    console.log('albums retrieval failed.')
+                });
+    };
 
 
+    /*************************************************************************************************************************************/
+    // AltPhoneNum: 0
+    // BookingStatus: 2
+    // BookingTime: 1440344743
+    // FinalAmount: 0
+    // MinServiceAmount: 0
+    // PersonName: null
+    // PersonPhoneNum: 0
+    // PhoneNumber: 9441340197
+    // PickDrop: 0
+    // PickUpLatitude: 0
+    // PickUpLongitude: 0
+    // RatingFlag: false
+    // SlotId: 1
+    // UserAddress: "{"HouseAddress":null,"State":null,"ZipCode":0,"DefaultLongitude":0,"Country":null,"City":null,"DefaultLatitude":0,"CountryCode":0}"
+    // UserBookingId: 12
+    // UserEmailID: "vilakshan@bidgely.com"
+    // UserName: "Vilakshan"
+    // UserUniqueId: "94413401971440333545849"
+    // VehicleDeliveryTime: 0
+    // VehicleModel: "maruthi"
+    // VehicleNumber: ""
+    // YoF: 1994
+    // ZipCode: 0
+    factoryObj.showReceivedBookingInfo = function(scope, responseData) {
+        scope.bookingListArray.length = 0;
 
-    factoryObj.setCalendarDayInfo = function(scope) {
+
+        for (var i in responseData) {
+            var userBookingInfoObj = {};
+            userBookingInfoObj = responseData[i];
+            factoryObj.setBookingStatusInfo(userBookingInfoObj);
+            factoryObj.setPickDropStatus(userBookingInfoObj);
+            userBookingInfoObj.BookingTimeFormat = factoryObj.convertSecsToDate(userBookingInfoObj.BookingTime);
+            userBookingInfoObj.VehicleDeliveryTimeFormat = factoryObj.convertSecsToDate(userBookingInfoObj.VehicleDeliveryTime);
+
+            var addressInfoObj = {};
+            addressInfoObj = JSON.parse(userBookingInfoObj.UserAddress);;
+            // console.log(addressInfoObj.ZipCode);
+            userBookingInfoObj.FullAddress = " ";
+            factoryObj.checkForAddressInfo(userBookingInfoObj, addressInfoObj);
+
+            // userBookingInfoObj.FullAddress = addressInfoObj.HouseAddress + ", " + addressInfoObj.City  + ", " + addressInfoObj.State + ", " + addressInfoObj.CountryCode + ", " + addressInfoObj.ZipCode;
+            console.log(userBookingInfoObj);
+            scope.bookingListArray.push(userBookingInfoObj);
+        }
+    };
+
+    factoryObj.checkForAddressInfo = function(bookingInfo, object) {
+        // bookingInfo.FullAddress = "";
+        if (object.HouseAddress)
+            bookingInfo.FullAddress = object.HouseAddress + " ";
+        if (object.City)
+            bookingInfo.FullAddress = object.City + " ";
+        if (object.State)
+            bookingInfo.FullAddress = object.State + " ";
+        if (object.CountryCode)
+            bookingInfo.FullAddress = object.CountryCode + " ";
+        if (object.ZipCode)
+            bookingInfo.FullAddress = object.ZipCode + " ";
+
+
+    };
+
+    factoryObj.setCalendarDayInfo = function(scope, data) {
 
         scope.bookingListArray.length = 0;
         var userBookingInfoObj = {};
@@ -103,7 +192,7 @@ angular.module('starter.bookingList')
 
         }
 
-        if(bookingObj.BookingStatus == 0 || bookingObj.BookingStatus == 1)
+        if (bookingObj.BookingStatus == 0 || bookingObj.BookingStatus == 1)
             bookingObj.requestAcceptString = "Confirm";
         else
             bookingObj.requestAcceptString = "Cancel";
@@ -132,8 +221,8 @@ angular.module('starter.bookingList')
         }
     }
 
-    factoryObj.convertSecsToDate =function(dateInSecs){
-        var dateInfo = new Date(dateInSecs*1000);
+    factoryObj.convertSecsToDate = function(dateInSecs) {
+        var dateInfo = new Date(dateInSecs * 1000);
         var month = ("0" + dateInfo.getMonth()).slice(-2);
         var dateNum = ("0" + dateInfo.getDate()).slice(-2);
 

@@ -1,4 +1,4 @@
-<ion-view ion-title="Vehito">
+<ion-view>
     <ion-nav-title>
         <!--         <div class="row">
             <div class="col"><img class="vehito-logo-font" src="img/vehito_logo.png"></div>
@@ -11,18 +11,20 @@
         <img class="vehito-logo-font" src="img/vehito_logo_f.png">
     </ion-nav-title>
     <ion-content scrollbar-y="false" has-bouncing="true" class="home-background-image">
-        <div ng-controller="homeCtrl_1">
+        <!--         <div ng-controller="search-home-ctrl">
+             <form name="searchForm" ng-submit="searchForm.$valid && searchByMobile()">
             <div class="row search-input-margin">
                 <div class="col">
                     <div class="item-input-inset ">
                         <label class="item-input-wrapper">
                             <i class="icon ion-ios-search placeholder-icon"></i>
-                            <input class="search-box-sizing" type="search" style="color:black;" ng-model="input" placeholder="Search by mobile number">
+                            <input class="search-box-sizing" type="search" style="color:black;" ng-model="MoblieNumber" placeholder="Search by mobile number" ng-pattern="onlyNumbers" ng-blur="searchByMobile()">
                         </label>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
+        </div> -->
         <div ng-controller="calendar-ctrl">
             <div class="vendor-highlevel-info-box">
                 <div class="row">
@@ -39,14 +41,16 @@
             </div>
             <div class="calendar-color-box">
                 <div class="row calendar-year-alignment">
-                    <div class="col col-10 col-5 " ng-click='DecrementMonthArrow()'>
-                        <span class="ion-chevron-left calendar-arrow-box"  ionic-button-click-toggle on-icon="calendar-arrow-box" off-icon="calendar-arrow-box-fade"></span>
+                    <div class="col col-10 " ng-click='DecrementMonthArrow()'>
+                        <!-- <span class="ion-chevron-left calendar-arrow-box" ionic-button-click-toggle on-icon="calendar-arrow-box" off-icon="calendar-arrow-box-fade"></span> -->
+                        <button class="button button-icon"><i class="ion-chevron-left calendar-arrow-box"></i></button>
                     </div>
-                    <div class="col col-40 text-center ">
-                        <span class="month-year-element-font">{{calendarMonth}}  {{calendarYear}}</span>
+                    <div class="col col-50 col-offset-20">
+                        <div class="month-year-element-font">{{calendarMonth}} {{calendarYear}}</div>
                     </div>
                     <div class="col col-10" ng-click='IncrementMonthArrow()'>
-                        <span class="ion-chevron-right calendar-arrow-box" ionic-button-click-toggle on-icon="calendar-arrow-box" off-icon="calendar-arrow-box-fade"></span>
+                        <!-- <span class="ion-chevron-right calendar-arrow-box" ionic-button-click-toggle on-icon="calendar-arrow-box" off-icon="calendar-arrow-box-fade"></span> -->
+                        <button class="button button-icon"><i class="ion-chevron-right calendar-arrow-box"></i></button>
                     </div>
                 </div>
                 <!-- <div ng-repeat="i in [] | range:calendarTable.rowCount" value="{{$rowIndex=$index}}"> -->
@@ -76,28 +80,31 @@
             </div>
             <div class="day-information-box">
                 <div class="row">
-                    <div class="col col-50 col-offset-25 ">
-                        <span ng-if="PendingServices > 0">                                                                       
-                                    <span class="date-element-font">{{PendingServices}}</span>
-                        <span class="col-box-day home-booking-button-text"> Pending Vehicle Services</span>
-                        <span class="booking-pending-service-indicator"></span>
-                        <br>
-                        </span>
-                        <span ng-if="PendingRequests > 0">
+                    <div class="col col-50 col-offset-10">
+                        <div class="align-status-info">
+                            <span ng-if="PendingServices > 0">                                                                       
+                            <span class="date-element-font">{{PendingServices}}</span>
+                            <span class="col-box-day home-booking-button-text"> Pending Vehicle Services</span>
+                            <span class="booking-pending-service-indicator"></span>
+                            <br>
+                            </span>
+                            <span ng-if="PendingRequests > 0">
                                     <span class="date-element-font">{{PendingRequests}}</span>
-                        <span class="col-box-day home-booking-button-text"> Pending Booking Requests</span>
-                        <span class="booking-pending-request-indicator"></span>
-                        <br>
-                        </span>
-                        <span ng-if="PendingRequests === 0 && PendingServices === 0">                                    
+                            <span class="col-box-day home-booking-button-text"> Pending Booking Requests</span>
+                            <span class="booking-pending-request-indicator"></span>
+                            <br>
+                            </span>
+                            <span ng-if="PendingRequests === 0 && PendingServices === 0">                                    
                                     <span class="date-element-font">NO </span>
-                        <span class="col-box-day home-booking-button-text">Pending Requests</span>
-                        </span>
+                            <span class="col-box-day home-booking-button-text">Pending Booking Requests</span>
+                            </span>
+                        </div>
                         <!-- <i class="ion-record pending-service-count-details"></i> -->
                     </div>
-                    <div class="col">
-                        <a ui-sref="vendor-app.bookingList({ calendarDetails: DateInSeconds })" ionic-button-click-toggle class="bookings-details-button" on-icon="bookings-details-button" off-icon="bookings-details-button-fade"> <span class="col-box-day">Bookings</span></a>
+                    <div class="col col-20">
+                        <button class="button button-icon" ui-sref="vendor-app.bookingList({ calendarDetails: SelectedDateBookingInfo })"><span class="bookings-details-button col-box-day">Bookings</span></button>
                         <!-- <a ui-sref="vendor-app.bookingList({ calendarDetails: DateInSeconds })" class="hvr-fade"><span class="col-box-day">Bookings</span></a> -->
+                        <!-- <button class="button button-icon"><i class="ion-chevron-right calendar-arrow-box"></i></button> -->
                     </div>
                 </div>
             </div>

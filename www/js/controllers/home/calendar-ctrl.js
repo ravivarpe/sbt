@@ -1,4 +1,4 @@
-angular.module('starter.home')
+angular.module('starter.home', ['ionic'])
 
 
 .controller('calendar-ctrl', function($scope, $http, CalendarDetailsFact, VendorInfoFact) {
@@ -15,31 +15,41 @@ angular.module('starter.home')
     /**********************************calendar information*********************************************************************/
     $scope.calendarArray = [];
     $scope.calendarTable = {};
-    $scope.calendarTable.dayCount = 7;
-    $scope.daySelectHighlighter = "calendar-col-box";
+    $scope.calendarTable.dayCount;
+    $scope.daySelectHighlighter;
     var dayArrayInfo = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
     var monthArrayInfo = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
+    var currentMonthNumber;
+    var currentYearNumber;
 
     var date = new Date();
 
-    CalendarDetailsFact.setCalendarDayInfo($scope, date.getFullYear(), (date.getMonth() + 1));
-    VendorInfoFact.getCalenarDayWiseInfo("94541329261440333885234", $scope);
-    
+
+    $scope.$on('$stateChangeSuccess', function(event, toState) {
+        if (toState.name == "vendor-app.home") {
+            $scope.initObjFuntion();
+
+        }
+    });
 
 
+    $scope.initObjFuntion = function() {
+        $scope.calendarTable.dayCount = 7;
+        $scope.daySelectHighlighter = "calendar-col-box";
+
+        CalendarDetailsFact.setCalendarDayInfo($scope, date.getFullYear(), (date.getMonth() + 1));
+        VendorInfoFact.getCalenarDayWiseInfo("94541329261440333885234", $scope);
 
 
+        $scope.calendarYear = date.getFullYear();
+        $scope.calendarMonth = monthArrayInfo[date.getMonth()];
 
 
-    $scope.calendarYear = date.getFullYear();
-    $scope.calendarMonth = monthArrayInfo[date.getMonth()];
+        currentMonthNumber = date.getMonth();
+        currentYearNumber = date.getFullYear();
+    }
 
-    // VendorInfoFact.setVendorRatingInfo($scope, 3);
-    // VendorInfoFact.setVendorLikesInfo($scope, 20);
 
-    var currentMonthNumber = date.getMonth();
-    var currentYearNumber = date.getFullYear();
 
 
     $scope.IncrementMonthArrow = function() {
@@ -57,7 +67,7 @@ angular.module('starter.home')
 
         CalendarDetailsFact.setCalendarDayInfo($scope, currentYearNumber, (currentMonthNumber + 1));
         console.log("inc arrow got clicked");
-        
+
     }
 
     $scope.DecrementMonthArrow = function() {
@@ -75,13 +85,13 @@ angular.module('starter.home')
         CalendarDetailsFact.setCalendarDayInfo($scope, currentYearNumber, (currentMonthNumber + 1));
 
         console.log("dec arrow got clicked");
-        
+
     }
 
     $scope.DateInformation = function(dateInfo) {
         // console.log(dateInfo);        
         CalendarDetailsFact.setDayStatusInfo($scope, dateInfo);
-        CalendarDetailsFact.highlightSelectedDay($scope,dateInfo.dayNumber-1);
+        CalendarDetailsFact.highlightSelectedDay($scope, dateInfo.dayNumber - 1);
 
     }
 

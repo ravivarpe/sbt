@@ -47,6 +47,7 @@ angular.module('starter')
 
     .state('vendor-app.bookingList', {
         url: "/home/booking",
+        cache: false,
         params: {
             calendarDetails: null,
         },

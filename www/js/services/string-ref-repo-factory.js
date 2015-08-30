@@ -4,6 +4,8 @@ angular.module('starter')
     var factoryObj = {};
     /***********************************************http urls***************************************************************/
     factoryObj.baseUrl = 'http://localhost/CarOne/';
+
+    /*****************************vendor home page url***********************************************************************/
     factoryObj.vBookingStatusCount = function(uniqueId, month, year){
     	if(month && year)
     		return factoryObj.baseUrl + "vendor/"+ uniqueId +"/booking/status/count?month="+ month +"&year="+ year ;
@@ -13,16 +15,19 @@ angular.module('starter')
 
     factoryObj.vRatingAndLikeDetails = function(uniqueId){
         return factoryObj.baseUrl + "meta/vendor/"+ uniqueId +"/rating";
-    };
-    
+    };    
 
 
-    factoryObj.vsearchByMobileNumber = function(uniqueId, mobileNumber, dateInSeconds){
-        if(dateInSeconds)
-            return factoryObj.baseUrl + "vendor/"+ uniqueId + "/booking/phone/" + mobileNumber +"?date=" + dateInSeconds;
-        else
-            return factoryObj.baseUrl + "vendor/"+ uniqueId + "/booking/phone/" + mobileNumber;
+    factoryObj.vsearchByMobileNumber = function(uniqueId, mobileNumber){
+        return factoryObj.baseUrl + "vendor/"+ uniqueId + "/booking/phone/" + mobileNumber + "/all";
     };
+
+
+    factoryObj.vBookingInfoViaDay = function(uniqueId, dateInSecs){
+        return factoryObj.baseUrl + "vendor/"+ uniqueId + "/booking?date=" + dateInSecs;
+    };
+
+    /****************************************************************************************************************************/
 
     return factoryObj;
 });
