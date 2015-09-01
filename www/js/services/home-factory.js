@@ -22,7 +22,7 @@ angular.module('starter.home')
         scope.VendorLikeValue = likeCount;
     };
     /***************************************************************http menthods******************************************************************************************/
-    factoryObj.getCalenarDayWiseInfo = function(uniqueId, scope) {
+    factoryObj.getVendorRatingInfo = function(uniqueId, scope) {
         var response;
         httpOperationFact.sendHttpGetRequest(stringDBrepo.vRatingAndLikeDetails(uniqueId))
             .then(function(data) {
@@ -68,7 +68,7 @@ angular.module('starter.home')
         httpOperationFact.sendHttpGetRequest(stringDBrepo.vBookingStatusCount(uniqueId, month, year))
             .then(function(data) {
                     // console.log(data);
-                    factoryObj.serverRespose = data;
+                    // factoryObj.serverRespose = data;
                     factoryObj.setRequestPendingCount(scope, data, month);
                 },
                 function(response) {
@@ -83,11 +83,11 @@ angular.module('starter.home')
 
     /************************************************************************************************************/
     factoryObj.getNumberOfDaysInMonth = function(yearInNumber, monthInNumber) {
-        dateObj = new Date();
-        dateObj.setFullYear(yearInNumber);
-        dateObj.setMonth(monthInNumber);
-        dateObj.setDate(0);
-        factoryObj.noOfDaysInMonth = dateObj.getDate();
+        var dateObj = new Date(yearInNumber, monthInNumber+1, 0).getDate();
+        // dateObj.setFullYear(yearInNumber);
+        // dateObj.setMonth(monthInNumber);
+        // dateObj.setDate(0);
+        factoryObj.noOfDaysInMonth = dateObj;
         return factoryObj.noOfDaysInMonth;
     };
 
@@ -104,7 +104,7 @@ angular.module('starter.home')
 
     factoryObj.getTimeInSeconds = function(yearInNumber, monthInNumber, dayInNumber, hoursInNumber, minInNumber) {
 
-        dateFormat = yearInNumber + "/" + monthInNumber + "/" + dayInNumber + " " + hoursInNumber + ":" + minInNumber + ":00 UTC";
+        dateFormat = yearInNumber + "/" + (monthInNumber+1) + "/" + dayInNumber + " " + hoursInNumber + ":" + minInNumber + ":00 UTC";
         var dateObj = new Date(dateFormat);
 
         factoryObj.timeInSeconds = Math.round(dateObj.getTime() / 1000);
@@ -123,7 +123,7 @@ angular.module('starter.home')
             scope.calendarArray[i].requestPending = data[i].count.request;
             scope.calendarArray[i].vehiclePending = data[i].count.service;
         }
-        if (dateObj.getMonth() == (month - 1)) {
+        if (dateObj.getMonth() == month-1) {
             scope.calendarArray[dateObj.getDate() - 1].daySelectHighlighter = "calendar-col-box-selected";
             factoryObj.setDayStatusInfo(scope, scope.calendarArray[dateObj.getDate() - 1]);
         } else {
@@ -152,7 +152,7 @@ angular.module('starter.home')
 
             dayInformation.dateInSecs = factoryObj.getTimeInSeconds(yearInNumber, monthInNumber, i,0,0,0 );
             dayInformation.year = yearInNumber;
-            dayInformation.month = monthInNumber;
+            dayInformation.month = monthInNumber+1;
             dayInformation.dayName = factoryObj.dayArrayInfo[factoryObj.currentDayNumber % 7];
             dayInformation.daySelectHighlighter = "calendar-col-box";
             // console.log(dayArrayInfo[factoryObj.currentDayNumber%7]);
@@ -165,15 +165,15 @@ angular.module('starter.home')
 
         // factoryObj.getTimeInSeconds(yearInNumber, monthInNumber, dateObj.getDate(),0,0,0 );
         // scope.SelectedDateBookingInfo = scope.calendarArray[dateObj.getDate() - 1];
-        // console.log(scope.calendarArray);
+        // console.log(monthInNumber);
 
         scope.calendarTable.rowCount = ((factoryObj.noOfDaysInMonth / 7) > Math.round(factoryObj.noOfDaysInMonth / 7)) ? Math.round(factoryObj.noOfDaysInMonth / 7) + 1 : Math.round(factoryObj.noOfDaysInMonth / 7);
 
         // console.log(scope.calendarTable.rowCount);
         scope.calendarTable.totalDayCount = factoryObj.noOfDaysInMonth;
 
-        factoryObj.getCalenarDayWiseInfo("94541329261440333885234", scope, monthInNumber, yearInNumber);
-        if (dateObj.getMonth() == (monthInNumber - 1)) {
+        factoryObj.getCalenarDayWiseInfo("94541329261440333885234", scope, monthInNumber+1, yearInNumber);
+        if (dateObj.getMonth() == monthInNumber) {
             scope.calendarArray[dateObj.getDate() - 1].daySelectHighlighter = "calendar-col-box-selected";
             factoryObj.setDayStatusInfo(scope, scope.calendarArray[dateObj.getDate() - 1]);
         } else {

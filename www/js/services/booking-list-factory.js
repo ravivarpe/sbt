@@ -1,7 +1,7 @@
 angular.module('starter.bookingList')
 
 
-.factory('BookingListFact', function(httpOperationFact, stringDBrepo) {
+.factory('BookingListFact', function(httpOperationFact, stringDBrepo, BookingDetailsFact) {
     var factoryObj = {};
 
     // factoryObj.bookingSlotIdTagString = "SlotId";
@@ -18,8 +18,8 @@ angular.module('starter.bookingList')
     // factoryObj.bookingUserEmailIdTagString = "UserEmailID";
     // factoryObj.bookingUserAltPhoneNumTagString = "AltPhoneNum";
     // factoryObj.bookingUserBookingIdTagString = "UserBookingId";
-    // factoryObj.bookingBookingTimeTagString = "BookingTime";
-    // factoryObj.bookingVehicleDeliveryTagString = "VehicleDeliveryTime";
+    // factoryObj.bookingBookingTimeTagString = "userBookedTime";
+    // factoryObj.bookingVehicleDeliveryTagString = "vehicleDeliveredTime";
     // factoryObj.bookingUserNameTagString = "UserName";
     // factoryObj.bookingUserVehicleModelTagString = "VehicleModel";
     // factoryObj.bookingUserVehicleNumberTagString = "VehicleNumber";
@@ -54,10 +54,25 @@ angular.module('starter.bookingList')
     };
 
 
+    factoryObj.updateBookingInformation = function(uniqueId, bookingJson) {
+        var response;
+        var objectData = {};
+        
+        // console.log(stringDBrepo.vBookingStatusCount(uniqueId, month, year));
+        httpOperationFact.sendHttpGetRequest(stringDBrepo.sendHttpPostJsonRequest(uniqueId, bookingJson))
+            .then(function(data) {
+                    console.log(data);
+                },
+                function(response) {
+                    console.log('albums retrieval failed.')
+                });
+    };
+
+
     /*************************************************************************************************************************************/
     // AltPhoneNum: 0
     // BookingStatus: 2
-    // BookingTime: 1440344743
+    // userBookedTime: 1440344743
     // FinalAmount: 0
     // MinServiceAmount: 0
     // PersonName: null
@@ -73,7 +88,7 @@ angular.module('starter.bookingList')
     // UserEmailID: "vilakshan@bidgely.com"
     // UserName: "Vilakshan"
     // UserUniqueId: "94413401971440333545849"
-    // VehicleDeliveryTime: 0
+    // vehicleDeliveredTime: 0
     // VehicleModel: "maruthi"
     // VehicleNumber: ""
     // YoF: 1994
@@ -87,11 +102,11 @@ angular.module('starter.bookingList')
             userBookingInfoObj = responseData[i];
             factoryObj.setBookingStatusInfo(userBookingInfoObj);
             factoryObj.setPickDropStatus(userBookingInfoObj);
-            userBookingInfoObj.BookingTimeFormat = factoryObj.convertSecsToDate(userBookingInfoObj.BookingTime);
-            userBookingInfoObj.VehicleDeliveryTimeFormat = factoryObj.convertSecsToDate(userBookingInfoObj.VehicleDeliveryTime);
+            userBookingInfoObj.BookingTimeFormat = factoryObj.convertSecsToDate(userBookingInfoObj.userBookedTime);
+            userBookingInfoObj.vehicleDeliveredTimeFormat = factoryObj.convertSecsToDate(userBookingInfoObj.vehicleDeliveredTime);
 
             var addressInfoObj = {};
-            addressInfoObj = JSON.parse(userBookingInfoObj.UserAddress);;
+            addressInfoObj = JSON.parse(userBookingInfoObj.userAddress);;
             // console.log(addressInfoObj.ZipCode);
             userBookingInfoObj.FullAddress = " ";
             factoryObj.checkForAddressInfo(userBookingInfoObj, addressInfoObj);
@@ -128,7 +143,7 @@ angular.module('starter.bookingList')
         userBookingInfoObj.ZipCode = 560000;
         userBookingInfoObj.PhoneNumber = 9010101010;
 
-        userBookingInfoObj.BookingStatus = 2;
+        userBookingInfoObj.bookingStatus = 2;
         factoryObj.setBookingStatusInfo(userBookingInfoObj);
 
         userBookingInfoObj.PickDrop = 3;
@@ -138,14 +153,14 @@ angular.module('starter.bookingList')
         userBookingInfoObj.FinalAmount = 12000.00;
         userBookingInfoObj.PersonName = "Raj";
         userBookingInfoObj.PersonPhoneNum = "9020202020";
-        userBookingInfoObj.UserEmailID = "aravind@sunwiz.com";
+        userBookingInfoObj.emailId = "aravind@sunwiz.com";
         userBookingInfoObj.AltPhoneNum = 9030303030;
         userBookingInfoObj.UserBookingId = 2;
 
-        userBookingInfoObj.BookingTime = 1438732800;
-        userBookingInfoObj.BookingTimeFormat = factoryObj.convertSecsToDate(userBookingInfoObj.BookingTime);
-        userBookingInfoObj.VehicleDeliveryTime = 1438819200;
-        userBookingInfoObj.VehicleDeliveryTimeFormat = factoryObj.convertSecsToDate(userBookingInfoObj.VehicleDeliveryTime);
+        userBookingInfoObj.userBookedTime = 1438732800;
+        userBookingInfoObj.BookingTimeFormat = factoryObj.convertSecsToDate(userBookingInfoObj.userBookedTime);
+        userBookingInfoObj.vehicleDeliveredTime = 1438819200;
+        userBookingInfoObj.vehicleDeliveredTimeFormat = factoryObj.convertSecsToDate(userBookingInfoObj.vehicleDeliveredTime);
 
         userBookingInfoObj.UserName = "Aravind Kumar A";
         userBookingInfoObj.VehicleModel = "Maruti Alto";
@@ -158,49 +173,26 @@ angular.module('starter.bookingList')
     };
 
     factoryObj.setBookingStatusInfo = function(bookingObj) {
-        switch (bookingObj.BookingStatus) {
-            case 1:
-                bookingObj.BookingStatusColor = "booking-pending-status";
-                bookingObj.BookingStatusString = "Pending";
-                break
-            case 2:
-                bookingObj.BookingStatusColor = "booking-confirm-status";
-                bookingObj.BookingStatusString = "Confirm";
-                break
-            case 3:
-                bookingObj.BookingStatusColor = "booking-cancel-status";
-                bookingObj.BookingStatusString = "Cancelled";
-                break
-            case 4:
-                bookingObj.BookingStatusColor = "booking-cancel-status";
-                bookingObj.BookingStatusString = "Cancelled";
-                break
-            case 5:
-                bookingObj.BookingStatusColor = "booking-inprogress-status";
-                bookingObj.BookingStatusString = "Inprogress";
-                break
-            case 6:
-                bookingObj.BookingStatusColor = "booking-waiting-status";
-                bookingObj.BookingStatusString = "Waiting";
-                break
-            case 7:
-                bookingObj.BookingStatusColor = "booking-complete-status";
-                bookingObj.BookingStatusString = "Complete";
-                break
-            default:
-                break;
 
-        }
-
-        if (bookingObj.BookingStatus == 0 || bookingObj.BookingStatus == 1)
+        if (bookingObj.bookingStatus & BookingDetailsFact.requestPending) {
+            bookingObj.BookingStatusColor = "booking-pending-status";
+            bookingObj.BookingStatusString = "Pending";
             bookingObj.requestAcceptString = "Confirm";
-        else
+        }
+        if ((bookingObj.bookingStatus & BookingDetailsFact.confirmRequest) || (bookingObj.bookingStatus >= BookingDetailsFact.sendPersonForPickup)) {
+            bookingObj.BookingStatusColor = "booking-confirm-status";
+            bookingObj.BookingStatusString = "Confirm";
             bookingObj.requestAcceptString = "Cancel";
-
-    }
+        }
+        if (bookingObj.bookingStatus & BookingDetailsFact.cancelRequest) {
+            bookingObj.BookingStatusColor = "booking-cancel-status";
+            bookingObj.BookingStatusString = "Cancelled";
+            bookingObj.requestAcceptString = "discard";
+        }
+    };
 
     factoryObj.setPickDropStatus = function(bookingObj) {
-        switch (bookingObj.PickDrop) {
+        switch (bookingObj.pickOrDrop) {
             case 0:
                 bookingObj.PickDropString = "NO pickup/Drop";
                 break
@@ -219,7 +211,7 @@ angular.module('starter.bookingList')
                 break;
 
         }
-    }
+    };
 
     factoryObj.convertSecsToDate = function(dateInSecs) {
         var dateInfo = new Date(dateInSecs * 1000);
@@ -227,7 +219,7 @@ angular.module('starter.bookingList')
         var dateNum = ("0" + dateInfo.getDate()).slice(-2);
 
         return (dateNum + "/" + month + "/" + dateInfo.getFullYear());
-    }
+    };
 
 
 

@@ -5,7 +5,47 @@ angular.module('starter.bookingList')
 
     // alert("aaaaaaaaaaa");
     $scope.loginData = {};
-    $scope.choice = "A";
+    var bookingIndex = 0;
+
+    $scope.modalInfo = {
+        confirmString: "Confirm",
+        cancelString: "Cancel"
+    };
+
+    $scope.UserChoice = {
+        data: {
+            name: "",
+            status: 1
+        }
+    };
+    $scope.modalConfirmInfo = [{
+        name: "Confirm Booking",
+        status: 1
+    }, {
+        name: "Vehicle not supported",
+        status: 2
+    }, {
+        name: "Pickup/Drop unavailable",
+        status: 3
+    }, {
+        name: "Unexpected Holiday",
+        status: 4
+    }, {
+        name: "insufficient staff",
+        status: 5
+    }];
+
+
+    $scope.modalCancelInfo = [{
+        name: "Unexpected Holiday",
+        status: 128
+    }, {
+        name: "User request to cancel",
+        status: 129
+    }, {
+        name: "insufficient staff",
+        status: 130
+    }];
 
     // Create the login modal that we will use later
     $ionicModal.fromTemplateUrl('templates/bookingListModal.html', {
@@ -21,23 +61,55 @@ angular.module('starter.bookingList')
     };
 
     // Open the login modal
-    $scope.bookingStatusModal = function() {
+    $scope.bookingStatusModal = function(data, index) {
+        console.log(index);
+        bookingIndex = index;
+        // if (data.requestAcceptString == $scope.modalInfo.confirmString)
+        //     $scope.UserChoice = 1;
+        // else
+        //     $scope.UserChoice = 128;
+        $scope.BookingDetails = data;
         $scope.modal.show();
-        // console.log("came here");
-
     };
+
+
+
 
     // Perform the login action when the user submits the login form
-    $scope.applyBookingStatus = function() {
-        console.log('Doing login', $scope.loginData);
+    $scope.applyBookingStatus = function(choice) {
+        console.log(choice);
 
-        // Simulate a login delay. Remove this and replace with your login
-        // code if using a login system
-        // $timeout(function() {
-        //     $scope.closeLogin();
-        // }, 1000);
+        if (choice.status == 1) {
+            $scope.bookingListArray[bookingIndex].bookingStatus |= BookingDetailsFact.confirmRequest;
+        } else {
+            $scope.bookingListArray[bookingIndex].bookingStatus |= BookingDetailsFact.cancelRequest;
+        }
+
+
+        $scope.setBookingStatusInfo($scope.bookingListArray[bookingIndex]);
+        $scope.modal.hide();
+
     };
 
+
+    $scope.setBookingStatusInfo = function(bookingObj) {
+
+        if (bookingObj.bookingStatus & BookingDetailsFact.requestPending) {
+            bookingObj.BookingStatusColor = "booking-pending-status";
+            bookingObj.BookingStatusString = "Pending";
+            bookingObj.requestAcceptString = "Confirm";
+        }
+        if ((bookingObj.bookingStatus & BookingDetailsFact.confirmRequest) || (bookingObj.bookingStatus >= BookingDetailsFact.sendPersonForPickup)) {
+            bookingObj.BookingStatusColor = "booking-confirm-status";
+            bookingObj.BookingStatusString = "Confirm";
+            bookingObj.requestAcceptString = "Cancel";
+        }
+        if (bookingObj.bookingStatus & BookingDetailsFact.cancelRequest) {
+            bookingObj.BookingStatusColor = "booking-cancel-status";
+            bookingObj.BookingStatusString = "Cancelled";
+            bookingObj.requestAcceptString = "discard";
+        }
+    };
 
 
 

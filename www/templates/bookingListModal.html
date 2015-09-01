@@ -5,55 +5,25 @@
     <ion-content>
         <div class="row">
             <div class="col">
-                <a href="#" ng-click="closeBookingModal()"><i class="icon ion-checkmark-circled booking-details-circle-dot-green"></i></a>
+                <a href="#" ng-click="closeBookingModal()"><i class="icon ion-close-circled  booking-details-circle-dot-green"></i></a>
             </div>
             <div class="col col-10 col-offset-85">
-                <a href="#" ng-click="closeBookingModal()"><i class="icon ion-close-circled booking-details-circle-dot-grey"></i></a>
+                <a href="#" ng-click="applyBookingStatus(UserChoice.data)"><i class="icon ion-checkmark-circled booking-details-circle-dot-grey"></i></a>
             </div>
         </div>
-        <form ng-submit="doLogin()">
-            <!-- //////////////////////////////////////////pickup logic//////////////////////////////////////////////////// -->
-            <div ng-if="detailsStatusInfo.pickUpProgressStatus === true">
+        <!-- <form ng-submit="doLogin()"> -->
+            <div ng-if='BookingDetails.requestAcceptString === modalInfo.confirmString'>
                 <div class="list">
-                    <div class="row">
-                        <div class="col col-10">
-                            <a href="#"><i class="icon ion-person-add booking-details-circle-dot-yellow"></i></a>
-                        </div>
-                        <div class="col col-10 col-offset-80">
-                            <a href="#"><i class="icon ion-trash-a booking-details-circle-dot-yellow"></i></a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <label class="item item-input booking-modal-input-dim">
-                                <input class="booking-modal-input-f" style="color:white;" type="text" placeholder="Pickup/Drop person Name">
-                            </label>
-                        </div>
-                        <div class="col col-10">
-                            <!-- <a href="#"><i class="icon ion-person-add booking-details-circle-dot-yellow"></i></a> -->
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col col-70">
-                            <label class="item item-input booking-modal-input-dim">
-                                <input class="booking-modal-input-f" style="color:white;" type="text" placeholder="Mobile Number">
-                            </label>
-                        </div>
-                        <div class="col col-10">
-                            <a href="#"><i class="icon ion-folder booking-details-circle-dot-yellow"></i></a>
-                        </div>
-                    </div>
+                    <ion-radio ng-repeat="confirmItem in modalConfirmInfo" class="booking-modal-radio-bg" icon="icon ion-record" ng-model="UserChoice.data" ng-value="confirmItem">{{confirmItem.name}}</ion-radio>
+                    
+                </div>
+            </div>
+            <div ng-if='BookingDetails.requestAcceptString === modalInfo.cancelString'>
+                <div class="list">
+                    <ion-radio ng-repeat="cancelItem in modalCancelInfo" class="booking-modal-radio-bg" icon="icon ion-record" ng-model="UserChoice.data" ng-value="cancelItem">{{cancelItem.name}}</ion-radio>
+                </div>
+            </div>
 
-                </div>
-            </div>
-            <!-- //////////////////////////////////////////vehicle got picked logic/////////////////////////////////////// -->
-            <div ng-if="detailsStatusInfo.GeneralStatus === true">
-                <div class="list">
-                    <ion-radio class="booking-modal-radio-bg" icon="icon ion-record" ng-model="choice" ng-value="'A'">Choose A</ion-radio>
-                    <ion-radio class="booking-modal-radio-bg" icon="icon ion-record" ng-model="choice" ng-value="'B'">Choose B</ion-radio>
-                    <ion-radio class="booking-modal-radio-bg" icon="icon ion-record" ng-model="choice" ng-value="'C'">Choose C</ion-radio>
-                </div>
-            </div>
-        </form>
+        <!-- </form> -->
     </ion-content>
 </ion-modal-view>

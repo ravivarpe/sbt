@@ -37,8 +37,8 @@ angular.module('starter.home', ['ionic'])
         $scope.calendarTable.dayCount = 7;
         $scope.daySelectHighlighter = "calendar-col-box";
 
-        CalendarDetailsFact.setCalendarDayInfo($scope, date.getFullYear(), (date.getMonth() + 1));
-        VendorInfoFact.getCalenarDayWiseInfo("94541329261440333885234", $scope);
+        CalendarDetailsFact.setCalendarDayInfo($scope, date.getFullYear(), date.getMonth());
+        VendorInfoFact.getVendorRatingInfo("94541329261440333885234", $scope);
 
 
         $scope.calendarYear = date.getFullYear();
@@ -65,7 +65,7 @@ angular.module('starter.home', ['ionic'])
         $scope.calendarYear = currentYearNumber;
         //$scope.calendarTable.rowCount = 4;
 
-        CalendarDetailsFact.setCalendarDayInfo($scope, currentYearNumber, (currentMonthNumber + 1));
+        CalendarDetailsFact.setCalendarDayInfo($scope, currentYearNumber, currentMonthNumber);
         console.log("inc arrow got clicked");
 
     }
@@ -82,7 +82,7 @@ angular.module('starter.home', ['ionic'])
         $scope.calendarMonth = monthArrayInfo[currentMonthNumber];
         $scope.calendarYear = currentYearNumber;
         // $scope.calendarTable.rowCount = 4;
-        CalendarDetailsFact.setCalendarDayInfo($scope, currentYearNumber, (currentMonthNumber + 1));
+        CalendarDetailsFact.setCalendarDayInfo($scope, currentYearNumber, currentMonthNumber);
 
         console.log("dec arrow got clicked");
 
