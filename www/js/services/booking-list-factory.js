@@ -45,7 +45,7 @@ angular.module('starter.bookingList')
         // console.log(stringDBrepo.vBookingStatusCount(uniqueId, month, year));
         httpOperationFact.sendHttpGetRequest(stringDBrepo.vsearchByMobileNumber(uniqueId, mobileNumber))
             .then(function(data) {
-                    console.log(data);
+                    // console.log(data);
                     factoryObj.showReceivedBookingInfo(scope, data);
                 },
                 function(response) {
@@ -56,10 +56,9 @@ angular.module('starter.bookingList')
 
     factoryObj.updateBookingInformation = function(uniqueId, bookingJson) {
         var response;
-        var objectData = {};
         
         // console.log(stringDBrepo.vBookingStatusCount(uniqueId, month, year));
-        httpOperationFact.sendHttpGetRequest(stringDBrepo.sendHttpPostJsonRequest(uniqueId, bookingJson))
+        httpOperationFact.sendHttpPostJsonRequest(stringDBrepo.vUpdateBookingInfo(uniqueId), bookingJson)
             .then(function(data) {
                     console.log(data);
                 },
@@ -112,9 +111,19 @@ angular.module('starter.bookingList')
             factoryObj.checkForAddressInfo(userBookingInfoObj, addressInfoObj);
 
             // userBookingInfoObj.FullAddress = addressInfoObj.HouseAddress + ", " + addressInfoObj.City  + ", " + addressInfoObj.State + ", " + addressInfoObj.CountryCode + ", " + addressInfoObj.ZipCode;
-            console.log(userBookingInfoObj);
+            // console.log(userBookingInfoObj);
             scope.bookingListArray.push(userBookingInfoObj);
         }
+    };
+
+    factoryObj.deleteBookingJsonKeys = function(jsonObj){
+        delete jsonObj.BookingTimeFormat;
+        delete jsonObj.vehicleDeliveredTimeFormat;
+        delete jsonObj.FullAddress;
+        delete jsonObj.BookingStatusColor;
+        delete jsonObj.BookingStatusString;
+        delete jsonObj.requestAcceptString;
+        delete jsonObj.PickDropString;
     };
 
     factoryObj.checkForAddressInfo = function(bookingInfo, object) {
@@ -189,6 +198,7 @@ angular.module('starter.bookingList')
             bookingObj.BookingStatusString = "Cancelled";
             bookingObj.requestAcceptString = "discard";
         }
+        // console.log(bookingObj);
     };
 
     factoryObj.setPickDropStatus = function(bookingObj) {

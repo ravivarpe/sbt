@@ -28,8 +28,9 @@ angular.module('starter.bookingDetails')
         $scope.modal.hide();
     };
 
-    $scope.updateBookingModal = function() {
+    $scope.updateBookingModal = function(state) {
         var i = 0;
+        console.log(state);
         
         for (i = 0; i < $scope.bookingStatusArrayItems.length; i++) {
             if ($scope.bookingStatusArrayItems[i].statusIndex == $scope.modalDisplayInfo.statusIndex) {
@@ -46,10 +47,11 @@ angular.module('starter.bookingDetails')
 
     // Open the login modal
     $scope.bookingDetailStatusModal = function(selectedElement) {
-        $scope.modal.show();
         $scope.modalDisplayInfo = selectedElement;
+        $scope.modal.show();
+        
 
-        // console.log(selectedElement);
+        console.log(selectedElement);
 
     };
 

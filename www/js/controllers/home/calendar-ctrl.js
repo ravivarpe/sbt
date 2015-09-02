@@ -1,14 +1,14 @@
 angular.module('starter.home', ['ionic'])
 
 
-.controller('calendar-ctrl', function($scope, $http, CalendarDetailsFact, VendorInfoFact) {
+.controller('calendar-ctrl', function($scope, $http, CalendarDetailsFact, VendorInfoFact, stringDBrepo) {
 
 
 
     /*********************************http information*************************************************************************/
 
 
-    // CalendarDetailsFact.getCalenarDayWiseInfo("94541329261440333885234");
+    // CalendarDetailsFact.getCalenarDayWiseInfo(stringDBrepo.vendorUniqueId);
 
 
 
@@ -38,7 +38,7 @@ angular.module('starter.home', ['ionic'])
         $scope.daySelectHighlighter = "calendar-col-box";
 
         CalendarDetailsFact.setCalendarDayInfo($scope, date.getFullYear(), date.getMonth());
-        VendorInfoFact.getVendorRatingInfo("94541329261440333885234", $scope);
+        VendorInfoFact.getVendorRatingInfo(stringDBrepo.vendorUniqueId, $scope);
 
 
         $scope.calendarYear = date.getFullYear();

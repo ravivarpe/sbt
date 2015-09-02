@@ -3,9 +3,10 @@ angular.module('starter')
 .factory('stringDBrepo', function($http, $q) {
     var factoryObj = {};
     /***********************************************http urls***************************************************************/
-    factoryObj.baseUrl = 'http://localhost/CarOne/';
+    factoryObj.baseUrl = 'http://52.88.98.165/vehito/';
 
     /*****************************vendor home page url***********************************************************************/
+    factoryObj.vendorUniqueId = "94541329261441094333624";
     factoryObj.vBookingStatusCount = function(uniqueId, month, year) {
         if (month && year)
             return factoryObj.baseUrl + "vendor/" + uniqueId + "/booking/status/count?month=" + month + "&year=" + year;

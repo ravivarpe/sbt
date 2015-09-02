@@ -5,7 +5,7 @@ angular.module('starter.menu', ['ionic'])
 
 	var date = new Date();
 
-    CalendarDetailsFact.getCurrentDayObj($scope, date.getFullYear(), (date.getMonth() + 1));
+    CalendarDetailsFact.getCurrentDayObj($scope, date.getFullYear(), date.getMonth());
 	
 });
 

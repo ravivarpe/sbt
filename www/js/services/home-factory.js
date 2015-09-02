@@ -172,7 +172,7 @@ angular.module('starter.home')
         // console.log(scope.calendarTable.rowCount);
         scope.calendarTable.totalDayCount = factoryObj.noOfDaysInMonth;
 
-        factoryObj.getCalenarDayWiseInfo("94541329261440333885234", scope, monthInNumber+1, yearInNumber);
+        factoryObj.getCalenarDayWiseInfo(stringDBrepo.vendorUniqueId, scope, monthInNumber+1, yearInNumber);
         if (dateObj.getMonth() == monthInNumber) {
             scope.calendarArray[dateObj.getDate() - 1].daySelectHighlighter = "calendar-col-box-selected";
             factoryObj.setDayStatusInfo(scope, scope.calendarArray[dateObj.getDate() - 1]);
@@ -206,7 +206,7 @@ angular.module('starter.home')
         dayInformation.searchMobileNumber = 0;
 
         dayInformation.year = yearInNumber;
-        dayInformation.month = monthInNumber;
+        dayInformation.month = monthInNumber+1;
         dayInformation.dayName = factoryObj.dayArrayInfo[0];
         dayInformation.dateInSecs = factoryObj.getTimeInSeconds(yearInNumber, monthInNumber, dayInformation.dayNumber,0,0,0 );
 

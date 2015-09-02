@@ -34,8 +34,8 @@ angular.module('starter')
             method: 'POST',
             url: URL,
             headers: { 'Content-Type': 'application/json' },
-            data: UserData,
-        };
+            data: UserData
+        }
 
         $http(req).
         then(function(response) {

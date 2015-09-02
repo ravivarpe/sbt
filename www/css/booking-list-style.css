@@ -269,13 +269,14 @@
  /* width: 100px;
   height: 100px;
   border: 1px solid red;*/
-  border-top: 3px solid #4a87ee;
+  /*border-top: 3px solid #4a87ee;*/
+  border-top: 3px solid white;
   border-top-style: dashed;
   /*font-size: 6px;*/
   height: 10px;
   width: 35px;
   /*color: #4a87ee;*/
-  margin-left: -9px;
+  margin-left: -8px;
   margin-top: 10px;
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
@@ -298,9 +299,29 @@
     font-weight: 500;
     letter-spacing: 1.5px;
     /*text-align: center;*/
-    margin-top: 10px;
+    /*margin-top: 10px;*/
 
 }
+
+.booking-details-status-element-font-current {
+    /*position: absolute;*/
+    
+    color: #f0b840;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    /*text-align: center;*/
+    /*margin-top: 10px;*/
+
+}
+
+.booking-details-status-alignment{
+    padding-top: 10px;
+}
+
+
 
 .bookings-details-action-button {
     height: 20px;
@@ -342,3 +363,14 @@
     /*padding-left: 5px;*/
 }
 /****************************************************************************************/
+
+/************************************booking list sorting********************************/
+.booking-header-loc{
+    margin-top: 14px;
+}
+
+
+
+/****************************************************************************************/
+
+

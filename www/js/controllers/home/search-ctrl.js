@@ -27,7 +27,7 @@ angular.module('starter')
                 });
             $scope.closeSearchModal();
         }
-        // searchService.getUserBookingDetailsUsingMobileNum("94541329261440333885234", searchContent);
+        // searchService.getUserBookingDetailsUsingMobileNum(stringDBrepo.vendorUniqueId, searchContent);
     };
 
 

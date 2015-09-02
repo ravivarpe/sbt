@@ -1,7 +1,7 @@
 angular.module('starter.bookingList')
 
 
-.controller('booking-list-modal-ctrl', function($scope, $ionicModal, $timeout, BookingDetailsFact) {
+.controller('booking-list-modal-ctrl', function($scope, $ionicModal, $timeout, BookingDetailsFact, BookingListFact, stringDBrepo) {
 
     // alert("aaaaaaaaaaa");
     $scope.loginData = {};
@@ -56,18 +56,18 @@ angular.module('starter.bookingList')
 
     // Triggered in the login modal to close it
     $scope.closeBookingModal = function() {
-        console.log("closed");
+        // console.log("closed");
         $scope.modal.hide();
     };
 
     // Open the login modal
     $scope.bookingStatusModal = function(data, index) {
-        console.log(index);
+        // console.log(index);
         bookingIndex = index;
-        // if (data.requestAcceptString == $scope.modalInfo.confirmString)
-        //     $scope.UserChoice = 1;
-        // else
-        //     $scope.UserChoice = 128;
+        if (data.requestAcceptString == $scope.modalInfo.confirmString)
+            $scope.UserChoice.data = $scope.modalConfirmInfo[0];
+        else
+            $scope.UserChoice.data = $scope.modalCancelInfo[0];
         $scope.BookingDetails = data;
         $scope.modal.show();
     };
@@ -77,7 +77,7 @@ angular.module('starter.bookingList')
 
     // Perform the login action when the user submits the login form
     $scope.applyBookingStatus = function(choice) {
-        console.log(choice);
+        // console.log(choice);
 
         if (choice.status == 1) {
             $scope.bookingListArray[bookingIndex].bookingStatus |= BookingDetailsFact.confirmRequest;
@@ -87,7 +87,21 @@ angular.module('starter.bookingList')
 
 
         $scope.setBookingStatusInfo($scope.bookingListArray[bookingIndex]);
+        $scope.updateBookingInfoInServer($scope.bookingListArray[bookingIndex]);
         $scope.modal.hide();
+
+    };
+
+    $scope.updateBookingInfoInServer = function(bookingObj){
+        // var object ={};
+        // object = bookingObj;
+        
+        var object = JSON.parse(JSON.stringify(bookingObj));
+
+        BookingListFact.deleteBookingJsonKeys(object);       
+
+        BookingListFact.updateBookingInformation(stringDBrepo.vendorUniqueId, object);
+        
 
     };
 
