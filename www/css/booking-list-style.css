@@ -238,6 +238,12 @@
     margin-left: 1px;
 }
 
+.booking-details-circle-dot-red {
+    font-size: 30px;
+    color: #8F0529 ;
+    margin-left: 1px;
+}
+
 
 
 .booking-details-circle-nodot-yellow {
@@ -259,6 +265,14 @@
 .booking-details-circle-nodot-grey {
     font-size: 15px;
     color: #707070;
+    margin-left: 7px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.booking-details-circle-nodot-red {
+    font-size: 15px;
+    color: #8F0529;
     margin-left: 7px;
     padding-top: 7px;
     padding-bottom: 7px;
@@ -297,6 +311,20 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 11px;
     font-weight: 500;
+    letter-spacing: 1.5px;
+    /*text-align: center;*/
+    /*margin-top: 10px;*/
+
+}
+
+.booking-details-status-element-font-red {
+    /*position: absolute;*/
+    
+    color: #8F0529;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 900;
     letter-spacing: 1.5px;
     /*text-align: center;*/
     /*margin-top: 10px;*/

@@ -15,36 +15,45 @@ angular.module('starter.bookingList')
     $scope.UserChoice = {
         data: {
             name: "",
-            status: 1
+            status: 1,
+            reason:""
         }
     };
     $scope.modalConfirmInfo = [{
         name: "Confirm Booking",
-        status: 1
+        status: 1,
+        reason:""
     }, {
         name: "Vehicle not supported",
-        status: 2
+        status: 2,
+        reason:""
     }, {
         name: "Pickup/Drop unavailable",
-        status: 3
+        status: 3,
+        reason:""
     }, {
         name: "Unexpected Holiday",
-        status: 4
+        status: 4,
+        reason:""
     }, {
         name: "insufficient staff",
-        status: 5
+        status: 5,
+        reason:""
     }];
 
 
     $scope.modalCancelInfo = [{
         name: "Unexpected Holiday",
-        status: 128
+        status: 128,
+        reason:""
     }, {
         name: "User request to cancel",
-        status: 129
+        status: 129,
+        reason:""
     }, {
         name: "insufficient staff",
-        status: 130
+        status: 130,
+        reason:""
     }];
 
     // Create the login modal that we will use later

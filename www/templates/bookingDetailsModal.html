@@ -5,7 +5,7 @@
     <ion-content>
         <div class="row">
             <div class="col">
-                <a href="#" ng-click="updateBookingModal(stateItem)"><i class="icon ion-checkmark-circled booking-details-circle-dot-green"></i></a>
+                <a href="#" ng-click="updateBookingModal(bookingChoice.data)"><i class="icon ion-checkmark-circled booking-details-circle-dot-green"></i></a>
             </div>
             <div class="col col-10 col-offset-85">
                 <a href="#" ng-click="closeBookingModal()"><i class="icon ion-close-circled booking-details-circle-dot-grey"></i></a>
@@ -48,9 +48,7 @@
             <!-- //////////////////////////////////////////vehicle got picked logic/////////////////////////////////////// -->
             <div ng-repeat="detailsItem in BookingDetailsModalEnableArray">
                 <div ng-if="modalDisplayInfo.statusIndex === detailsItem.index">
-                    <div ng-repeat="stateItem in detailsItem.state">
-                        <ion-radio class="booking-modal-radio-bg" icon="icon ion-record" ng-model="choice" ng-value="stateItem.id">{{stateItem.option}}</ion-radio>
-                    </div>
+                    <ion-radio ng-repeat="stateItem in detailsItem.state" icon="icon ion-record" ng-model="bookingChoice.data" ng-value="stateItem">{{stateItem.option}}</ion-radio>
                 </div>
             </div>
         </form>

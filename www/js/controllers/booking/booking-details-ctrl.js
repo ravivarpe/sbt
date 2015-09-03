@@ -11,5 +11,5 @@ angular.module('starter.bookingDetails', ['ionic'])
  //    BookingListFact.setCalendarDayInfo($scope);
     // console.log($scope);
 
-    BookingDetailsFact.setBookingLiveStatus($scope, BookingDetailsFact.sumOfAllStatus);
+    BookingDetailsFact.setBookingLiveStatus($scope);
 });

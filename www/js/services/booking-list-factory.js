@@ -56,7 +56,7 @@ angular.module('starter.bookingList')
 
     factoryObj.updateBookingInformation = function(uniqueId, bookingJson) {
         var response;
-        
+
         // console.log(stringDBrepo.vBookingStatusCount(uniqueId, month, year));
         httpOperationFact.sendHttpPostJsonRequest(stringDBrepo.vUpdateBookingInfo(uniqueId), bookingJson)
             .then(function(data) {
@@ -116,7 +116,7 @@ angular.module('starter.bookingList')
         }
     };
 
-    factoryObj.deleteBookingJsonKeys = function(jsonObj){
+    factoryObj.deleteBookingJsonKeys = function(jsonObj) {
         delete jsonObj.BookingTimeFormat;
         delete jsonObj.vehicleDeliveredTimeFormat;
         delete jsonObj.FullAddress;
@@ -196,6 +196,11 @@ angular.module('starter.bookingList')
         if (bookingObj.bookingStatus & BookingDetailsFact.cancelRequest) {
             bookingObj.BookingStatusColor = "booking-cancel-status";
             bookingObj.BookingStatusString = "Cancelled";
+            bookingObj.requestAcceptString = "discard";
+        }
+        if (bookingObj.bookingStatus & BookingDetailsFact.userPaidFullAmount) {
+            bookingObj.BookingStatusColor = "booking-confirm-status";
+            bookingObj.BookingStatusString = "Completed";
             bookingObj.requestAcceptString = "discard";
         }
         // console.log(bookingObj);

@@ -47,102 +47,152 @@ angular.module('starter.bookingDetails')
     //   { id: factoryObj.userPaidFullAmount, options:[{1:"Amount paid"}] }
     // ];
 
+    factoryObj.confirmLevel = 1;
+    factoryObj.cancelLevel = 2;
+    factoryObj.sameLevel = 3;
+
 
     factoryObj.stateDetails = [{
         index: factoryObj.confirmRequest,
         state: [{
             option: "Confirm Booking",
-            id: 1
+            id: 1,
+            status: factoryObj.confirmLevel,
+            reason: ""
         }, {
             option: "Vehicle not Supported",
-            id: 2
+            id: 2,
+            status: factoryObj.cancelLevel,
+            reason: ""
         }, {
             option: "Pickup/Drop unavailable",
-            id: 3
+            id: 3,
+            status: factoryObj.cancelLevel,
+            reason: ""
         }, {
             option: "Unexpected Holiday",
-            id: 4
+            id: 4,
+            status: factoryObj.cancelLevel,
+            reason: ""
         }, {
             option: "Insufficient staff",
-            id: 5
+            id: 5,
+            status: factoryObj.cancelLevel,
+            reason: ""
         }]
     }, {
         index: factoryObj.sendPersonForPickup,
         state: [{
             option: "Initiated vehicle pickup",
-            id: 1
+            id: 1,
+            status: factoryObj.confirmLevel,
+            reason: ""
         }, {
-            option: "Cancelled due Un-expected holiday",
-            id: 2
+            option: "Cancelled - Unexpected holiday",
+            id: 2,
+            status: factoryObj.cancelLevel,
+            reason: ""
         }]
     }, {
         index: factoryObj.personPickedVehicle,
         state: [{
             option: "Vehicle got picked",
-            id: 1
+            id: 1,
+            status: factoryObj.confirmLevel,
+            reason: ""
         }, {
             option: "User is not reachable",
-            id: 2
+            id: 2,
+            status: factoryObj.cancelLevel,
+            reason: ""
         }, {
             option: "User cancelled service",
-            id: 4
+            id: 3,
+            status: factoryObj.cancelLevel,
+            reason: ""
         }]
     }, {
         index: factoryObj.receivedCarFromUser,
         state: [{
             option: "Vehicle received for service",
-            id: 1
+            id: 1,
+            status: factoryObj.confirmLevel,
+            reason: ""
         }]
     }, {
         index: factoryObj.serviceInProgress,
         state: [{
             option: "Service in progress",
-            id: 1
+            id: 1,
+            status: factoryObj.confirmLevel,
+            reason: ""
         }, {
             option: "Waiting for user response",
-            id: 2
+            id: 2,
+            status: factoryObj.sameLevel,
+            reason: ""
         }, {
             option: "Service got postponed",
-            id: 4
+            id: 3,
+            status: factoryObj.sameLevel,
+            reason: ""
+        }, {
+            option: "Service cancelled",
+            id: 4,
+            status: factoryObj.cancelLevel,
+            reason: ""
         }]
     }, {
         index: factoryObj.serviceComplete,
         state: [{
             option: "Service completed",
-            id: 1
+            id: 1,
+            status: factoryObj.confirmLevel,
+            reason: ""
         }, {
             option: "Service got postponed",
-            id: 2
+            id: 2,
+            status: factoryObj.sameLevel,
+            reason: ""
         }, {
             option: "Service cancelled",
-            id: 4
+            id: 3,
+            status: factoryObj.cancelLevel,
+            reason: ""
         }]
     }, {
         index: factoryObj.personPickedVehicleForDelivery,
         state: [{
             option: "Vehicle Drop in progress",
-            id: 1
-        }, {
-            option: "Vehicle Drop initiated",
-            id: 2
+            id: 1,
+            status: factoryObj.confirmLevel,
+            reason: ""
         }, {
             option: "Drop got postponed",
-            id: 4
+            id: 2,
+            status: factoryObj.sameLevel,
+            reason: ""
         }]
     }, {
         index: factoryObj.devliveredVehicle,
         state: [{
             option: "Vehicle delivered",
-            id: 1
+            id: 1,
+            status: factoryObj.confirmLevel,
+            reason: ""
         }, {
             option: "User not reachable",
-            id: 2
+            id: 2,
+            status: factoryObj.sameLevel,
+            reason: ""
         }]
     }, {
         index: factoryObj.userPaidFullAmount,
         state: [{
             option: "Amount paid",
-            id: 1
+            id: 1,
+            status: factoryObj.confirmLevel,
+            reason: ""
         }]
     }];
 
@@ -152,36 +202,41 @@ angular.module('starter.bookingDetails')
 
 
 
-    factoryObj.bookingStatusArray = ["Request Pending",
-        "Request Confirmed",
-        "Request Cancelled",
-        "Pickup in progress",
-        "Vehicle got picked",
-        "Vehicle received",
-        "Service in progress",
-        "Waiting for response",
-        "Completed vehicle service",
-        "Vehicle Drop in progress",
-        "Vehicle is delivered",
-        "paid service amount",
-        "Got feedback"
+    factoryObj.bookingStatusArray = [{name:"Request Pending", flag:true},
+        {name:"Request Confirmed", flag:true},
+        {name:"Request Cancelled", flag:false},
+        {name:"Pickup in progress", flag:true},
+        {name:"Vehicle got picked", flag:true},
+        {name:"Vehicle received", flag:true},
+        {name:"Service in progress", flag:true},
+        {name:"Waiting for response", flag:false},
+        {name:"Completed vehicle service", flag:true},
+        {name:"Vehicle Drop in progress", flag:true},
+        {name:"Vehicle is delivered", flag:true},
+        {name:"paid service amount", flag:true},
+        {name:"Got feedback", flag:false}
     ];
 
-    factoryObj.setBookingLiveStatus = function(scope, bookingStatus) {
-        // console.log(factoryObj.sumOfAllStatus);
+    factoryObj.setBookingLiveStatus = function(scope) {
+
         // console.log();
+        var bookingStatus = scope.bookingDetailsArray[0].bookingStatus;
+        // console.log(bookingStatus);
         factoryObj.lastCount = 0;
         for (var i = 1; i < factoryObj.bookingStatusArray.length; i++) {
+
             var bookingStatusArrayObj = {};
             bookingStatusArrayObj.iconType = 0;
             if ((bookingStatus >> i) & 0x1) {
                 index = (0x1 << i);
-                if (factoryObj.setPickUpDropInfo(scope, index) == 0)
+
+
+                if ((factoryObj.setPickUpDropInfo(scope, index) == 0) || (factoryObj.bookingStatusArray[i - 1].flag == false))
                     continue;
 
                 factoryObj.setDisplayIconInfo(index, bookingStatusArrayObj);
 
-                bookingStatusArrayObj.statusString = factoryObj.bookingStatusArray[i - 1];
+                bookingStatusArrayObj.statusString = factoryObj.bookingStatusArray[i - 1].name;
                 bookingStatusArrayObj.statusInfo = 1;
                 bookingStatusArrayObj.statusIndex = 0x1 << i;
                 scope.bookingStatusArrayItems.push(bookingStatusArrayObj);
@@ -197,7 +252,7 @@ angular.module('starter.bookingDetails')
 
                 factoryObj.setDisplayIconInfo(index, bookingStatusArrayObj);
 
-                bookingStatusArrayObj.statusString = factoryObj.bookingStatusArray[i - 1];
+                bookingStatusArrayObj.statusString = factoryObj.bookingStatusArray[i - 1].name;
                 bookingStatusArrayObj.statusInfo = 0;
                 bookingStatusArrayObj.statusIndex = 0x1 << i;
                 scope.bookingStatusArrayItems.push(bookingStatusArrayObj);
@@ -209,10 +264,20 @@ angular.module('starter.bookingDetails')
 
         }
         // console.log(factoryObj.lastCount);
-        scope.bookingStatusArrayItems[factoryObj.lastCount].statusInfo = 4;
+        if (bookingStatus & factoryObj.cancelRequest)
+            scope.bookingStatusArrayItems[factoryObj.lastCount].statusInfo = 3;
+        else if (bookingStatus & factoryObj.waitingForUserResponse) {
+            var bookingReason = JSON.parse(scope.bookingDetailsArray[0].bookingStatusReason);
+            // console.log(bookingReason);
+            scope.bookingStatusArrayItems[factoryObj.lastCount].statusString = bookingReason.option;
+            scope.bookingStatusArrayItems[factoryObj.lastCount].statusInfo = 4;
+        } else if(!(scope.bookingDetailsArray[0].bookingStatus & factoryObj.userPaidFullAmount))
+            scope.bookingStatusArrayItems[factoryObj.lastCount].statusInfo = 4;
 
 
     }
+
+
 
     factoryObj.setPickUpDropInfo = function(scope, index) {
         var status = 1;

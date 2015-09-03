@@ -65,36 +65,45 @@
                             <div class="col col-10 col-offset-10">
                                 <span ng-if="bookingStatusItem.iconType === 1">
                                     <span ng-if="bookingStatusItem.statusInfo === 0">
-                                        <div class="ion-android-radio-button-on booking-details-circle-dot-grey" ng-click="bookingDetailStatusModal(bookingStatusItem)"></div>
-                                    </span>
-                                <span ng-if="bookingStatusItem.statusInfo === 4">
-                                        <div class="ion-android-radio-button-on booking-details-circle-dot-yellow"></div>
+                                        <div class="ion-android-radio-button-on booking-details-circle-dot-grey"></div>
                                     </span>
                                 <span ng-if="bookingStatusItem.statusInfo === 1">
                                         <div class="ion-android-radio-button-on booking-details-circle-dot-green"></div>
+                                    </span>
+                                <span ng-if="bookingStatusItem.statusInfo === 3">
+                                        <div class="ion-android-radio-button-on booking-details-circle-dot-red"></div>
+                                    </span>
+                                <span ng-if="bookingStatusItem.statusInfo === 4">
+                                        <div class="ion-android-radio-button-on booking-details-circle-dot-yellow" ng-click="bookingDetailStatusModal(bookingStatusItem)"></div>
                                     </span>
                                 </span>
                                 <span ng-if="bookingStatusItem.iconType === 2">
                                     <span ng-if="bookingStatusItem.statusInfo === 0">
                                         <div class="ion-record booking-details-circle-nodot-grey"></div>
                                     </span>
-                                <span ng-if="bookingStatusItem.statusInfo === 4">
-                                        <div class="ion-record booking-details-circle-nodot-yellow" ng-click="bookingDetailStatusModal(bookingStatusItem)"></div>
-                                    </span>
                                 <span ng-if="bookingStatusItem.statusInfo === 1">
-                                        <div class="ion-record booking-details-circle-nodot-green"></div>
+                                            <div class="ion-record booking-details-circle-nodot-green"></div>
                                     </span>
                                 <span ng-if="bookingStatusItem.statusInfo === 2">
-                                        <div class="ion-record booking-details-circle-nodot-grey"></div>
+                                            <div class="ion-record booking-details-circle-nodot-grey"></div>
+                                    </span>
+                                <span ng-if="bookingStatusItem.statusInfo === 3">
+                                            <div class="ion-record booking-details-circle-nodot-red"></div>
+                                    </span>
+                                <span ng-if="bookingStatusItem.statusInfo === 4">
+                                            <div class="ion-record booking-details-circle-nodot-yellow" ng-click="bookingDetailStatusModal(bookingStatusItem)"></div>
                                     </span>
                                 </span>
                             </div>
                             <div class="col col-60 col-offset-10">
                                 <div ng-if="bookingStatusItem.statusInfo < 4" class="booking-details-status-alignment">
-                                    <a href="#" style="text-decoration: none;" class="booking-details-status-element-font">{{bookingStatusItem.statusString}}</a>                                
+                                    <a href="#" style="text-decoration: none;" class="booking-details-status-element-font">{{bookingStatusItem.statusString}}</a>
                                 </div>
+                                <!-- <div ng-if="bookingStatusItem.statusInfo === 3" class="booking-details-status-alignment">
+                                    <a href="#" style="text-decoration: none;" class="booking-details-status-element-font-red">{{bookingStatusItem.statusString}}</a>
+                                </div> -->
                                 <div ng-if="bookingStatusItem.statusInfo === 4" class="booking-details-status-alignment">
-                                    <a href="#" style="text-decoration: none;" ng-click="bookingDetailStatusModal(bookingStatusItem)" class="booking-details-status-element-font-current">{{bookingStatusItem.statusString}}</a> 
+                                    <a href="#" style="text-decoration: none;" ng-click="bookingDetailStatusModal(bookingStatusItem)" class="booking-details-status-element-font-current">{{bookingStatusItem.statusString}}</a>
                                 </div>
                             </div>
                             <!-- <span ng-if="bookingStatusItem.statusInfo === 4">
