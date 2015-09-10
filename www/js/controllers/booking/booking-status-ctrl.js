@@ -1,4 +1,4 @@
-angular.module('starter.bookingList', ['ionic'])
+angular.module('starter.bookingList', ['ionic', 'ionic-timepicker', 'ionic-datepicker'])
 
 
 .controller('booking-list-ctrl', function($scope, $stateParams, BookingListFact, stringDBrepo, sortBookingPopupFact) {

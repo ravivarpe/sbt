@@ -86,7 +86,7 @@
 }
 
 .bg-item-divide-setting{
-    background-color: rgba(54, 25, 25, .5);
+    background-color: #47639E;
     /*padding-top: 10px;*/
     /*padding-bottom: 5px;*/
 }
@@ -98,7 +98,7 @@
 }
 
 .item-heading-user-info {
-    color: #f0b840;
+    color: #ffffff;
     text-transform: uppercase;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 13px;
@@ -106,4 +106,58 @@
     letter-spacing: 1.5px;
     /*text-align: center;*/
     padding-top: 9px;
+}
+
+
+.input-edit-box input{
+    width: 100%;
+    /*border: 1px solid red;*/
+    height: 50px;
+    border-bottom: 1px solid #47639E;
+    /*margin-left: 10%;*/
+
+    /*border-radius: 10px;*/
+    color: #47639E;
+    background-color: white;
+}
+
+/*.input-edit-box input:hover{
+    border-bottom: 3px solid green;
+}*/
+
+.input-edit-box span{
+    color: green;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    /*text-align: center;*/
+    /*padding-top: 9px;*/
+}
+
+.input-edit-box div{
+    color: red;
+    background-color: white;
+    /*margin-left: 10%;*/
+}
+
+label.input-edit-box.has-error input {  
+  border-bottom: 2px solid red;
+}
+
+
+.button-input-test button{
+    background-color: blue;
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+
+.spinner svg {
+  width: 60px;
+  height: 60px;
+  stroke: #47639E;
+  fill: #47639E;
 }

@@ -1,34 +1,47 @@
 /*************************user card background****************************/
 
 
-
+.title-header-large-font {
+    /*position: absolute;*/
+    
+    color: #ffffff;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-align: center;
+    /*bottom: 15px;*/
+    /*margin-left: -17px;*/
+}
 
 
 
 
 
 .user-booking-view-box {
-    /*background: rgba(255, 255, 255, 0.1);*/
-    
-    background-color: rgba(54, 25, 25, .4);
-    box-shadow: 0 10px 10px -5px #000000;
+    background: rgba(248, 248, 248, 0.9);
+    border-top: 2px solid #47639E;
+    /*border-bottom: 2px solid #47639E;*/
+    box-shadow: 0 10px 10px -5px #47639E;
     margin-top: 5px;
     line-height: 60%;
 }
 
 .vehicle-icon-fort-param {
-    color: #3399FF;
+    color: #f0b840;
     /*font-size: 15px;*/
+    padding-right: 3px;
 }
 
 .booking-address-element-font {
     /*position: absolute;*/
     
-    color: #ffffff;
+    color: #47639E;
     text-transform: uppercase;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 8px;
-    font-weight: 500;
+    font-weight: 700;
     letter-spacing: 1.5px;
     text-align: center;
     /*bottom: 15px;*/
@@ -38,11 +51,11 @@
 .booking-large-element-font {
     /*position: absolute;*/
     
-    color: #ffffff;
+    color: #47639E;
     text-transform: uppercase;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 10px;
-    font-weight: 500;
+    font-weight: 700;
     letter-spacing: 1.5px;
     text-align: center;
     /*bottom: 15px;*/
@@ -149,10 +162,31 @@
 }
 
 
-.booking-modal-input-dim{
-    height: 30px;
-    background-color: rgba(54, 25, 25, .4);
+.booking-modal-input-dim input{
+    width: 100%;
+    background-color: rgba(54, 25, 25, .7);
+    border-bottom: 2px solid #f0b840;
+    color: white;
 }
+
+.booking-modal-input-dim span{
+    color: white;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    /*text-align: center;*/
+    /*padding-top: 9px;*/
+}
+
+.booking-modal-input-dim div{
+    color: #f0b840;
+    /*background-color: white;*/
+    /*margin-left: 10%;*/
+}
+
+
 .booking-modal-input-f{
     color: white;
     font-family: Arial, Helvetica, sans-serif;
@@ -174,11 +208,11 @@
 .booking-details-large-font {
     /*position: absolute;*/
     
-    color: #ffffff;
+    color: #47639E;
     text-transform: uppercase;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 700;
     letter-spacing: 1.5px;
     text-align: center;
     /*bottom: 15px;*/
@@ -186,10 +220,10 @@
 }
 
 .booking-details-lt-color-box {
-    /*background: rgba(255, 255, 255, 0.1);*/
-    
-    background-color: rgba(54, 25, 25, .4);
-    box-shadow: 0 10px 10px -5px #000000;
+    background: rgba(248, 248, 248, 0.9);
+    border-top: 2px solid #47639E;
+    /*border-bottom: 2px solid #47639E;*/
+    box-shadow: 0 10px 10px -5px #47639E;
     margin-top: 5px;
     /*line-height: 60%;*/
 }
@@ -201,15 +235,18 @@
 }
 
 .booking-details-status-color-box {
-    background-color: rgba(54, 25, 25, .7);
-    box-shadow: 0 10px 10px -5px #000000;
+    background: rgba(248, 248, 248, 0.9);
+    border-top: 2px solid #47639E;
+    /*border-bottom: 2px solid #47639E;*/
+    box-shadow: 0 10px 10px -5px #47639E;
+
     margin-top: 20px;
     padding-bottom: 10px;
 }
 
 
 .booking-details-color-box-param {
-    margin-top: 5px;
+    margin-top: 15px;
     line-height: 60%;
 }
 
@@ -284,7 +321,7 @@
   height: 100px;
   border: 1px solid red;*/
   /*border-top: 3px solid #4a87ee;*/
-  border-top: 3px solid white;
+  border-top: 3px solid #47639E;
   border-top-style: dashed;
   /*font-size: 6px;*/
   height: 10px;
@@ -306,7 +343,7 @@
 .booking-details-status-element-font {
     /*position: absolute;*/
     
-    color: #ffffff;
+    color: #47639E;
     text-transform: uppercase;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 11px;

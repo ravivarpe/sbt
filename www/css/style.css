@@ -1,3 +1,11 @@
+
+.loader-font-para{
+    height: 60px;
+    width: 60px;
+    background-color: transparent;
+}
+
+
 /** Styling for the username field **/
 
 label.item.has-error {

@@ -92,6 +92,7 @@ angular.module('starter.home')
     };
 
     factoryObj.getCurrentDayNumber = function(yearInNumber, monthInNumber, dayInNumber) {
+        monthInNumber++;
 
         dateFormat = yearInNumber + "/" + monthInNumber + "/" + dayInNumber + " 00:00:00";
 
@@ -169,7 +170,7 @@ angular.module('starter.home')
 
         scope.calendarTable.rowCount = ((factoryObj.noOfDaysInMonth / 7) > Math.round(factoryObj.noOfDaysInMonth / 7)) ? Math.round(factoryObj.noOfDaysInMonth / 7) + 1 : Math.round(factoryObj.noOfDaysInMonth / 7);
 
-        // console.log(scope.calendarTable.rowCount);
+        // console.log(scope.calendarArray);
         scope.calendarTable.totalDayCount = factoryObj.noOfDaysInMonth;
 
         factoryObj.getCalenarDayWiseInfo(stringDBrepo.vendorUniqueId, scope, monthInNumber+1, yearInNumber);

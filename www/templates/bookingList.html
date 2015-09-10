@@ -1,7 +1,7 @@
 <ion-view>
     <ion-nav-title>
         <!-- <img class="logo-size" src="img/carone_logo.png"> -->
-        <span class="booking-details-large-font">Booking List</span>
+        <span class="title-header-large-font">Booking List</span>
     </ion-nav-title>
     <ion-content scrollbar-y="false" has-bouncing="true" class="home-background-image">
         <div ng-controller="booking-list-ctrl">
@@ -13,23 +13,25 @@
                                 <span class="booking-large-element-font">{{HeaderTitle}}:&nbsp<span class="date-element-font">{{HeaderDetails}}</span></span>
                             </div>
                             <div class="col col-20">
-                                <span class="ion-android-options calendar-arrow-box" ionic-button-click-toggle on-icon="calendar-arrow-box" off-icon="calendar-arrow-box-fade" ng-click = "sortingPopUpMethod()"></span>
+                                <span class="ion-android-options calendar-arrow-box" ionic-button-click-toggle on-icon="calendar-arrow-box" off-icon="calendar-arrow-box-fade" ng-click="sortingPopUpMethod()"></span>
                             </div>
                         </div>
                     </div>
                     <div class="list card user-booking-view-box" ng-repeat="bookingListItem in bookingListArray" value="{{$index}}" ng-if="bookingListItem.requestAcceptString">
                         <!-- <div class="list card user-booking-view-box"> -->
                         <div class="row">
-                            <div class="col">
+                            <div class="col col-50">
+                                <i class="ion-person vehicle-icon-fort-param"></i>
                                 <span class="booking-large-element-font">{{bookingListItem.userName}}</span>
                             </div>
-                            <div class="col">
+                            <div class="col col-50">
                                 <span class="booking-large-element-font">Status:&nbsp</span>
                                 <span class="booking-status-indication-font {{bookingListItem.BookingStatusColor}}">{{bookingListItem.BookingStatusString}}</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
+                                <i class="ion-android-pin vehicle-icon-fort-param"></i>
                                 <span class="booking-large-element-font">Address:&nbsp</span>
                                 <span class="booking-address-element-font">{{bookingListItem.FullAddress}}</span>
                             </div>
@@ -37,21 +39,22 @@
                         <div class="row">
                             <div class="col">
                                 <i class="ion-iphone vehicle-icon-fort-param"></i>
-                                <span class="booking-large-element-font">&nbsp{{bookingListItem.phoneNumber}}</span>
+                                <a ng-href="tel: {{bookingListItem.phoneNumber}}" style="text-decoration:none; color:#f0b840" class="booking-large-element-font">&nbsp{{bookingListItem.phoneNumber}}</a>
                             </div>
                             <div class="col">
                                 <span class="booking-large-element-font">{{bookingListItem.PickDropString}}</span>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col">
                                 <i class="ion-model-s vehicle-icon-fort-param"></i>
-                                <span class="booking-address-element-font">&nbsp{{bookingListItem.vehicleModel}}&nbsp{{bookingListItem.yearOfManuf}}</span>
+                                <span class="booking-address-element-font">&nbsp{{bookingListItem.vehicleModel}}&nbsp, Year:&nbsp{{bookingListItem.yearOfManuf}}</span>
                             </div>
-                            <div class="col">
+                            <!-- <div class="col">
                                 <span class="booking-large-element-font">Service:&nbsp</span>
                                 <span class="booking-address-element-font">Regular, Washing</span>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="row">
                             <div class="col col-25 col-offset-50"><a ui-sref="vendor-app.bookingDetails({ bookingDetailsInfo: bookingListItem})" class="bookings-details-button-grey"><span class="bookings-request-status-font">Details</span></a></div>

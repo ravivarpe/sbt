@@ -4,6 +4,11 @@ angular.module('starter.bookingList')
 .factory('BookingListFact', function(httpOperationFact, stringDBrepo, BookingDetailsFact) {
     var factoryObj = {};
 
+    factoryObj.venderDeliveryTime;
+    factoryObj.venderDeliveryDate;
+    factoryObj.timeInSeconds;
+
+
     // factoryObj.bookingSlotIdTagString = "SlotId";
     // factoryObj.bookingUserUniqueIdTagString = "UserUniqueId";
     // factoryObj.bookingUserAddressTagString = "UserAddress";
@@ -92,6 +97,19 @@ angular.module('starter.bookingList')
     // VehicleNumber: ""
     // YoF: 1994
     // ZipCode: 0
+
+    factoryObj.getTimeInSeconds = function(yearInNumber, monthInNumber, dayInNumber, hoursInNumber, minInNumber) {
+
+        dateFormat = yearInNumber + "/" + (monthInNumber + 1) + "/" + dayInNumber + " " + hoursInNumber + ":" + minInNumber + ":00 UTC";
+        var dateObj = new Date(dateFormat);
+
+        factoryObj.timeInSeconds = Math.round(dateObj.getTime() / 1000);
+        // // var test = date.getTime() ;
+        // console.log(date.getDate());
+        // console.log(test);
+        return factoryObj.timeInSeconds;
+    };
+
     factoryObj.showReceivedBookingInfo = function(scope, responseData) {
         scope.bookingListArray.length = 0;
 
@@ -200,7 +218,7 @@ angular.module('starter.bookingList')
         }
         if (bookingObj.bookingStatus & BookingDetailsFact.userPaidFullAmount) {
             bookingObj.BookingStatusColor = "booking-confirm-status";
-            bookingObj.BookingStatusString = "Completed";
+            bookingObj.BookingStatusString = "Done";
             bookingObj.requestAcceptString = "discard";
         }
         // console.log(bookingObj);
@@ -233,7 +251,10 @@ angular.module('starter.bookingList')
         var month = ("0" + dateInfo.getMonth()).slice(-2);
         var dateNum = ("0" + dateInfo.getDate()).slice(-2);
 
-        return (dateNum + "/" + month + "/" + dateInfo.getFullYear());
+        var dateHours = ("0" + dateInfo.getHours()).slice(-2);
+        var dateMins = ("0" + dateInfo.getMinutes()).slice(-2); 
+
+        return (dateNum + "/" + month + "/" + dateInfo.getFullYear()+" "+ dateHours +":" + dateMins );
     };
 
 

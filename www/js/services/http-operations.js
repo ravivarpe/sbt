@@ -1,11 +1,12 @@
 angular.module('starter')
 
-.factory('httpOperationFact', function($http, $q) {
+.factory('httpOperationFact', function($http, $q, dataLoaderFact) {
     var factoryObj = {};
     factoryObj.httpResponse = "";
 
     factoryObj.sendHttpGetRequest = function(URL) {
         var def = $q.defer();
+        dataLoaderFact.show();
         var req = {
             method: 'GET',
             url: URL,
@@ -16,11 +17,13 @@ angular.module('starter')
             // this callback will be called asynchronously
             // when the response is available
             factoryObj.httpResponse = response;
+            dataLoaderFact.hide();
             def.resolve(response.data);
         }, function(response) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
             factoryObj.httpResponse = response;
+            dataLoaderFact.hide();
             def.reject(response);
         });
         return def.promise;
@@ -30,6 +33,7 @@ angular.module('starter')
 
     factoryObj.sendHttpPostJsonRequest = function(URL, UserData) {
         var def = $q.defer();
+        dataLoaderFact.show();
         var req = {
             method: 'POST',
             url: URL,
@@ -42,11 +46,13 @@ angular.module('starter')
             // this callback will be called asynchronously
             // when the response is available
             factoryObj.httpResponse = response;
+            dataLoaderFact.hide();
             def.resolve(response.data);
         }, function(response) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
             factoryObj.httpResponse = response;
+            dataLoaderFact.hide();
             def.reject(response);
         });
         return def.promise;
