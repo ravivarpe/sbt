@@ -1,43 +1,93 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
-  
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-  
-  // Form data for the login modal
-  $scope.loginData = {};
+.controller('AppCtrl', function($scope, $state, $ionicPopup, AuthService, AUTH_EVENTS) {
+  $scope.username = AuthService.username();
 
-  // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
+  $scope.$on(AUTH_EVENTS.notAuthorized, function(event) {
+    var alertPopup = $ionicPopup.alert({
+      title: 'Unauthorized!',
+      template: 'You are not allowed to access this resource.'
+    });
   });
 
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
+  $scope.$on(AUTH_EVENTS.notAuthenticated, function(event) {
+    AuthService.logout();
+    $state.go('login');
+    var alertPopup = $ionicPopup.alert({
+      title: 'Session Lost!',
+      template: 'Sorry, You have to login again.'
+    });
+  });
+
+  $scope.setCurrentUsername = function(name) {
+    $scope.username = name;
   };
 
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
+  $scope.logout = function() {
+    AuthService.logout();
+    $state.go('login', {}, {reload: true});
   };
 
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
+})
 
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
+.controller('LoginCtrl', function($scope, $state, $ionicPopup, AuthService) {
+  $scope.data = {};
+
+  $scope.login = function(data) {
+  AuthService.login(data);
+  //   AuthService.login(data).then(function(authenticated) {
+  //     $state.go('vendor-app.home', {}, {reload: true});
+  //     $scope.setCurrentUsername(data.username);
+  //   }, function(err) {
+  //     var alertPopup = $ionicPopup.alert({
+  //       title: 'Login failed!',
+  //       template: 'Please check your credentials!'
+  //     });
+  //   });
+   };
+})
+
+.controller('SignupCtrl',function($scope,$state,$ionicPopup,SignupService,AuthService){
+  $scope.data = {};
+
+  $scope.signup = function(data) {
+      if(data.password == data.cpassword){
+      SignupService.checkemail(data.email).then(function(authenticated) {
+           SignupService.checkPhoneNumber(data.phonenumber).then(function(authenticated) {
+              var object = {};
+              object.primaryEmailID = data.email;
+              object.primaryPhoneNumber = data.phonenumber;
+              SignupService.createAccount(object,data.password).then(function(authenticated) {
+                   var loginObject = {};
+                   loginObject.loginId=data.email;
+                   loginObject.loginPassword = data.password;
+                   AuthService.login(loginObject);
+                   $scope.setCurrentUsername(data);
+              }, function(err) {
+                  var alertPopup = $ionicPopup.alert({
+                  title: 'Sorry Internal Server Error',
+                 template: ''
+              });
+         });
+           }, function(err) {
+              var alertPopup = $ionicPopup.alert({
+              title: 'Phone Number Already Exists',
+              template: ''
+           });
+         });
+      },function(err) {
+          var alertPopup = $ionicPopup.alert({
+         title: 'Email Already Exists',
+         template: ''
+       });
+     });
+    }else{
+      var alertPopup = $ionicPopup.alert({
+        title: 'Passwords Are Not Matching',
+        template: ''
+      });
+    }
+
   };
 })
 
