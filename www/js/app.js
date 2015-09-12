@@ -25,9 +25,7 @@ $ionicPlatform.ready(function() {
 
  })
 
-  $rootScope.$on('$stateChangeStart', function (event,next, nextParams, fromState) {
-
-    console.log('data' in next);
+  $rootScope.$on('$stateChangeStart', function ($event,next, nextParams, fromState) {
 
     if ('data' in next && 'authorizedRoles' in next.data) {
       var authorizedRoles = next.data.authorizedRoles;
@@ -37,17 +35,16 @@ $ionicPlatform.ready(function() {
         $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
       }
     }
-    // console.log(next.name);
+   
     if(fromState.name == 'login' && next.name == 'signup'){
-          $state.go('signup',{},{reload:true});
           event.preventDefault();
     }else{
-    if (!AuthService.isAuthenticated()) {
-      if(next.name !== 'login') {
-          event.preventDefault();
-          $state.go('login');
-        }
-    }
+       if (!AuthService.isAuthenticated()) {
+           if(next.name !== 'login') {
+            event.preventDefault();
+            $state.go('login');
+          }
+      }
   }
   });
 });
