@@ -4,78 +4,278 @@
     </ion-nav-title>
     <ion-content scrollbar-y="false" has-bouncing="true" class="home-background-image">
         <div ng-controller="user-settings-ctrl" class="controller-placing">
-            <form name="personalData">
-                <!-- personal information -->
-                <div class="row bg-item-divide-setting">
-                    <div class="col col-90 item-heading-user-info">
-                        <span>{{personalInfo.Heading}}</span>
-                    </div>
-                    <div class="col col-10">
-                        <span ionic-expand-arrow-switcher class="icon expand-toggle-arrow-font ion-chevron-up" on-icon="ion-chevron-up" off-icon="ion-chevron-down" ng-model="personalInfo.Checked"></span>
-                    </div>
-                </div>
-                <div class="list" ng-if="personalInfo.Checked === true">
-                    <label class="input-edit-box" ng-class="{ 'has-error' : personalData.userName.$invalid}">
-                        <span ng-if = "(personalData.userName.$dirty && personalInfo.userName) || personalInfo.userName">User Name *</span>
-                        <input type="text" name="userName" ng-model="personalInfo.userName" placeholder="User Name *" ng-minlength="5" ng-pattern="/^[A-Za-z0-9 ]+$/" required />
-                        <div ng-messages="personalData.userName.$error">
-                            <div ng-message="required">This field is required</div>
-                            <div ng-message="pattern">This must contain only letters or number</div>
-                            <div ng-message="minlength">This field is must be at least 5 characters.</div>
-                        </div>
-                    </label>
-                    <label class="input-edit-box" ng-class="{ 'has-error' : personalData.userTitle.$invalid}">
-                        <span ng-if = "(personalData.userTitle.$dirty && personalInfo.userTitle) || personalInfo.userTitle">Title *</span>
-                        <input type="text" name="userTitle" ng-model="personalInfo.userTitle" placeholder="Title *" ng-minlength="5" ng-pattern="/^[A-Za-z0-9 ]+$/" required />
-                        <div ng-messages="personalData.userTitle.$error">
-                            <div ng-message="required">This field is required</div>
-                            <div ng-message="pattern">This must contain only letters or number</div>
-                            <div ng-message="minlength">This field is must be at least 5 characters.</div>
-                        </div>
-                    </label>
-                    <label class="input-edit-box" ng-class="{ 'has-error' : personalData.userDescription.$invalid}">
-                        <span ng-if = "personalData.userDescription.$dirty && personalInfo.userDescription">Description *</span>
-                        <input type="text" name="userDescription" ng-model="personalInfo.userDescription" placeholder="Description *" ng-minlength="5" ng-maxlength="20" ng-pattern="/^[A-Za-z0-9 ]+$/" required />
-                        <div ng-messages="personalData.userDescription.$error">
-                            <div ng-message="required">This field is required</div>
-                            <div ng-message="pattern">This must contain only letters or number</div>
-                            <div ng-message="minlength">This field is must be at least 5 characters.</div>
-                            <div ng-message="maxlength">This field is must be maximum 50 characters.</div>
-                        </div>
-                    </label>
-                    <label class="input-edit-box" ng-class="{ 'has-error' : personalData.UserYoE.$invalid}">
-                        <span ng-if = "personalData.UserYoE.$dirty && personalInfo.UserYoE">Year of establishment (YYYY) *</span>
-                        <input type="text" name="UserYoE" ng-model="personalInfo.UserYoE" placeholder="Year of establishment (YYYY) *" maxlength="4" ng-minlength="4" ng-pattern="/[0-9]+/" required />
-                        <div ng-messages="personalData.UserYoE.$error">
-                            <div ng-message="required">This field is required</div>
-                            <div ng-message="pattern">This must contain only number</div>
-                            <div ng-message="minlength">This field is must be at least 4 characters.</div> 
-                            <div ng-message="maxlength">This field is must be maximum 50 characters.</div>                           
-                        </div>
-                    </label>
-                </div>
-                <!-- personal information -->
-                <div style="margin-top: 10px;">
+            <div ng-controller="vendor-addr-ctrl">
+                <form name="vendorPersonalForm">
+                    <!-- personal information -->
                     <div class="row bg-item-divide-setting">
                         <div class="col col-90 item-heading-user-info">
-                            <span>{{contactInfo.Heading}}</span>
+                            <span>{{personalInfoTitle.Heading}}</span>
                         </div>
                         <div class="col col-10">
-                            <span ionic-expand-arrow-switcher class="icon expand-toggle-arrow-font ion-chevron-down" on-icon="ion-chevron-down" off-icon="ion-chevron-up" ng-model="contactInfo.Checked"></span>
+                            <span ionic-expand-arrow-switcher class="icon expand-toggle-arrow-font ion-chevron-down" on-icon="ion-chevron-down" off-icon="ion-chevron-up" ng-model="personalInfoTitle.Checked"></span>
                         </div>
                     </div>
-                    <div class="list" ng-if="contactInfo.Checked === true">
-                        <label class="item item-input">
-                            <input type="tel" ng-model="contactInfo.userMobileNumber" placeholder="Mobile Number *">
+                    <div class="list" ng-if="personalInfoTitle.Checked === true">
+                        <label class="input-edit-box" ng-class="{ 'has-error' : vendorPersonalForm.vendorName.$invalid}">
+                            <span ng-if="(vendorPersonalForm.vendorName.$dirty && personalInfo.vendorName) || personalInfo.vendorName">User Name *</span>
+                            <input type="text" name="vendorName" ng-model="personalInfo.vendorName" placeholder="User Name *" ng-minlength="5" ng-pattern="/^[A-Za-z0-9 ]+$/" required />
+                            <div ng-messages="vendorPersonalForm.vendorName.$error">
+                                <div ng-message="required">This field is required</div>
+                                <div ng-message="pattern">This must contain only letters or number</div>
+                                <div ng-message="minlength">This field is must be at least 5 characters.</div>
+                            </div>
                         </label>
-                        <label class="item item-input">
-                            <input type="email" ng-model="contactInfo.userEmailID" placeholder="Email ID *">
+                        <label class="input-edit-box" ng-class="{ 'has-error' : vendorPersonalForm.vendorTitle.$invalid}">
+                            <span ng-if="(vendorPersonalForm.vendorTitle.$dirty && personalInfo.vendorTitle) || personalInfo.vendorTitle">Title *</span>
+                            <input type="text" name="vendorTitle" ng-model="personalInfo.vendorTitle" placeholder="Title *" ng-minlength="5" ng-pattern="/^[A-Za-z0-9 ]+$/" required />
+                            <div ng-messages="vendorPersonalForm.vendorTitle.$error">
+                                <div ng-message="required">This field is required</div>
+                                <div ng-message="pattern">This must contain only letters or number</div>
+                                <div ng-message="minlength">This field is must be at least 5 characters.</div>
+                            </div>
                         </label>
-                        <label class="item item-input">
-                            <textarea ng-model="contactInfo.userAddress" placeholder="Address *"></textarea>
-                            <a href="#"><i class="icon ion-ios-location"></i></a>
+                        <label class="input-edit-box" ng-class="{ 'has-error' : vendorPersonalForm.description.$invalid}">
+                            <span ng-if="vendorPersonalForm.description.$dirty && personalInfo.description">Description *</span>
+                            <input type="text" name="description" ng-model="personalInfo.description" placeholder="Description *" ng-minlength="5" ng-maxlength="20" ng-pattern="/^[A-Za-z0-9 ]+$/" required />
+                            <div ng-messages="vendorPersonalForm.description.$error">
+                                <div ng-message="required">This field is required</div>
+                                <div ng-message="pattern">This must contain only letters or number</div>
+                                <div ng-message="minlength">This field is must be at least 5 characters.</div>
+                                <div ng-message="maxlength">This field is must be maximum 50 characters.</div>
+                            </div>
+                        </label>
+                        <label class="input-edit-box" ng-class="{ 'has-error' : vendorPersonalForm.yearOfEstablish.$invalid}">
+                            <span ng-if="vendorPersonalForm.yearOfEstablish.$dirty && personalInfo.yearOfEstablish">Year of establishment (YYYY) *</span>
+                            <input type="text" name="yearOfEstablish" ng-model="personalInfo.yearOfEstablish" placeholder="Year of establishment (YYYY) *" maxlength="4" ng-minlength="4" ng-pattern="/[0-9]+/" required />
+                            <div ng-messages="vendorPersonalForm.yearOfEstablish.$error">
+                                <div ng-message="required">This field is required</div>
+                                <div ng-message="pattern">This must contain only number</div>
+                                <div ng-message="minlength">This field is must be at least 4 characters.</div>
+                                <div ng-message="maxlength">This field is must be maximum 50 characters.</div>
+                            </div>
+                        </label>
+                    </div>
+                </form>
+                <!-- contact information -->
+                <form name="vendorContactForm">
+                    <div class="row bg-item-divide-setting">
+                        <div class="col col-80 item-heading-user-info">
+                            <span>{{contactInfoTitle.Heading}}</span>
+                        </div>
+                        <div class="col col-10">
+                            <div class="ion-ios-location expand-toggle-arrow-font" ionic-button-click-toggle on-icon="calendar-arrow-box" off-icon="calendar-arrow-box-fade" ng-click="showMapView()"></div>
+                        </div>
+                        <div class="col col-10">
+                            <span ionic-expand-arrow-switcher class="icon expand-toggle-arrow-font ion-chevron-down" on-icon="ion-chevron-down" off-icon="ion-chevron-up" ng-model="contactInfoTitle.Checked"></span>
+                        </div>
+                    </div>
+                    <div class="list" ng-if="contactInfoTitle.Checked === true">
+                        <label class="input-edit-box" ng-class="{ 'has-error' : vendorContactForm.primaryEmailID.$invalid}">
+                            <span ng-if="vendorContactForm.primaryEmailID.$dirty && overviewInfo.primaryEmailID">Email ID *</span>
+                            <input type="email" name="primaryEmailID" ng-model="overviewInfo.primaryEmailID" placeholder="Email ID *" ng-minlength="5" required />
+                            <div ng-messages="vendorContactForm.primaryEmailID.$error">
+                                <div ng-message="required">This field is required</div>
+                                <div ng-message="email">Your email address is invalid</div>
+                                <div ng-message="pattern">This must contain only letters or number</div>
+                                <div ng-message="minlength">This field is must be at least 5 characters.</div>
+                            </div>
+                        </label>
+                        <label class="input-edit-box" ng-class="{ 'has-error' : vendorContactForm.primaryPhoneNumber.$invalid}">
+                            <span ng-if="vendorContactForm.primaryPhoneNumber.$dirty && overviewInfo.primaryPhoneNumber">Mobile Number *</span>
+                            <input type="text" name="primaryPhoneNumber" ng-model="overviewInfo.primaryPhoneNumber" placeholder="Mobile Number *" maxlength="15" ng-minlength="4" ng-pattern="/[0-9]+/" required />
+                            <div ng-messages="vendorContactForm.primaryPhoneNumber.$error">
+                                <div ng-message="required">This field is required</div>
+                                <div ng-message="pattern">This must contain only number</div>
+                                <div ng-message="minlength">This field is must be at least 5 characters.</div>
+                                <div ng-message="maxlength">This field is must be maximum 15 characters.</div>
+                            </div>
+                        </label>
+                        <label class="input-edit-box" ng-class="{ 'has-error' : vendorContactForm.primaryMobileNumber.$invalid}">
+                            <span ng-if="vendorContactForm.primaryMobileNumber.$dirty && personalInfo.primaryMobileNumber">Alt Mobile Number *</span>
+                            <input type="text" name="primaryMobileNumber" ng-model="personalInfo.primaryMobileNumber" placeholder="Alt Mobile Number *" maxlength="15" ng-minlength="4" ng-pattern="/[0-9]+/" />
+                            <div ng-messages="vendorContactForm.primaryMobileNumber.$error">
+                                <div ng-message="required">This field is required</div>
+                                <div ng-message="pattern">This must contain only number</div>
+                                <div ng-message="minlength">This field is must be at least 5 characters.</div>
+                                <div ng-message="maxlength">This field is must be maximum 15 characters.</div>
+                            </div>
+                        </label>
+                        <label class="input-edit-box" ng-class="{ 'has-error' : vendorContactForm.address.$invalid}">
+                            <span ng-if="vendorContactForm.address.$dirty && personalInfo.address">Address *</span>
+                            <input type="text" name="address" ng-model="personalInfo.address" placeholder="Address *" ng-minlength="10" ng-maxlength="100" required />
+                            <div ng-messages="vendorContactForm.address.$error">
+                                <div ng-message="required">This field is required</div>
+                                <div ng-message="minlength">This field is must be at least 5 characters.</div>
+                                <div ng-message="maxlength">This field is must be maximum 50 characters.</div>
+                            </div>
                         </label>
                         <!-- <label class="item item-input">
+                        <input type="text" id="Autocomplete" class="form-control" ng-autocomplete ng-model="contactInfo.userCity" placeholder="City *">
+                    </label> -->
+                        <div ng-if="overviewInfo.longitude != 0 && overviewInfo.latitude != 0">
+                            <label class="input-edit-box">
+                                <span>City *</span>
+                                <input type="text" ng-model="personalInfo.city" placeholder="City *" />
+                            </label>
+                            <label class="input-edit-box">
+                                <span>State *</span>
+                                <input type="text" ng-model="personalInfo.state" placeholder="State *" />
+                            </label>
+                            <label class="input-edit-box">
+                                <span>Country *</span>
+                                <input type="text" ng-model="personalInfo.country" placeholder="Country *" />
+                            </label>
+                            <label class="input-edit-box">
+                                <span>Zipcode *</span>
+                                <input type="text" ng-model="overviewInfo.zipCode" placeholder="Zipcode *" />
+                            </label>
+                        </div>
+                    </div>
+                </form>
+                <form name="vendorServicesForm">
+                    <div class="row bg-item-divide-setting">
+                        <div class="col col-90 item-heading-user-info">
+                            <span>{{serviceInfoTitle.Heading}}</span>
+                        </div>
+                        <div class="col col-10">
+                            <span ionic-expand-arrow-switcher class="icon expand-toggle-arrow-font ion-chevron-down" on-icon="ion-chevron-down" off-icon="ion-chevron-up" ng-model="serviceInfoTitle.Checked"></span>
+                        </div>
+                    </div>
+                    <div class="list" ng-if="serviceInfoTitle.Checked === true">
+                        <label class="input-edit-box" ng-class="{ 'has-error' : vendorServicesForm.minServiceCharge.$invalid}">
+                            <span ng-if="vendorServicesForm.minServiceCharge.$dirty && overviewInfo.minServiceCharge">Min Service Charge *</span>
+                            <input type="text" name="minServiceCharge" ng-model="overviewInfo.minServiceCharge" placeholder="Min Service Charge *" maxlength="15" ng-minlength="2" ng-pattern="/[0-9]+/" required />
+                            <div ng-messages="vendorServicesForm.minServiceCharge.$error">
+                                <div ng-message="required">This field is required</div>
+                                <div ng-message="pattern">This must contain only number</div>
+                                <div ng-message="minlength">This field is must be at least 5 characters.</div>
+                                <div ng-message="maxlength">This field is must be maximum 15 characters.</div>
+                            </div>
+                        </label>
+                        <label class="input-edit-box" ng-class="{ 'has-error' : vendorServicesForm.minWaitingTime.$invalid}">
+                            <span ng-if="vendorServicesForm.minWaitingTime.$dirty && overviewInfo.minWaitingTime">Min Waiting time *</span>
+                            <input type="text" name="minWaitingTime" ng-model="overviewInfo.minWaitingTime" placeholder="Min Waiting time *" maxlength="2" ng-minlength="1" ng-pattern="/[0-9]+/" required />
+                            <div ng-messages="vendorServicesForm.minWaitingTime.$error">
+                                <div ng-message="required">This field is required</div>
+                                <div ng-message="pattern">This must contain only number</div>
+                                <div ng-message="minlength">This field is must be at least 5 characters.</div>
+                                <div ng-message="maxlength">This field is must be maximum 15 characters.</div>
+                            </div>
+                        </label>
+                        <span class="input-checkbox-par">
+                            <div ionic-expand-arrow-switcher class="icon ion-android-checkbox-outline-blank" on-icon="ion-android-checkbox-outline-blank" off-icon="ion-android-checkbox-outline" ng-model="overviewInfo.pickUpOrDrop"><i>Pickup/Drop</i></div>
+                        </span>
+                        <div class="input-select-option-par">
+                            <i>Vendor Service Type</i>
+                            <select ng-model="selectedServiceType" ng-options="serviceType.type for serviceType in vendorServiceVehicleType">
+                            </select>
+                        </div>
+                    </div>
+                </form>
+                <form name="vendorSlotsForm">
+                    <div class="row bg-item-divide-setting">
+                        <div class="col col-90 item-heading-user-info">
+                            <span>{{soltInfoTitle.Heading}}</span>
+                        </div>
+                        <div class="col col-10">
+                            <span ionic-expand-arrow-switcher class="icon expand-toggle-arrow-font ion-chevron-down" on-icon="ion-chevron-down" off-icon="ion-chevron-up" ng-model="soltInfoTitle.Checked"></span>
+                        </div>
+                    </div>
+                    <div class="list" ng-if="soltInfoTitle.Checked === true">
+                        <label class="input-edit-box" ng-class="{ 'has-error' : vendorSlotsForm.Sunday.$invalid}">
+                            <span>Sunday *</span>
+                            <input type="text" name="Sunday" ng-model="vendorSlotInfo.Sunday" placeholder="Sunday *" maxlength="3" ng-minlength="1" ng-pattern="/[0-9]+/" />
+                            <div ng-messages="vendorSlotsForm.Sunday.$error">
+                                <div ng-message="required">This field is required</div>
+                                <div ng-message="pattern">This must contain only number</div>
+                                <div ng-message="minlength">This field is must be at least 1 characters.</div>
+                                <div ng-message="maxlength">This field is must be maximum 3 characters.</div>
+                            </div>
+                        </label>
+                        <label class="input-edit-box" ng-class="{ 'has-error' : vendorSlotsForm.Monday.$invalid}">
+                            <span>Monday *</span>
+                            <input type="text" name="Monday" ng-model="vendorSlotInfo.Monday" placeholder="Monday *" maxlength="3" ng-minlength="1" ng-pattern="/[0-9]+/" />
+                            <div ng-messages="vendorSlotsForm.Monday.$error">
+                                <div ng-message="required">This field is required</div>
+                                <div ng-message="pattern">This must contain only number</div>
+                                <div ng-message="minlength">This field is must be at least 1 characters.</div>
+                                <div ng-message="maxlength">This field is must be maximum 3 characters.</div>
+                            </div>
+                        </label>
+                        <label class="input-edit-box" ng-class="{ 'has-error' : vendorSlotsForm.Tuesday.$invalid}">
+                            <span>Tuesday *</span>
+                            <input type="text" name="Tuesday" ng-model="vendorSlotInfo.Tuesday" placeholder="Tuesday *" maxlength="3" ng-minlength="1" ng-pattern="/[0-9]+/" />
+                            <div ng-messages="vendorSlotsForm.Tuesday.$error">
+                                <div ng-message="required">This field is required</div>
+                                <div ng-message="pattern">This must contain only number</div>
+                                <div ng-message="minlength">This field is must be at least 1 characters.</div>
+                                <div ng-message="maxlength">This field is must be maximum 3 characters.</div>
+                            </div>
+                        </label>
+                        <label class="input-edit-box" ng-class="{ 'has-error' : vendorSlotsForm.Wednesday.$invalid}">
+                            <span>Wednesday *</span>
+                            <input type="text" name="Wednesday" ng-model="vendorSlotInfo.Wednesday" placeholder="Wednesday *" maxlength="3" ng-minlength="1" ng-pattern="/[0-9]+/" />
+                            <div ng-messages="vendorSlotsForm.Wednesday.$error">
+                                <div ng-message="required">This field is required</div>
+                                <div ng-message="pattern">This must contain only number</div>
+                                <div ng-message="minlength">This field is must be at least 1 characters.</div>
+                                <div ng-message="maxlength">This field is must be maximum 3 characters.</div>
+                            </div>
+                        </label>
+                        <label class="input-edit-box" ng-class="{ 'has-error' : vendorSlotsForm.Thursday.$invalid}">
+                            <span>Thursday *</span>
+                            <input type="text" name="Thursday" ng-model="vendorSlotInfo.Thursday" placeholder="Thursday *" maxlength="3" ng-minlength="1" ng-pattern="/[0-9]+/" />
+                            <div ng-messages="vendorSlotsForm.Thursday.$error">
+                                <div ng-message="required">This field is required</div>
+                                <div ng-message="pattern">This must contain only number</div>
+                                <div ng-message="minlength">This field is must be at least 1 characters.</div>
+                                <div ng-message="maxlength">This field is must be maximum 3 characters.</div>
+                            </div>
+                        </label>
+                        <label class="input-edit-box" ng-class="{ 'has-error' : vendorSlotsForm.Friday.$invalid}">
+                            <span>Friday *</span>
+                            <input type="text" name="Friday" ng-model="vendorSlotInfo.Friday" placeholder="Friday *" maxlength="3" ng-minlength="1" ng-pattern="/[0-9]+/" />
+                            <div ng-messages="vendorSlotsForm.Friday.$error">
+                                <div ng-message="required">This field is required</div>
+                                <div ng-message="pattern">This must contain only number</div>
+                                <div ng-message="minlength">This field is must be at least 1 characters.</div>
+                                <div ng-message="maxlength">This field is must be maximum 3 characters.</div>
+                            </div>
+                        </label>
+                        <label class="input-edit-box" ng-class="{ 'has-error' : vendorSlotsForm.Saturday.$invalid}">
+                            <span>Saturday *</span>
+                            <input type="text" name="Saturday" ng-model="vendorSlotInfo.Saturday" placeholder="Saturday *" maxlength="3" ng-minlength="1" ng-pattern="/[0-9]+/" />
+                            <div ng-messages="vendorSlotsForm.Saturday.$error">
+                                <div ng-message="required">This field is required</div>
+                                <div ng-message="pattern">This must contain only number</div>
+                                <div ng-message="minlength">This field is must be at least 1 characters.</div>
+                                <div ng-message="maxlength">This field is must be maximum 3 characters.</div>
+                            </div>
+                        </label>
+                    </div>
+                </form>
+                <!-- personal information -->
+                <!-- <div style="margin-top: 10px;">
+                <div class="row bg-item-divide-setting">
+                    <div class="col col-90 item-heading-user-info">
+                        <span>{{contactInfo.Heading}}</span>
+                    </div>
+                    <div class="col col-10">
+                        <span ionic-expand-arrow-switcher class="icon expand-toggle-arrow-font ion-chevron-down" on-icon="ion-chevron-down" off-icon="ion-chevron-up" ng-model="contactInfo.Checked"></span>
+                    </div>
+                </div>
+                <div class="list" ng-if="contactInfo.Checked === true">
+                    <label class="item item-input">
+                        <input type="tel" ng-model="contactInfo.userMobileNumber" placeholder="Mobile Number *">
+                    </label>
+                    <label class="item item-input">
+                        <input type="email" ng-model="contactInfo.userEmailID" placeholder="Email ID *">
+                    </label>
+                    <label class="item item-input">
+                        <textarea ng-model="contactInfo.userAddress" placeholder="Address *"></textarea>
+                        <a href="#"><i class="icon ion-ios-location"></i></a>
+                    </label>
+                    <label class="item item-input">
                         <input type="text" id="Autocomplete" class="form-control" ng-autocomplete ng-model="contactInfo.userCity" placeholder="City *">
                     </label>
 
@@ -89,49 +289,9 @@
                     </label>
                     <label class="item item-input">
                         <input type="tel" ng-model="contactInfo.userFaxNumber" placeholder="Fax Number">
-                    </label> -->
-                    </div>
-            </form>
-            <!-- <label class="input-edit-box">
-                <input type="text" id="testInput">
-            </label> -->
-            <!-- <div class="button-input-test">
-                    <button class="button button-small">test</button>
-                </div> -->
-            <!-- <form name="exampleForm"> -->
-                <!-- <label>First Name:</label>
-    <input type="text" name="userFirstName" ng-model="firstName" required />
-    <div ng-messages="exampleForm.userFirstName.$error">
-      <div ng-message="required">This field is required</div>
-    </div>
-
-    <label>Last Name:</label>
-    <input type="text" name="userLastName" ng-model="lastName" required />
-    <div ng-messages="exampleForm.userLastName.$error">
-      <div ng-message="required">This field is required</div>
-    </div> -->
-<!--                 <label class="input-edit-box" ng-class="{ 'has-error' : exampleForm.userEmail.$invalid}">
-                    <input type="email" name="userEmail" ng-model="email1" placeholder="email" required />
-                    <div ng-messages="exampleForm.userEmail.$error">
-                        <div ng-message="required">This field is required</div>
-                        <div ng-message="email">Your email address is invalid</div>
-                    </div>
-                </label> -->
-                <!-- <label>Phone Number:</label>
-    <input type="email" name="userPhoneNumber" ng-model="phoneNumber" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" required/>
-    <div ng-messages="exampleForm.userPhoneNumber.$error">
-      <div ng-message="required">This field is required</div>
-      <div ng-message="pattern">Must be a valid 10 digit phone number</div>
-    </div>
-
-    <label>User Message:</label>
-    <textarea type="text" name="userMessage" class="form-control" rows="4" ng-model="message" ng-minlength="10" ng-maxlength="100" required></textarea>
-    <div ng-messages="exampleForm.userMessage.$error">
-      <div ng-message="required">This field is required</div>
-      <div ng-message="minlength">Message must be over 10 characters</div>
-      <div ng-message="maxlength">Message must not exceed 100 characters</div>
-    </div> -->
-            <!-- </form> -->
+                    </label>
+                </div>
+            </div> -->
             </div>
         </div>
     </ion-content>
