@@ -4,19 +4,92 @@ angular.module('starter.userSettings', ['ionic', 'ngMessages'])
 .controller('user-settings-ctrl', function($scope) {
 
     // $scope.checkedInfo = true;
-    $scope.personalInfo = {};
-    $scope.contactInfo = {};
-    $scope.personalInfo.Checked = true;
-    $scope.personalInfo.Heading = "Personal information";
-    $scope.contactInfo.Checked = false;
-    $scope.contactInfo.Heading = "Contact information";
+    $scope.personalInfoTitle = {
+        "Heading": "Personal information",
+        "Checked": false
+    };
+    $scope.contactInfoTitle = {
+        "Heading": "Contact information",
+        "Checked": false
+    };
+    $scope.serviceInfoTitle = {
+        "Heading": "Services information",
+        "Checked": false
+    };
+    $scope.soltInfoTitle = {
+        "Heading": "Slot information",
+        "Checked": false
+    };
 
-
-    $scope.personalInfo.userName = "aravind kumar";
     $scope.options = {
         types: '(cities)',
         country: 'in'
     };
+
+
+    $scope.overviewInfo = {
+        "authorization": "",
+        "latitude": 0,
+        "longitude": 0,
+        "numberOfLikes": "",
+        "minServiceCharge": "",
+        "minWaitingTime": "",
+        "numberOfusersGivenRatings": "",
+        "rating": "",
+        "ratingSum": "",
+        "primaryEmailID": "",
+        "primaryPhoneNumber": "",
+        "uniqueId": "",
+        "zipCode": "",
+        "pickUpOrDrop": "",
+        "currencyType": "",
+        "vendorVehicleServiceType": ""
+    };
+
+    $scope.personalInfo = {
+        "address": "",
+        "altEmailAddress": "",
+        "altLandLineNum": "",
+        "description": "",
+        "yearOfEstablish": "",
+        "faxNumber": "",
+        "primaryMobileNumber": "",
+        "stdCode": "",
+        "city": "",
+        "PersonalState": "",
+        "country": "",
+        "vendorName": "",
+        "state": "",
+        "vendorTitle": "",
+        "primaryLandLineNum": ""
+    };
+
+    $scope.vendorSlotInfo = {
+        "Sunday": 0,
+        "Monday": 0,
+        "Tuesday": 0,
+        "Wednesday": 0,
+        "Thursday": 0,
+        "Friday": 0,
+        "Saturday": 0
+    };
+
+
+    $scope.vendorServiceVehicleType = [{
+        "type": "Car Service only",
+        "value": 0
+    }, {
+        "type": "Bike Service only",
+        "value": 1
+    }];
+
+    $scope.selectedServiceType = $scope.vendorServiceVehicleType[1];
+
+    console.log($scope.personalInfo);
+
+
+
+
 
 
 

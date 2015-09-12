@@ -1,3 +1,12 @@
+map {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.scroll {
+  height: 100%;
+}
+
 .service-config-box {
     background: rgba(255, 255, 255, 0.1);
     box-shadow: 0 10px 10px -5px #000000;
@@ -87,6 +96,8 @@
 
 .bg-item-divide-setting{
     background-color: #47639E;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
     /*padding-top: 10px;*/
     /*padding-bottom: 5px;*/
 }
@@ -147,6 +158,28 @@ label.input-edit-box.has-error input {
 }
 
 
+
+.input-checkbox-par div{
+    /*width: 20px;*/
+    font-size: 30px;
+    margin-left: 3px;
+    color: #47639E;
+    margin-top: 10px;
+}
+
+.input-checkbox-par div i{
+    color: #47639E;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-align: center;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+
 .button-input-test button{
     background-color: blue;
     width: 100px;
@@ -160,4 +193,31 @@ label.input-edit-box.has-error input {
   height: 60px;
   stroke: #47639E;
   fill: #47639E;
+}
+
+
+.input-select-option-par{
+    margin-top: 15px;
+}
+
+.input-select-option-par i{
+    color: #47639E;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-align: center;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+.input-select-option-par select{
+    background-color: #47639E;
+    width: 140px;
+    height: 30px;
+    margin-left: 20px;
+    border: 1px solid #47639E;
+    color: white;
+    text-align: center;
 }
