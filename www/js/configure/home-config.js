@@ -14,8 +14,36 @@ angular.module('starter')
         };
     })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.constant('AUTH_EVENTS', {
+  notAuthenticated: 'auth-not-authenticated',
+  notAuthorized: 'auth-not-authorized'
+})
+
+.constant('USER_ROLES', {
+  admin: 'admin_role',
+  public: 'public_role'
+})
+
+.config(function($stateProvider, $urlRouterProvider, USER_ROLES) {
     $stateProvider
+         .state('login', {
+            url: '/login',
+            templateUrl: 'templates/login.html',
+            controller: 'LoginCtrl'
+        })
+          .state('signup', {
+              url: '/signup',
+              templateUrl: 'templates/signup.html',
+              controller: 'SignupCtrl'
+          })
+         .state('vendor-app', {
+           url: "/vendor-app",
+            abstract:true,
+            templateUrl: "templates/menu.html",
+            data: {
+               requireLogin: true // this property will apply to all children of 'vendor-app'
+            }
+        })
         .state('vendor-app.home', {
             url: "/home",
             views: {
@@ -25,7 +53,6 @@ angular.module('starter')
                 }
             }
         })
-
     .state('vendor-app.serviceConfig', {
             url: "/serviceConfig",
             views: {
