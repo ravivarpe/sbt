@@ -1,7 +1,7 @@
 <ion-view>
     <ion-nav-title>
         <!-- <img class="logo-size" src="img/carone_logo.png"> -->
-        <span class="booking-details-large-font">Booking Details</span>
+        <span class="title-header-large-font">Booking Details</span>
     </ion-nav-title>
     <ion-content scrollbar-y="false" has-bouncing="true" class="home-background-image">
         <div ng-controller="booking-details-ctrl">
@@ -18,6 +18,7 @@
                         <!-- <div class="list card user-booking-view-box"> -->
                         <div class="row">
                             <div class="col">
+                                <i class="ion-person vehicle-icon-fort-param"></i>
                                 <span class="booking-details-large-font">{{bookingDetailsItem.userName}}</span>
                             </div>
                             <div class="col">
@@ -27,6 +28,7 @@
                         </div>
                         <div class="row">
                             <div class="col">
+                                <i class="ion-android-pin vehicle-icon-fort-param"></i>
                                 <span class="booking-details-large-font">Address:&nbsp</span>
                                 <!-- <br> -->
                                 <span class="booking-address-element-font">{{bookingDetailsItem.FullAddress}}</span>
@@ -35,21 +37,27 @@
                         <div class="row">
                             <div class="col">
                                 <i class="ion-iphone vehicle-icon-fort-param"></i>
-                                <span class="booking-details-large-font">&nbsp{{bookingDetailsItem.phoneNumber}}</span>
+                                <a ng-href="tel: {{bookingDetailsItem.phoneNumber}}"  class="booking-details-large-font" style="text-decoration:none; color:#f0b840">&nbsp{{bookingDetailsItem.phoneNumber}}</a>
                             </div>
                             <div class="col">
                                 <span class="booking-details-large-font">{{bookingDetailsItem.PickDropString}}</span>
                             </div>
                         </div>
+                        <div class="row" ng-if="sendPickupPersonIndex != 0">
+                            <div class="col">
+                                <i class="ion-person vehicle-icon-fort-param"><span class="booking-details-large-font">&nbsp&nbspPickup Person:&nbsp</span></i><span class="booking-address-element-font">{{bookingDetailsItem.pickUpPersonName}}&nbsp&nbsp&nbsp{{bookingDetailsItem.pickUpPersonNumber}}</span>
+                                
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col">
                                 <i class="ion-model-s vehicle-icon-fort-param"></i>
-                                <span class="booking-address-element-font">&nbsp{{bookingDetailsItem.vehicleModel}}&nbsp{{bookingDetailsItem.yearOfManuf}}</span>
+                                <span class="booking-address-element-font">{{bookingDetailsItem.vehicleModel}}&nbsp, Year:&nbsp{{bookingDetailsItem.yearOfManuf}}</span>
                             </div>
-                            <div class="col">
+                            <!-- <div class="col">
                                 <span class="booking-details-large-font">Service:&nbsp</span>
                                 <span class="booking-address-element-font">Regular, Washing</span>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="list card booking-details-status-color-box booking-details-color-box-param">

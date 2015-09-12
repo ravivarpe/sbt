@@ -6,11 +6,13 @@ angular.module('starter.userSettings', ['ionic', 'ngMessages'])
     // $scope.checkedInfo = true;
     $scope.personalInfo = {};
     $scope.contactInfo = {};
-    $scope.personalInfo.Checked = false;
+    $scope.personalInfo.Checked = true;
     $scope.personalInfo.Heading = "Personal information";
-    $scope.contactInfo.Checked = true;
+    $scope.contactInfo.Checked = false;
     $scope.contactInfo.Heading = "Contact information";
 
+
+    $scope.personalInfo.userName = "aravind kumar";
     $scope.options = {
         types: '(cities)',
         country: 'in'

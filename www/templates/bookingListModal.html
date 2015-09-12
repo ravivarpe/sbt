@@ -11,19 +11,28 @@
                 <a href="#" ng-click="applyBookingStatus(UserChoice.data)"><i class="icon ion-checkmark-circled booking-details-circle-dot-green"></i></a>
             </div>
         </div>
+        <div ng-hide="showDateAndTime === false" ng-if="updateBookingDate === false || updateBookingTime === false" class="title-header-large-font">
+            Need to select data & time
+        </div>
+        <ionic-datepicker ng-hide="showDateAndTime === false" input-obj="datepickerObject">
+            <button class="button button-block button-positive"> {{datepickerObject.inputDate | date:'dd - MMMM - yyyy'}}</button>
+        </ionic-datepicker>
+        <ionic-timepicker ng-hide="showDateAndTime === false" input-obj="timePickerObject">
+            <button class="button button-block button-positive overflowShow">
+                <standard-time-meridian etime='timePickerObject.inputEpochTime'>{{timePickerObject.TimeRepresent}}</standard-time-meridian>
+            </button>
+        </ionic-timepicker>
         <!-- <form ng-submit="doLogin()"> -->
-            <div ng-if='BookingDetails.requestAcceptString === modalInfo.confirmString'>
-                <div class="list">
-                    <ion-radio ng-repeat="confirmItem in modalConfirmInfo" class="booking-modal-radio-bg" icon="icon ion-record" ng-model="UserChoice.data" ng-value="confirmItem">{{confirmItem.name}}</ion-radio>
-                    
-                </div>
+        <div ng-if='BookingDetails.requestAcceptString === modalInfo.confirmString'>
+            <div class="list">
+                <ion-radio ng-repeat="confirmItem in modalConfirmInfo" class="booking-modal-radio-bg" icon="icon ion-record" ng-model="UserChoice.data" ng-value="confirmItem">{{confirmItem.name}}</ion-radio>
             </div>
-            <div ng-if='BookingDetails.requestAcceptString === modalInfo.cancelString'>
-                <div class="list">
-                    <ion-radio ng-repeat="cancelItem in modalCancelInfo" class="booking-modal-radio-bg" icon="icon ion-record" ng-model="UserChoice.data" ng-value="cancelItem">{{cancelItem.name}}</ion-radio>
-                </div>
+        </div>
+        <div ng-if='BookingDetails.requestAcceptString === modalInfo.cancelString'>
+            <div class="list">
+                <ion-radio ng-repeat="cancelItem in modalCancelInfo" class="booking-modal-radio-bg" icon="icon ion-record" ng-model="UserChoice.data" ng-value="cancelItem">{{cancelItem.name}}</ion-radio>
             </div>
-
+        </div>
         <!-- </form> -->
     </ion-content>
 </ion-modal-view>

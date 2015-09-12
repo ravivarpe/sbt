@@ -5,45 +5,53 @@
     <ion-content>
         <div class="row">
             <div class="col">
-                <a href="#" ng-click="updateBookingModal(bookingChoice.data)"><i class="icon ion-checkmark-circled booking-details-circle-dot-green"></i></a>
-            </div>
-            <div class="col col-10 col-offset-85">
                 <a href="#" ng-click="closeBookingModal()"><i class="icon ion-close-circled booking-details-circle-dot-grey"></i></a>
             </div>
+            <div class="col col-10 col-offset-85">
+                <a href="#" ng-click="updateBookingModal(bookingChoice.data, DetailsForm)"><i class="icon ion-checkmark-circled booking-details-circle-dot-green"></i></a>
+            </div>
         </div>
-        <form ng-submit="doLogin()">
+        <form name="DetailsForm">
             <!-- //////////////////////////////////////////pickup logic//////////////////////////////////////////////////// -->
-            <div ng-if="modalDisplayInfo.statusIndex === vehiclePickupIndex">
-                <div class="list">
-                    <div class="row">
-                        <div class="col col-10">
-                            <a href="#"><i class="icon ion-person-add booking-details-circle-dot-yellow"></i></a>
+            <div ng-if="modalDisplayInfo.statusIndex === vehiclePickupIndex" class="row">
+                <div class="col">
+                    <label class="booking-modal-input-dim" ng-class="{ 'has-error' : DetailsForm.personName.$invalid}">
+                        <span ng-if="(DetailsForm.personName.$dirty && pickDetailsInfo.personName) || pickDetailsInfo.personName">Pick up person Name *</span>
+                        <input type="text" name="personName" ng-model="pickDetailsInfo.personName" placeholder="Pick up person Name *" ng-minlength="5" ng-pattern="/^[A-Za-z0-9 ]+$/" required />
+                        <div ng-messages="DetailsForm.personName.$error">
+                            <div ng-message="required">This field is required</div>
+                            <div ng-message="pattern">This must contain only letters or number</div>
+                            <div ng-message="minlength">This field is must be at least 5 characters.</div>
                         </div>
-                        <div class="col col-10 col-offset-80">
-                            <a href="#"><i class="icon ion-trash-a booking-details-circle-dot-yellow"></i></a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <label class="item item-input booking-modal-input-dim">
-                                <input class="booking-modal-input-f" style="color:white;" type="text" placeholder="Pickup/Drop person Name">
-                            </label>
-                        </div>
-                        <div class="col col-10">
-                            <!-- <a href="#"><i class="icon ion-person-add booking-details-circle-dot-yellow"></i></a> -->
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col col-70">
-                            <label class="item item-input booking-modal-input-dim">
-                                <input class="booking-modal-input-f" style="color:white;" type="text" placeholder="Mobile Number">
-                            </label>
-                        </div>
-                        <div class="col col-10">
-                            <a href="#"><i class="icon ion-folder booking-details-circle-dot-yellow"></i></a>
-                        </div>
-                    </div>
+                    </label>
                 </div>
+            </div>
+            <div ng-if="modalDisplayInfo.statusIndex === vehiclePickupIndex" class="row">
+                <div class="col">
+                    <label class="booking-modal-input-dim" ng-class="{ 'has-error' : DetailsForm.phoneNum.$invalid}">
+                        <span ng-if="(DetailsForm.phoneNum.$dirty && pickDetailsInfo.phoneNum) || pickDetailsInfo.phoneNum">Pick up person number *</span>
+                        <input type="text" name="phoneNum" ng-model="pickDetailsInfo.phoneNum" placeholder="Pick up person number *" ng-minlength="4" ng-pattern="/[0-9]+/" required />
+                        <div ng-messages="DetailsForm.phoneNum.$error">
+                            <div ng-message="required">This field is required</div>
+                            <div ng-message="pattern">This must contain only number</div>
+                            <div ng-message="minlength">This field is must be at least 4 characters.</div>
+                            <div ng-message="maxlength">This field is must be maximum 50 characters.</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div ng-hide="modalDisplayInfo.statusIndex != requestConfirmIndex" ng-if="updateBookingDate === false || updateBookingTime === false" class="title-header-large-font">
+                Need to select data & time
+            </div>
+            <div ng-if="modalDisplayInfo.statusIndex === requestConfirmIndex">
+                <ionic-datepicker input-obj="datepickerObject">
+                    <button class="button button-block button-positive"> {{datepickerObject.inputDate | date:'dd - MMMM - yyyy'}}</button>
+                </ionic-datepicker>
+                <ionic-timepicker input-obj="timePickerObject">
+                    <button class="button button-block button-positive overflowShow">
+                        <standard-time-meridian etime='timePickerObject.inputEpochTime'>{{timePickerObject.TimeRepresent}}</standard-time-meridian>
+                    </button>
+                </ionic-timepicker>
             </div>
             <!-- //////////////////////////////////////////vehicle got picked logic/////////////////////////////////////// -->
             <div ng-repeat="detailsItem in BookingDetailsModalEnableArray">
