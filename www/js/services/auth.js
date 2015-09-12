@@ -21,6 +21,7 @@ angular.module('login.services',  ['ionic'])
 
   function useCredentials(token) {
     username = token.split('.')[0];
+    stringDBrepo.setUserUUID(username);
     isAuthenticated = true;
     authToken = token;
 

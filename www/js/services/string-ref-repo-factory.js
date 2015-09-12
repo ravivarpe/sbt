@@ -6,7 +6,12 @@ angular.module('starter')
     factoryObj.baseUrl = 'http://52.88.98.165/vehito/';
 
     /*****************************vendor home page url***********************************************************************/
-    factoryObj.vendorUniqueId = "90104454441441865967233";
+    factoryObj.vendorUniqueId = "";
+
+    factoryObj.setUserUUID = function(name){
+        this.vendorUniqueId = name;
+    };
+
     factoryObj.vBookingStatusCount = function(uniqueId, month, year) {
         if (month && year)
             return factoryObj.baseUrl + "vendor/" + uniqueId + "/booking/status/count?month=" + month + "&year=" + year;
