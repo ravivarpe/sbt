@@ -32,6 +32,22 @@ angular.module('starter')
     factoryObj.vUpdateBookingInfo = function(uniqueId) {
         return factoryObj.baseUrl + "vendor/" + uniqueId + "/booking/update";
     };
+
+    factoryObj.vLoginInfo = function() {
+        return factoryObj.baseUrl + "vendor/login/"; 
+    };
+
+    factoryObj.vendorUniqueIdFromEmail = function(email) {
+        return factoryObj.baseUrl + "meta/vendor/userNames/email/"+email;
+    };
+
+    factoryObj.vendorUniqueIdFromPhone = function(phone) {
+        return factoryObj.baseUrl + "meta/vendor/userNames/phone/"+phone;
+    };
+
+    factoryObj.createVendor = function(passwd) {
+        return factoryObj.baseUrl + "vendor/signup/"+ passwd;
+    };
     /****************************************************************************************************************************/
 
     return factoryObj;

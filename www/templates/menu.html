@@ -21,9 +21,6 @@
             </ion-header-bar>
             <ion-content>
                 <ion-list>
-                    <ion-item menu-close ng-click="login()">
-                        <i class="ion-android-person title-color-font">&nbsp&nbspLogin</i>
-                    </ion-item>
                     <ion-item menu-close href="#/vendor-app/home">
                         <i class="ion-home title-color-font">&nbsp&nbspHome</i>
                     </ion-item>
@@ -33,11 +30,14 @@
                     <ion-item menu-close href="#/vendor-app/serviceConfig">
                         <i class="ion-wrench title-color-font">&nbsp&nbspServices Settings</i>
                     </ion-item>
-                    <ion-item menu-close href="#/app/playlists">
+                    <ion-item menu-close href="#/vendor-app/home">
                         <i class="ion-pricetags title-color-font">&nbsp&nbspHoliday Settings</i>
                     </ion-item>
                     <ion-item menu-close href="#/vendor-app/userSettings">
                         <i class="ion-android-settings title-color-font">&nbsp&nbspAccount Settings</i>
+                   </ion-item>
+                    <ion-item menu-close href="#/vendor-app/logout">
+                        <i class="ion-log-out title-color-font" ng-click="logout()">&nbsp&nbspAccount Logout</i>
                     </ion-item>
                 </ion-list>
             </ion-content>

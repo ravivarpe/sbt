@@ -4,10 +4,13 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.home', 'starter.bookingList', 'starter.bookingDetails', 'starter.menu', 'starter.serviceConfig', 'starter.userSettings'])
+angular.module('starter', ['ionic', 'signup.services' ,'login.services','starter.controllers', 'starter.home', 'starter.bookingList', 'starter.bookingDetails', 'starter.menu', 'starter.serviceConfig', 'starter.userSettings'])
 
-.run(function($ionicPlatform) {
-    $ionicPlatform.ready(function() {
+
+.run(function ($ionicPlatform,$rootScope, $state, AuthService, AUTH_EVENTS) {
+
+
+$ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
         ionic.Platform.isFullScreen = true
@@ -19,19 +22,32 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.home', 'star
             // org.apache.cordova.statusbar required
             StatusBar.styleDefault();
         }
-    });
 
-})
+ })
 
-.config(function($stateProvider, $urlRouterProvider) {
-    $stateProvider
+  $rootScope.$on('$stateChangeStart', function (event,next, nextParams, fromState) {
 
-        .state('vendor-app', {
-        url: "/vendor-app",
-        abstract: true,
-        templateUrl: "templates/menu.html",
-        controller: 'AppCtrl'
-    });
-    // if none of the above states are matched, use this as the fallback
-    // $urlRouterProvider.otherwise('/vendor-app/home');
+    console.log('data' in next);
+
+    if ('data' in next && 'authorizedRoles' in next.data) {
+      var authorizedRoles = next.data.authorizedRoles;
+      if (!AuthService.isAuthorized(authorizedRoles)) {
+        event.preventDefault();
+        $state.go($state.current, {}, {reload: true});
+        $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+      }
+    }
+    // console.log(next.name);
+    if(fromState.name == 'login' && next.name == 'signup'){
+          $state.go('signup',{},{reload:true});
+          event.preventDefault();
+    }else{
+    if (!AuthService.isAuthenticated()) {
+      if(next.name !== 'login') {
+          event.preventDefault();
+          $state.go('login');
+        }
+    }
+  }
+  });
 });
