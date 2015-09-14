@@ -30,13 +30,16 @@
             <div class="card vendor-highlevel-info-box">
                 <div class="row">
                     <div class="col col-50">
-                        <span class="vendor-rating-text-font">Rating:                      
+                        <span class="vendor-rating-text-font">Rating:</span>                      
                             <i ng-repeat="i in [] | range:VendorRatingValue" class="ion-ios-star rating-icon">                  
                             </i>
-                        </span>
+                            <i ng-repeat="i in [] | range:(5-VendorRatingValue)" class="ion-ios-star-outline rating-icon">                  
+                            </i>                        
                     </div>
-                    <div class="col col-50 col-offset-10">
-                        <span class="vendor-like-text-font"><i class="ion-thumbsup like-icon"></i>: {{VendorLikeValue}}</span>
+                    <div class="col col-10"></div>
+                    <div class="col col-30">
+                        <!-- <span class="vendor-like-text-font"><i class="ion-thumbsup like-icon"></i>: {{VendorLikeValue}}</span> -->
+                        <i class="ion-thumbsup like-icon">:<span class="vendor-like-text-font">12345</span></i>
                     </div>
                 </div>
             </div>
@@ -96,8 +99,8 @@
                             <br>
                             </span>
                             <span ng-if="PendingRequests === 0 && PendingServices === 0">                                    
-                                    <span class="date-element-font">NO </span>
-                            <span class="col-box-day home-booking-button-text">Pending Booking Requests</span>
+                                    <span class="date-element-font">NO&nbsp</span>
+                            <span class="col-box-day home-booking-button-text">Requests</span>
                             </span>
                         </div>
                         <!-- <i class="ion-record pending-service-count-details"></i> -->

@@ -8,9 +8,17 @@
                 <button class="button button-full button-assertive" ng-click="serviceStatusModal()">
                     {{localString.ApplyButton}}
                 </button>
-                <ion-toggle class="item-bg-settings-header" ng-model="localString.serviceChecked" ng-checked="localString.serviceChecked">
+                <!-- <ion-toggle class="item-bg-settings-header" ng-model="localString.serviceChecked" ng-checked="localString.serviceChecked">
                     <span class="service-type-element-font">{{localString.SupportedServices}}</span>
-                </ion-toggle>
+                </ion-toggle> -->
+                <div class="row bg-item-divide-setting">
+                    <div class="col col-90 item-heading-user-info">
+                        <span>{{localString.SupportedServices}}</span>
+                    </div>                    
+                    <div class="col col-10">
+                        <span ionic-expand-arrow-switcher class="icon expand-toggle-arrow-font ion-chevron-down" on-icon="ion-chevron-down" off-icon="ion-chevron-up" ng-model="localString.serviceChecked"></span>
+                    </div>
+                </div>
                 <div ng-if="localString.serviceChecked === true">
                     <div ng-repeat="item in serviceListArrayItems">
                         <ion-toggle class="item-bg-settings" ng-model="item.checked" ng-checked="item.checked">
@@ -23,9 +31,17 @@
                         </div>
                     </div>
                 </div>
-                <ion-toggle class="item-bg-settings-header" ng-model="localString.vehicleChecked" ng-checked="localString.vehicleChecked">
+                <!-- <ion-toggle class="item-bg-settings-header" ng-model="localString.vehicleChecked" ng-checked="localString.vehicleChecked">
                     <span class="service-type-element-font">{{localString.SupportedVehicles}}</span>
-                </ion-toggle>
+                </ion-toggle> -->
+                <div class="row bg-item-divide-setting">
+                    <div class="col col-90 item-heading-user-info">
+                        <span>{{localString.SupportedVehicles}}</span>
+                    </div>                    
+                    <div class="col col-10">
+                        <span ionic-expand-arrow-switcher class="icon expand-toggle-arrow-font ion-chevron-down" on-icon="ion-chevron-down" off-icon="ion-chevron-up" ng-model="localString.vehicleChecked"></span>
+                    </div>
+                </div>
                 <div ng-if="localString.vehicleChecked === true">
                     <div ng-repeat="item in vehicleListArrayItems">
                         <ion-toggle class="item-bg-settings" ng-model="item.checked" ng-checked="item.checked">
