@@ -12,6 +12,22 @@ angular.module('starter')
         this.vendorUniqueId = name;
     };
 
+    factoryObj.vOverviewInfoURL = function(uniqueId) {
+        return factoryObj.baseUrl + "meta/vendor/" + uniqueId + "/overview/info";
+    };
+    factoryObj.vUpdateOverviewInfoURL = function(uniqueId) {
+        return factoryObj.baseUrl + "update/vendor/" + uniqueId + "/overview/info";
+    };
+
+    factoryObj.vPersonalInfoURL = function(uniqueId) {
+        return factoryObj.baseUrl + "meta/vendor/" + uniqueId + "/personal/info";
+    };
+    factoryObj.vUpdatePersonalInfoURL = function(uniqueId) {
+        return factoryObj.baseUrl + "update/vendor/" + uniqueId + "/personal/details";
+    };
+
+
+
     factoryObj.vBookingStatusCount = function(uniqueId, month, year) {
         if (month && year)
             return factoryObj.baseUrl + "vendor/" + uniqueId + "/booking/status/count?month=" + month + "&year=" + year;

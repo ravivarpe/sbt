@@ -1,0 +1,13 @@
+<ion-view>
+    <ion-nav-title>
+        <!-- <img class="logo-size" src="img/carone_logo.png"> -->
+        <span class="title-header-large-font">Holiday Settings</span>
+    </ion-nav-title>
+    <ion-content scrollbar-y="false" has-bouncing="true" class="home-background-image">
+        <div ng-controller="holiday-settings-ctrl">
+            <ionic-datepicker input-obj="datepickerObject">
+                <button class="button button-block button-positive"> {{datepickerObject.inputDate | date:'dd - MMMM - yyyy'}}</button>
+            </ionic-datepicker>
+        </div>
+    </ion-content>
+</ion-view>
