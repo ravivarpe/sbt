@@ -15,33 +15,51 @@ angular.module('starter')
     })
 
 .constant('AUTH_EVENTS', {
-  notAuthenticated: 'auth-not-authenticated',
-  notAuthorized: 'auth-not-authorized'
+    notAuthenticated: 'auth-not-authenticated',
+    notAuthorized: 'auth-not-authorized'
 })
 
 .constant('USER_ROLES', {
-  admin: 'admin_role',
-  public: 'public_role'
+    admin: 'admin_role',
+    public: 'public_role'
 })
 
 .config(function($stateProvider, $urlRouterProvider, USER_ROLES) {
     $stateProvider
-         .state('login', {
+        .state('login', {
             url: '/login',
             templateUrl: 'templates/login.html',
             controller: 'LoginCtrl'
         })
-          .state('signup', {
-              url: '/signup',
-              templateUrl: 'templates/signup.html',
-              controller: 'SignupCtrl'
-          })
-         .state('vendor-app', {
-           url: "/vendor-app",
-            abstract:true,
+        .state('signup', {
+            url: '/signup',
+            templateUrl: 'templates/signup.html',
+            controller: 'SignupCtrl'
+        })
+        .state('vendor-app', {
+            url: "/vendor-app",
+            abstract: true,
             templateUrl: "templates/menu.html",
             data: {
-               requireLogin: true // this property will apply to all children of 'vendor-app'
+                requireLogin: true // this property will apply to all children of 'vendor-app'
+            }
+        })
+        .state('vendor-app.holidays', {
+            url: "/holidays",
+            views: {
+                'menuContent': {
+                    templateUrl: "templates/holidays.html",
+                    // controller: 'homeCtrl'
+                }
+            }
+        })
+        .state('vendor-app.feedback', {
+            url: "/feedback",
+            views: {
+                'menuContent': {
+                    templateUrl: "templates/feedback.html",
+                    // controller: 'homeCtrl'
+                }
             }
         })
         .state('vendor-app.home', {
@@ -53,7 +71,7 @@ angular.module('starter')
                 }
             }
         })
-    .state('vendor-app.serviceConfig', {
+        .state('vendor-app.serviceConfig', {
             url: "/serviceConfig",
             views: {
                 'menuContent': {

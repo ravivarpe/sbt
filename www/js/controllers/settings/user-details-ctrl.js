@@ -1,7 +1,7 @@
 angular.module('starter.userSettings', ['ionic', 'ngMessages'])
 
 
-.controller('user-settings-ctrl', function($scope) {
+.controller('user-settings-ctrl', function($scope, userDetailsFact) {
 
     // $scope.checkedInfo = true;
     $scope.personalInfoTitle = {
@@ -83,11 +83,22 @@ angular.module('starter.userSettings', ['ionic', 'ngMessages'])
         "value": 1
     }];
 
-    $scope.selectedServiceType = $scope.vendorServiceVehicleType[1];
+    $scope.selectedServiceType = {
+         value: 0
+    };
 
-    console.log($scope.personalInfo);
+    userDetailsFact.getPersonalOverviewInfo($scope);
+    userDetailsFact.getVendorOverviewInfo($scope);
 
 
+
+
+    $scope.SavePersonalInfo = function() {
+        // console.log($scope.selectedServiceType.value);
+        $scope.overviewInfo.vendorVehicleServiceType = $scope.selectedServiceType.value;
+        userDetailsFact.updateVendorOverviewInfo($scope);
+        userDetailsFact.updatePersonalOverviewInfo($scope);
+    }
 
 
 
