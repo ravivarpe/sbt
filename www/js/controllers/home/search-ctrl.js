@@ -1,12 +1,17 @@
 angular.module('starter')
 
 
-.controller('search-home-ctrl', function($scope, searchService, $ionicModal, $timeout, $state) {
+.controller('search-home-ctrl', function($scope, searchService, $ionicModal, $timeout, $state,AuthService) {
 
     // alert($scope.MoblieNumber);
     $scope.onlyNumbers = /^[0-9]+$/;
     $scope.MoblieNumber = "";
 
+
+    if (!AuthService.isAuthenticated()) {
+            event.preventDefault();
+            $state.go('login');
+    }
 
     $scope.searchByMobile = function(searchContent) {
         var SelectedDateBookingInfo = {};
