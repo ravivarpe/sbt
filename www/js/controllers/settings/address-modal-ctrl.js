@@ -22,9 +22,10 @@ angular.module('starter.userSettings')
     };
 
     $scope.assignLocationInfo = function() {
+        var coordKeys = Object.keys(locationCoordinates);
         for (i in userLocationInfo) {
-            $scope.overviewInfo.latitude = locationCoordinates.G;
-            $scope.overviewInfo.longitude = locationCoordinates.K;
+            $scope.overviewInfo.latitude = locationCoordinates[coordKeys[0]];
+            $scope.overviewInfo.longitude = locationCoordinates[coordKeys[1]];
             for(j in userLocationInfo[i].address_components){
                 console.log(userLocationInfo[i].address_components[j].types[0]);
                 if(userLocationInfo[i].address_components[j].types[0] == "postal_code"){
@@ -55,7 +56,9 @@ angular.module('starter.userSettings')
             // $scope.map.clearMarkers();
             
             var geocoder = new google.maps.Geocoder();
-            var latlng = new google.maps.LatLng(e.latLng.G, e.latLng.K);
+            var coordKeys = Object.keys(e.latLng);
+            console.log(coordKeys);
+            var latlng = new google.maps.LatLng(e.latLng[coordKeys[0]], e.latLng[coordKeys[1]]);
             geocoder.geocode({
                 'latLng': latlng
             }, function(results, status) {

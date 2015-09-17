@@ -13,7 +13,9 @@ angular.module('starter.serviceConfig', ['ionic'])
 	$scope.localString.vehicleChecked = false;
 
 	$scope.serviceListArrayItems = serviceConfigFact.generateServicesJson(serviceConfigFact.globalServicesJson, serviceConfigFact.userServicesJson);
-	$scope.vehicleListArrayItems = serviceConfigFact.generateServicesJson(serviceConfigFact.globalVehicleJson, serviceConfigFact.userVehicleJson);
+	// $scope.vehicleListArrayItems = serviceConfigFact.generateServicesJson(serviceConfigFact.globalVehicleJson, serviceConfigFact.userVehicleJson);
+	serviceConfigFact.getGlobalAndLocalServicesList("services", $scope);
+	serviceConfigFact.getGlobalAndLocalServicesList("vehicles", $scope);
 
 	// serviceConfigFact.parseInputSubmittedJson($scope.serviceListArrayItems);
 	// console.log(serviceConfigFact.parseInputSubmittedJson($scope.serviceListArrayItems));

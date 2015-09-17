@@ -34,6 +34,19 @@ angular.module('starter.userSettings')
                 });
     }
 
+    factoryObj.getVendorDailySlotsInfo = function(scope) {
+        var response;
+        // console.log(stringDBrepo.vBookingStatusCount(uniqueId, month, year));
+        httpOperationFact.sendHttpGetRequest(stringDBrepo.vDailySlotsInfoURL(stringDBrepo.vendorUniqueId))
+            .then(function(data) {
+                    scope.vendorSlotInfo = data;
+                    console.log(data);
+                },
+                function(response) {
+                    console.log('albums retrieval failed.')
+                });
+    }
+
 
     factoryObj.updatePersonalOverviewInfo = function(scope) {
         var response;
@@ -52,6 +65,19 @@ angular.module('starter.userSettings')
         var response;
         console.log(scope.overviewInfo);
         httpOperationFact.sendHttpPutJsonRequest(stringDBrepo.vUpdateOverviewInfoURL(stringDBrepo.vendorUniqueId), scope.overviewInfo)
+            .then(function(data) {
+                    // scope.overviewInfo = data;
+                    // console.log(data);
+                },
+                function(response) {
+                    console.log('albums retrieval failed.')
+                });
+    }
+
+    factoryObj.updateVendorDailySlotsInfo = function(scope) {
+        var response;
+        console.log(scope.overviewInfo);
+        httpOperationFact.sendHttpPutJsonRequest(stringDBrepo.vUpdateDailySlotsInfoURL(stringDBrepo.vendorUniqueId), scope.vendorSlotInfo)
             .then(function(data) {
                     // scope.overviewInfo = data;
                     // console.log(data);

@@ -1,7 +1,7 @@
 angular.module('starter.serviceConfig')
 
 
-.controller('service-config-modal-ctrl', function($scope, $ionicModal, $timeout) {
+.controller('service-config-modal-ctrl', function($scope, $ionicModal, $timeout, serviceConfigFact) {
 
     // alert("aaaaaaaaaaa");
     $scope.loginData = {};
@@ -22,6 +22,12 @@ angular.module('starter.serviceConfig')
 
     $scope.updateServiceModal = function() {
 
+        if($scope.serviceListArrayItems.length){
+            serviceConfigFact.parseInputServiceSubmittedJson($scope.serviceListArrayItems, "services");
+        }
+        if($scope.vehicleListArrayItems.length){
+            serviceConfigFact.parseInputServiceSubmittedJson($scope.vehicleListArrayItems, "vehicles");
+        }
         $scope.modal.hide();
     };
 

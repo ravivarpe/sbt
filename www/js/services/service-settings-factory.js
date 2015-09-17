@@ -1,36 +1,140 @@
 angular.module('starter.serviceConfig')
 
-.factory('serviceConfigFact', function() {
+.factory('serviceConfigFact', function(httpOperationFact, stringDBrepo) {
     var factoryObj = {};
     factoryObj.name = '';
-    factoryObj.globalServicesJson = [{
-        name: "washing",
-        list: ["oil wash", "water wash", "glass wash", "wind shield wash"]
-    }, {
-        name: "painting",
-        list: ["oil paint", "regular paint", "glass paint", "air blow paint"]
-    }];
 
-    factoryObj.globalVehicleJson = [{
-        name: "Maruti",
-        list: ["800", "Alto", "Swift"]
-    }, {
-        name: "Hyundai",
-        list: ["i10", "i20", "xcent"]
-    }];
+    factoryObj.globalServicesJson = [];
+
+    factoryObj.globalVehicleJson = [];
 
 
-    factoryObj.userServicesJson = [{
-        list: ["washing", "oil wash", "water wash", "glass wash", "wind shield wash"]
-    }, {
-        list: ["painting", "oil paint", "regular paint", "glass paint"]
-    }];
+    factoryObj.userServicesJson = [];
 
-    factoryObj.userVehicleJson = [{
-        list: ["Maruti", "800", "Alto", "Swift"]
-    }, {
-        list: ["Hyundai", "i10", "i20", "xcent"]
-    }];
+    factoryObj.userVehicleJson = [];
+
+
+    // factoryObj.globalServicesJson = [{
+    //     name: "washing",
+    //     list: ["oil wash", "water wash", "glass wash", "wind shield wash"]
+    // }, {
+    //     name: "painting",
+    //     list: ["oil paint", "regular paint", "glass paint", "air blow paint"]
+    // }];
+
+    // factoryObj.globalVehicleJson = [{
+    //     name: "Maruti",
+    //     list: ["800", "Alto", "Swift", "SX4"]
+    // }, {
+    //     name: "Hyundai",
+    //     list: ["i10", "i20", "xcent"]
+    // }];
+
+
+    // factoryObj.userServicesJson = [{
+    //     list: ["washing", "oil wash", "water wash", "glass wash", "wind shield wash"]
+    // }, {
+    //     list: ["painting", "oil paint", "regular paint", "glass paint"]
+    // }];
+
+    // factoryObj.userVehicleJson = [{
+    //     list: ["Maruti", "800", "Alto", "Swift"]
+    // }, {
+    //     list: ["Hyundai", "i10", "i20", "xcent"]
+    // }];
+
+    /*******************************************http***********************************************/
+    factoryObj.getGlobalListInformation = function(serviceType, scope) {
+        var response;
+        // console.log(stringDBrepo.vGlobalServiceListInfoURL(serviceType));
+        httpOperationFact.sendHttpGetRequest(stringDBrepo.vGlobalServiceListInfoURL(serviceType))
+            .then(function(data) {
+                    if (serviceType == "services") {
+                        factoryObj.globalServicesJson = data;
+                    } else if (serviceType == "vehicles") {
+                        factoryObj.globalVehicleJson = data;
+                    }
+
+                    // console.log(data);
+                    // factoryObj.showReceivedBookingInfo(scope, data);
+                },
+                function(response) {
+                    console.log('albums retrieval failed.')
+                });
+    };
+
+
+    factoryObj.updateGlobalListInformation = function(serviceType, options, bookingJson, scope) {
+        var response;
+
+        // console.log(stringDBrepo.vBookingStatusCount(uniqueId, month, year));
+        httpOperationFact.sendHttpPostJsonRequest(stringDBrepo.vUpdateGlobalServiceListInfoURL(serviceType, options), bookingJson)
+            .then(function(data) {
+                    // console.log(data);
+                },
+                function(response) {
+                    console.log('albums retrieval failed.')
+                });
+    };
+
+
+    factoryObj.getLocalListInformation = function(uniqueId, serviceType, scope) {
+        var response;
+        // console.log(stringDBrepo.vGlobalServiceListInfoURL(serviceType));
+        httpOperationFact.sendHttpGetRequest(stringDBrepo.vLocalServiceListInfoURL(uniqueId, serviceType))
+            .then(function(data) {
+                    if (serviceType == "services") {
+                        factoryObj.userServicesJson = data;
+                        factoryObj.processGlobalServiceSupportListInfo(scope);
+                    } else if (serviceType == "vehicles") {
+                        factoryObj.userVehicleJson = data;
+                        factoryObj.processGlobalVehicleSupportListInfo(scope);
+                    }
+                    // console.log(data);
+                    // factoryObj.showReceivedBookingInfo(scope, data);
+                },
+                function(response) {
+                    console.log('albums retrieval failed.')
+                });
+    };
+
+
+    factoryObj.updateLocalListInformation = function(uniqueId, serviceType, options, bookingJson) {
+        var response;
+
+        // console.log(stringDBrepo.vBookingStatusCount(uniqueId, month, year));
+        httpOperationFact.sendHttpPostJsonRequest(stringDBrepo.vUpdateLocalServiceListInfoURL(uniqueId, serviceType, options), bookingJson)
+            .then(function(data) {
+                    console.log(data);
+                },
+                function(response) {
+                    console.log('albums retrieval failed.')
+                });
+    };
+
+    /**************************************************************************************************/
+
+
+    factoryObj.getGlobalAndLocalServicesList = function(seriveType, scope) {
+        factoryObj.getGlobalListInformation(seriveType, scope);
+        factoryObj.getLocalListInformation(stringDBrepo.vendorUniqueId, seriveType, scope);
+    };
+
+    factoryObj.processGlobalServiceSupportListInfo = function(scope) {
+        if (factoryObj.globalServicesJson.length) {
+            scope.serviceListArrayItems = factoryObj.generateServicesJson(factoryObj.globalServicesJson, factoryObj.userServicesJson);
+        }
+    };
+
+    factoryObj.processGlobalVehicleSupportListInfo = function(scope) {
+        if (factoryObj.globalServicesJson.length) {
+            scope.vehicleListArrayItems = factoryObj.generateServicesJson(factoryObj.globalVehicleJson, factoryObj.userVehicleJson);
+            // console.log(scope.vehicleListArrayItems);
+            // factoryObj.parseInputServiceSubmittedJson(scope.vehicleListArrayItems);
+        }
+    };
+
+
 
 
     factoryObj.setName = function(newName) {
@@ -41,6 +145,20 @@ angular.module('starter.serviceConfig')
     factoryObj.generateServicesJson = function(globalJson, userJson) {
         var mainObj = [];
         mainObj.length = 0;
+        /*global opertaions*/
+        // factoryObj.getGlobalListInformation("services");
+        // factoryObj.updateGlobalListInformation("services", "add", factoryObj.globalServicesJson);
+        // factoryObj.getGlobalListInformation("vehicles");
+        // factoryObj.updateGlobalListInformation("vehicles", "add", factoryObj.globalVehicleJson);
+
+        /*local operations*/
+        // factoryObj.getLocalListInformation(stringDBrepo.vendorUniqueId, "services");
+        // factoryObj.updateLocalListInformation(stringDBrepo.vendorUniqueId, "services", "add",factoryObj.userServicesJson);
+        // factoryObj.getLocalListInformation(stringDBrepo.vendorUniqueId, "vehicles");
+        // factoryObj.updateLocalListInformation(stringDBrepo.vendorUniqueId, "vehicles", "add",factoryObj.userVehicleJson);
+
+
+
         angular.forEach(globalJson, function(value, key) {
             var primaryObj = {};
 
@@ -58,7 +176,7 @@ angular.module('starter.serviceConfig')
         // console.log(mainObj);
         factoryObj.checkExistingServiceConfig(userJson, mainObj);
         // console.log(mainObj);
-        // factoryObj.parseInputSubmittedJson(mainObj);
+        // factoryObj.parseInputServiceSubmittedJson(mainObj);
         // console.log(factoryObj.userServicesJson);
         return mainObj;
     };
@@ -85,23 +203,46 @@ angular.module('starter.serviceConfig')
         });
     };
 
-    factoryObj.parseInputServiceSubmittedJson = function(scope) {
+    factoryObj.parseInputServiceSubmittedJson = function(inputArray, serviceType) {
         var mainObj = [];
+        var deleteObj = [];
+        console.log(inputArray);
 
-        angular.forEach(scope, function(value, key) {
+        angular.forEach(inputArray, function(value, key) {
             var primaryObj = {};
+            var ignoreObj = {};
             primaryObj.list = [];
+            ignoreObj.list = [];
+            
             if (value.checked == true) {
                 primaryObj.list.push(value.ServiceType);
-                for(var i in value.SubServices){
-                    if(value.SubServices[i].checked == true){
+                ignoreObj.list.push(value.ServiceType);
+                for (var i in value.SubServices) {
+                    if (value.SubServices[i].checked == true) {
                         primaryObj.list.push(value.SubServices[i].service);
+                    } else {
+                        ignoreObj.list.push(value.SubServices[i].service);
                     }
                 }
-               mainObj.push(primaryObj); 
-            }            
+                mainObj.push(primaryObj);
+                deleteObj.push(ignoreObj);
+            } else {
+                ignoreObj.list.push(value.ServiceType);
+                for (var i in value.SubServices) {
+                    ignoreObj.list.push(value.SubServices[i].service);
+                }
+                deleteObj.push(ignoreObj);
+            }
+
+
         });
         // console.log(mainObj);
+        // console.log(deleteObj);
+        if (mainObj.length)
+            factoryObj.updateLocalListInformation(stringDBrepo.vendorUniqueId, serviceType, "add", mainObj);
+        if (deleteObj.length)
+            factoryObj.updateLocalListInformation(stringDBrepo.vendorUniqueId, serviceType, "delete", deleteObj);
+
         return mainObj;
     };
 
