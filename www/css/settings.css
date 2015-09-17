@@ -1,10 +1,11 @@
 map {
-  display: block;
-  width: 100%;
-  height: 100%;
+    display: block;
+    width: 100%;
+    height: 100%;
 }
+
 .scroll {
-  height: 100%;
+    height: 100%;
 }
 
 .service-config-box {
@@ -80,8 +81,8 @@ map {
     /*background-size: 100% 100%;*/
     /*box-shadow: 0 5px 5px -5px #000000;*/
     /*border-bottom: 1px solid black;*/
-    margin-top: 10px;
     
+    margin-top: 10px;
 }
 
 .expand-toggle-arrow-font {
@@ -94,14 +95,15 @@ map {
     /*float: right;*/
 }
 
-.bg-item-divide-setting{
+.bg-item-divide-setting {
     background-color: #47639E;
     border-top: 1px solid white;
     border-bottom: 1px solid white;
     /*padding-top: 10px;*/
     /*padding-bottom: 5px;*/
 }
-.bg-item-divide-setting-secondary{
+
+.bg-item-divide-setting-secondary {
     background-color: rgba(54, 25, 25, .5);
     /*padding-top: 10px;*/
     /*padding-bottom: 5px;*/
@@ -116,27 +118,27 @@ map {
     font-weight: 700;
     letter-spacing: 1.5px;
     /*text-align: center;*/
+    
     padding-top: 9px;
 }
 
-
-.input-edit-box input{
+.input-edit-box input {
     width: 100%;
     /*border: 1px solid red;*/
+    
     height: 50px;
     border-bottom: 1px solid #47639E;
     /*margin-left: 10%;*/
-
     /*border-radius: 10px;*/
+    
     color: #47639E;
     background-color: white;
 }
-
 /*.input-edit-box input:hover{
     border-bottom: 3px solid green;
 }*/
 
-.input-edit-box span{
+.input-edit-box span {
     color: green;
     text-transform: uppercase;
     font-family: Arial, Helvetica, sans-serif;
@@ -147,27 +149,26 @@ map {
     /*padding-top: 9px;*/
 }
 
-.input-edit-box div{
+.input-edit-box div {
     color: red;
     background-color: white;
     /*margin-left: 10%;*/
 }
 
-label.input-edit-box.has-error input {  
-  border-bottom: 2px solid red;
+label.input-edit-box.has-error input {
+    border-bottom: 2px solid red;
 }
 
-
-
-.input-checkbox-par div{
+.input-checkbox-par div {
     /*width: 20px;*/
+    
     font-size: 30px;
     margin-left: 3px;
     color: #47639E;
     margin-top: 10px;
 }
 
-.input-checkbox-par div i{
+.input-checkbox-par div i {
     color: #47639E;
     text-transform: uppercase;
     font-family: Arial, Helvetica, sans-serif;
@@ -179,28 +180,25 @@ label.input-edit-box.has-error input {
     margin-left: 5px;
 }
 
-
-.button-input-test button{
+.button-input-test button {
     background-color: blue;
     width: 100px;
     height: 40px;
     border-radius: 10px;
 }
 
-
 .spinner svg {
-  width: 60px;
-  height: 60px;
-  stroke: #47639E;
-  fill: #47639E;
+    width: 60px;
+    height: 60px;
+    stroke: #47639E;
+    fill: #47639E;
 }
 
-
-.input-select-option-par{
+.input-select-option-par {
     margin-top: 15px;
 }
 
-.input-select-option-par i{
+.input-select-option-par i {
     color: #47639E;
     text-transform: uppercase;
     font-family: Arial, Helvetica, sans-serif;
@@ -212,7 +210,7 @@ label.input-edit-box.has-error input {
     margin-left: 5px;
 }
 
-.input-select-option-par select{
+.input-select-option-par select {
     background-color: #47639E;
     width: 140px;
     height: 30px;
@@ -222,14 +220,16 @@ label.input-edit-box.has-error input {
     text-align: center;
 }
 
-.button-modeling button{
+.button-modeling button {
     background-color: #ffffff;
     /*padding-left: 10px;*/
+    
     padding-right: 7px;
     border-radius: 4px;
     height: 15px;
 }
-.button-modeling button i{
+
+.button-modeling button i {
     color: #47639E;
     text-transform: uppercase;
     font-family: Arial, Helvetica, sans-serif;
@@ -238,5 +238,45 @@ label.input-edit-box.has-error input {
     letter-spacing: 1.5px;
     text-align: center;
     vertical-align: middle;
+    margin-left: 5px;
+}
+/***************************holiday***********************************************************/
+
+#custome-fab {
+    margin-top: 10px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    z-index: 9999;
+    transition: .3s fade-in-out;
+    transition-property: transform, box-shadow;
+}
+
+.holiday-list-details{
+    background-color: #47639E;
+    border-bottom: 2px solid white;
+}
+.holiday-list-details .holiday-date{
+    color: #ffffff;
+    /*text-transform: uppercase;*/
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    /*text-align: center;*/
+    /*vertical-align: middle;*/
+    margin-left: 5px;
+}
+
+.holiday-list-details .holiday-descrip{
+    color: #ffffff;
+    /*text-transform: uppercase;*/
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    /*text-align: center;*/
+    /*vertical-align: middle;*/
     margin-left: 5px;
 }

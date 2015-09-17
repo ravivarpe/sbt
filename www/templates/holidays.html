@@ -5,9 +5,60 @@
     </ion-nav-title>
     <ion-content scrollbar-y="false" has-bouncing="true" class="home-background-image">
         <div ng-controller="holiday-settings-ctrl">
-            <ionic-datepicker input-obj="datepickerObject">
-                <button class="button button-block button-positive"> {{datepickerObject.inputDate | date:'dd - MMMM - yyyy'}}</button>
-            </ionic-datepicker>
+            <form name="holidayAddForm">
+                <div class="row">
+                    <div class="col col-50"></div>
+                    <div class="col col-10 col-offset-20">
+                        <button type="input" id="custome-fab" class="button button-assertive button-fab button-fab-bottom-right" ng-click="AddHolidayFlag = !AddHolidayFlag">
+                            <i class="icon ion-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div ng-if="AddHolidayFlag === true">
+                    <div ng-if="holidayDescription.dateValidation === false" style="color:red; margin-left:10px;">
+                        Error: Date is older or equal to today date
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <ionic-datepicker input-obj="datepickerObject">
+                                <button type="input" class="button button-block button-positive"> {{datepickerObject.inputDate | date:'dd - MMMM - yyyy'}}</button>
+                            </ionic-datepicker>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-80">
+                            <label class="input-edit-box" ng-class="{ 'has-error' : holidayAddForm.description.$invalid}">
+                                <span ng-if="(holidayAddForm.description.$dirty && holidayDescription.description) || holidayDescription.description">Description *</span>
+                                <input type="text" name="description" ng-model="holidayDescription.description" placeholder="Description *" ng-minlength="5" ng-pattern="/^[A-Za-z0-9 ]+$/" required />
+                                <div ng-messages="holidayAddForm.description.$error">
+                                    <div ng-message="required">This field is required</div>
+                                    <div ng-message="pattern">This must contain only letters or number</div>
+                                    <div ng-message="minlength">This field is must be at least 5 characters.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="button button-positive" ng-click="AddHolidayList(holidayAddForm)">ADD</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="holiday-list-details" ng-repeat="holidayItem in holidaysArrayObj">
+                <div class="row">
+                    <div class="col col-70">
+                        <div class="holiday-date">Date:&nbsp{{holidayItem.dateFormat}}</div>
+                    </div>
+                    <div class="col col-10">
+                        <a href="#" ng-click="deleteHolidayDate(holidayItem)"><i class="icon ion-android-delete calendar-arrow-box" style="color:white;"></i></a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-80">
+                        <div class="holiday-descrip">Description:&nbsp{{holidayItem.description}}</div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </ion-content>
 </ion-view>

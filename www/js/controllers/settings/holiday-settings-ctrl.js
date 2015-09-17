@@ -1,6 +1,127 @@
 angular.module('starter.holidays', ['ionic', 'ionic-datepicker'])
 
-.controller('holiday-settings-ctrl', function($scope) {
+.controller('holiday-settings-ctrl', function($scope, stringDBrepo, httpOperationFact) {
+
+    var selectedDateInSecs = null;
+    var holidayGlobalTmp = {};
+    $scope.AddHolidayFlag = false;
+    $scope.holidayDescription = {
+        "description": "",
+        "dateValidation": true
+    };
+
+    // $scope.holidaysArrayObj = [{
+    //     "date": 1442534400,
+    //     "dateFormat": "18/09/2015",
+    //     "description": "test 1"
+    // }, {
+    //     "date": 1442534400,
+    //     "dateFormat": "19/09/2015",
+    //     "description": "test 2"
+    // }];
+    $scope.holidaysArrayObj = [];
+
+    /*************************************************http**********************************************************************************/
+    $scope.updateHolidayInfo = function(holidayObj, option) {
+        var url;
+        if (option == "delete")
+            url = stringDBrepo.vdeleteHolidayInfoURL(stringDBrepo.vendorUniqueId);
+        else
+            url = stringDBrepo.vUpdateHolidaysListInfoURL(stringDBrepo.vendorUniqueId);
+
+        httpOperationFact.sendHttpPutJsonRequest(url, holidayObj)
+            .then(function(data) {
+                    // console.log(data);
+                    $scope.getHolidaysListInfo();
+                },
+                function(response) {
+                    console.log('albums retrieval failed.')
+                });
+    }
+
+    $scope.getHolidaysListInfo = function() {
+            var response;
+            // console.log(stringDBrepo.vBookingStatusCount(uniqueId, month, year));
+            httpOperationFact.sendHttpGetRequest(stringDBrepo.vHolidaysListInfoURL(stringDBrepo.vendorUniqueId))
+                .then(function(data) {
+                        $scope.processInputHolidayList(data);
+                        // console.log(data);
+                    },
+                    function(response) {
+                        console.log('albums retrieval failed.')
+                    });
+        }
+        /***************************************************************************************************************************************/
+
+    $scope.processInputHolidayList = function(data) {
+        for (i in data) {
+            var dateInfo = new Date(data[i].date * 1000);
+            data[i].dateFormat = ("0" + dateInfo.getDate()).slice(-2) + "-" + ("0" + dateInfo.getMonth()).slice(-2) + "-" + dateInfo.getDate();
+        }
+        // console.log(data);
+        $scope.holidaysArrayObj = data;
+    };
+
+    $scope.deleteHolidayDate = function(holidayInfo) {
+        var holiday = {};
+        holiday.date = holidayInfo.date;
+        holiday.description = holidayInfo.description;
+        console.log(holiday);
+
+        $scope.updateHolidayInfo(holiday, "delete");
+    };
+
+
+
+
+    /************************onload call**********************/
+    $scope.getHolidaysListInfo();
+
+
+
+    $scope.getTimeInSeconds = function(yearInNumber, monthInNumber, dayInNumber, hoursInNumber, minInNumber) {
+
+
+
+        if (!yearInNumber) {
+            var dateTmp = new Date();
+            yearInNumber = dateTmp.getFullYear();
+            monthInNumber = dateTmp.getMonth();
+            dayInNumber = dateTmp.getDate();
+            hoursInNumber = 0;
+            minInNumber = 0;
+        }
+        var dateFormat = yearInNumber + "/" + (monthInNumber + 1) + "/" + dayInNumber + " " + hoursInNumber + ":" + minInNumber + ":00 UTC";
+
+        var dateObj = new Date(dateFormat);
+
+        // factoryObj.timeInSeconds = Math.round(dateObj.getTime() / 1000);
+        // // var test = date.getTime() ;
+        // console.log(date.getDate());
+        // console.log(test);
+        return Math.round(dateObj.getTime() / 1000);
+    };
+
+    $scope.AddHolidayList = function(holidayAddForm) {
+        
+
+        if (!holidayAddForm.$valid)
+            return;
+
+        if (selectedDateInSecs) {
+            var currentDate = $scope.getTimeInSeconds(0, 0, 0, 0, 0);
+
+            var selectedDate = $scope.getTimeInSeconds(selectedDateInSecs.getFullYear(), selectedDateInSecs.getMonth(), selectedDateInSecs.getDate(), 0, 0)
+            if (selectedDate > currentDate) {
+                // console.log($scope.holidayDescription.description);
+                holidayGlobalTmp.date = selectedDate;
+                holidayGlobalTmp.description = $scope.holidayDescription.description;
+                $scope.updateHolidayInfo(holidayGlobalTmp, "add");
+            }
+
+        }
+
+    };
 
     var disabledDates = [
         new Date(1437719836326),
@@ -41,8 +162,10 @@ angular.module('starter.holidays', ['ionic', 'ionic-datepicker'])
     var datePickerCallback = function(val) {
         if (typeof(val) === 'undefined') {
             console.log('No date selected');
-        } else {            
+        } else {
             console.log('Selected date is : ', val)
+            $scope.datepickerObject.inputDate = val;
+            selectedDateInSecs = val;
         }
     };
 

@@ -89,6 +89,7 @@ angular.module('starter.userSettings', ['ionic', 'ngMessages'])
 
     userDetailsFact.getPersonalOverviewInfo($scope);
     userDetailsFact.getVendorOverviewInfo($scope);
+    userDetailsFact.getVendorDailySlotsInfo($scope);
 
 
 
@@ -98,6 +99,7 @@ angular.module('starter.userSettings', ['ionic', 'ngMessages'])
         $scope.overviewInfo.vendorVehicleServiceType = $scope.selectedServiceType.value;
         userDetailsFact.updateVendorOverviewInfo($scope);
         userDetailsFact.updatePersonalOverviewInfo($scope);
+        userDetailsFact.updateVendorDailySlotsInfo($scope);
     }
 
 
