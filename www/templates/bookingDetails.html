@@ -110,8 +110,8 @@
                                 <!-- <div ng-if="bookingStatusItem.statusInfo === 3" class="booking-details-status-alignment">
                                     <a href="#" style="text-decoration: none;" class="booking-details-status-element-font-red">{{bookingStatusItem.statusString}}</a>
                                 </div> -->
-                                <div ng-if="bookingStatusItem.statusInfo === 4" class="booking-details-status-alignment">
-                                    <a href="#" style="text-decoration: none;" ng-click="bookingDetailStatusModal(bookingStatusItem)" class="booking-details-status-element-font-current">{{bookingStatusItem.statusString}}</a>
+                                <div ng-if="bookingStatusItem.statusInfo === 4" class="booking-details-status-alignment" ng-click="bookingDetailStatusModal(bookingStatusItem)">
+                                    <a href="#" style="text-decoration: none;"  class="booking-details-status-element-font-current">{{bookingStatusItem.statusString}}</a>
                                 </div>
                             </div>
                             <!-- <span ng-if="bookingStatusItem.statusInfo === 4">

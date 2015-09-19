@@ -29,17 +29,17 @@
             <!-- <img class="loader-font-para" src="img/loader.gif"> -->
             <div class="card vendor-highlevel-info-box">
                 <div class="row">
-                    <div class="col col-60">
+                    <div class="col col-55">
                         <span class="vendor-rating-text-font">Rating:</span>                      
                             <i ng-repeat="i in [] | range:VendorRatingValue" class="ion-ios-star rating-icon">                  
                             </i>
                             <i ng-repeat="i in [] | range:(5-VendorRatingValue)" class="ion-ios-star-outline rating-icon">                  
                             </i>                        
                     </div>
-                    <div class="col col-10"></div>
-                    <div class="col col-15">
+                    <!-- <div class="col col-10"></div> -->
+                    <div class="col col-25 col-offset-10">
                         <!-- <span class="vendor-like-text-font"><i class="ion-thumbsup like-icon"></i>: {{VendorLikeValue}}</span> -->
-                        <i class="ion-thumbsup like-icon">:<span class="vendor-like-text-font">12345</span></i>
+                        <i class="ion-thumbsup like-icon">:<span class="vendor-like-text-font">{{VendorLikeValue}}</span></i>
                     </div>
                 </div>
             </div>

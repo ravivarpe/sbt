@@ -54,7 +54,7 @@ angular.module('starter.serviceConfig')
                     } else if (serviceType == "vehicles") {
                         factoryObj.globalVehicleJson = data;
                     }
-
+                    factoryObj.getLocalListInformation(stringDBrepo.vendorUniqueId, serviceType, scope);
                     // console.log(data);
                     // factoryObj.showReceivedBookingInfo(scope, data);
                 },
@@ -117,7 +117,7 @@ angular.module('starter.serviceConfig')
 
     factoryObj.getGlobalAndLocalServicesList = function(seriveType, scope) {
         factoryObj.getGlobalListInformation(seriveType, scope);
-        factoryObj.getLocalListInformation(stringDBrepo.vendorUniqueId, seriveType, scope);
+        // factoryObj.getLocalListInformation(stringDBrepo.vendorUniqueId, seriveType, scope);
     };
 
     factoryObj.processGlobalServiceSupportListInfo = function(scope) {
