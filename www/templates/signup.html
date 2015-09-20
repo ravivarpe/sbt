@@ -1,5 +1,5 @@
 <ion-view view-title="Sign-Up" name="signup-view">
-    <ion-content class="padding">
+    <ion-content scrollbar-y="false" has-bouncing="true" class="home-background-image">
         <!-- <div class="list list-inset">
             <label class="item item-input">
                 <input type="text" placeholder="Email Id" ng-model="data.email">
@@ -14,10 +14,10 @@
                 <input type="password" placeholder="Confirm Password" ng-model="data.cpassword">
             </label>
         </div> -->
-        <div>
-            <img class="vehito-logo-font login-logo" src="img/login_logo.png">
-        </div>
-        <form name="signUpForm">
+        <!-- <div> -->
+            <img class="login-logo" src="img/login_logo.png">
+        <!-- </div> -->
+        <form name="signUpForm" style="padding-bottom: 30px;">
             <label class="input-edit-box" ng-class="{ 'has-error' : submitted && signUpForm.email.$invalid}">
                 <span ng-if="(signUpForm.email.$dirty && data.email) || data.email">Email Id *</span>
                 <input type="email" name="email" ng-model="data.email" placeholder="Email Id *" ng-minlength="5" required />

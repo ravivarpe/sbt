@@ -4,13 +4,13 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'signup.services' ,'update.services', 'login.services','starter.holidays','starter.feedback','starter.controllers', 'starter.home', 'starter.bookingList', 'starter.bookingDetails', 'starter.menu', 'starter.serviceConfig', 'starter.userSettings'])
+angular.module('starter', ['ionic', 'ionic-toast', 'ngCordova', 'signup.services', 'update.services', 'login.services', 'starter.holidays', 'starter.feedback', 'starter.controllers', 'starter.home', 'starter.bookingList', 'starter.bookingDetails', 'starter.menu', 'starter.serviceConfig', 'starter.userSettings'])
 
 
-.run(function ($ionicPlatform,$rootScope, $state, AuthService, AUTH_EVENTS) {
+.run(function($ionicPlatform, $rootScope, $state, AuthService, AUTH_EVENTS, ionicToast, $cordovaNetwork) {
 
 
-$ionicPlatform.ready(function() {
+    $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
         ionic.Platform.isFullScreen = true
@@ -23,30 +23,56 @@ $ionicPlatform.ready(function() {
             StatusBar.styleDefault();
         }
 
- })
+        if (window.Connection) {
+            $rootScope.$on('$cordovaNetwork:online', function(event, networkState) {
+                // alert('online good sir');
+                ionicToast.show('Internet online', 'middle', false, 2500);
+            })
+            $rootScope.$on('$cordovaNetwork:offline', function(event, networkState) {
+                // alert('offline good sir');
+                ionicToast.show('Internet offline', 'middle', false, 2500);
+            })
+        }
+        // document.addEventListener("offline", onOffline, false);
 
-  $rootScope.$on('$stateChangeStart', function (event,next, nextParams, fromState) {
+        // function onOffline() {
+        //     // Handle the offline event
+        //     ionicToast.show('Internet offline', 'middle', false, 2500);
+        // }
 
-    if ('data' in next && 'authorizedRoles' in next.data) {
-      var authorizedRoles = next.data.authorizedRoles;
-      if (!AuthService.isAuthorized(authorizedRoles)) {
-        event.preventDefault();
-        $state.go($state.current, {}, {reload: true});
-        $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
-      }
-    }
-   
-    if(fromState.name === 'login' && next.name === 'signup'){
-          console.log("test");
-          // event.preventDefault();
-          // $state.go('signup');
-    }else{
-       if (!AuthService.isAuthenticated()) {
-           if(next.name !== 'login') {
-            event.preventDefault();
-            $state.go('login');
-          }
-      }
-  }
-  });
+        // document.addEventListener("online", onOnline, false);
+
+        // function onOnline() {
+        //     // Handle the online event
+        //     ionicToast.show('Internet online', 'middle', false, 2500);
+        // }
+
+    })
+
+    $rootScope.$on('$stateChangeStart', function(event, next, nextParams, fromState) {
+
+        if ('data' in next && 'authorizedRoles' in next.data) {
+            var authorizedRoles = next.data.authorizedRoles;
+            if (!AuthService.isAuthorized(authorizedRoles)) {
+                event.preventDefault();
+                $state.go($state.current, {}, {
+                    reload: true
+                });
+                $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+            }
+        }
+
+        if (fromState.name === 'login' && next.name === 'signup') {
+            console.log("test");
+            // event.preventDefault();
+            // $state.go('signup');
+        } else {
+            if (!AuthService.isAuthenticated()) {
+                if (next.name !== 'login') {
+                    event.preventDefault();
+                    $state.go('login');
+                }
+            }
+        }
+    });
 });

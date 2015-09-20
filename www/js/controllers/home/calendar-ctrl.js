@@ -1,7 +1,7 @@
-angular.module('starter.home', ['ionic'])
+angular.module('starter.home', ['ionic', 'ionic-toast'])
 
 
-.controller('calendar-ctrl', function($scope, $http, CalendarDetailsFact, VendorInfoFact, stringDBrepo, UpdateService) {
+.controller('calendar-ctrl', function($scope, ionicToast, $http, CalendarDetailsFact, VendorInfoFact, stringDBrepo, UpdateService) {
 
 
 
@@ -33,8 +33,12 @@ angular.module('starter.home', ['ionic'])
         }
     });
 
+   
 
     $scope.initObjFuntion = function() {
+
+        
+
         $scope.calendarTable.dayCount = 7;
         $scope.daySelectHighlighter = "calendar-col-box";
 
