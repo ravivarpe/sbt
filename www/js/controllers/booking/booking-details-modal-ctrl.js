@@ -16,6 +16,7 @@ angular.module('starter.bookingDetails')
     $scope.BookingDetailsModalEnableArray = BookingDetailsFact.stateDetails;
     $scope.vehiclePickupIndex = BookingDetailsFact.sendPersonForPickup;
     $scope.requestConfirmIndex = BookingDetailsFact.confirmRequest;
+    $scope.serviceCompleteIndex = BookingDetailsFact.serviceComplete;
 
     $scope.bookingChoice = {
         data: {
@@ -32,6 +33,9 @@ angular.module('starter.bookingDetails')
     $scope.pickDetailsInfo = {};
     $scope.pickDetailsInfo.personName = "";
     $scope.pickDetailsInfo.phoneNum = "";
+
+    $scope.serviceInfo={};
+    $scope.serviceInfo.finalServiceAmount = 0;
 
 
     /*************************************************************************************************************************/
@@ -61,14 +65,17 @@ angular.module('starter.bookingDetails')
             if (!DetailsForm.$valid)
                 return;
 
-
-
             $scope.bookingDetailsArray[0].pickUpPersonName = $scope.pickDetailsInfo.personName;
             $scope.bookingDetailsArray[0].pickUpPersonNumber = $scope.pickDetailsInfo.phoneNum;
 
+        }
 
+        if ($scope.modalDisplayInfo.statusIndex == BookingDetailsFact.serviceComplete) {
+            if (!DetailsForm.$valid)
+                return;
 
-            // console.log($scope.pickDetailsInfo);
+            $scope.bookingDetailsArray[0].finalServiceAmount = $scope.serviceInfo.finalServiceAmount;
+            console.log($scope.bookingDetailsArray[0]);
 
         }
 

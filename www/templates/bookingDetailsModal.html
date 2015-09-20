@@ -13,6 +13,19 @@
         </div>
         <form name="DetailsForm">
             <!-- //////////////////////////////////////////pickup logic//////////////////////////////////////////////////// -->
+            <div ng-if="modalDisplayInfo.statusIndex === serviceCompleteIndex" class="row">
+                <div class="col">
+                    <label class="booking-modal-input-dim" ng-class="{ 'has-error' : DetailsForm.finalServiceAmount.$invalid}">
+                        <span ng-if="(DetailsForm.finalServiceAmount.$dirty && serviceInfo.finalServiceAmount) || serviceInfo.finalServiceAmount">Final Service Amount *</span>
+                        <input type="text" name="finalServiceAmount" ng-model="serviceInfo.finalServiceAmount" placeholder="Final Service Amount *" ng-minlength="2" ng-pattern="/[0-9]+/" required />
+                        <div ng-messages="DetailsForm.finalServiceAmount.$error">
+                            <div ng-message="required">This field is required</div>
+                            <div ng-message="pattern">This must contain only number</div>
+                            <div ng-message="minlength">This field is must be at least 2 characters.</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
             <div ng-if="modalDisplayInfo.statusIndex === vehiclePickupIndex" class="row">
                 <div class="col">
                     <label class="booking-modal-input-dim" ng-class="{ 'has-error' : DetailsForm.personName.$invalid}">
