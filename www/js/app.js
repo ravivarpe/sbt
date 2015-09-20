@@ -26,7 +26,7 @@ angular.module('starter', ['ionic', 'ionic-toast', 'ngCordova', 'signup.services
         if (window.Connection) {
             $rootScope.$on('$cordovaNetwork:online', function(event, networkState) {
                 // alert('online good sir');
-                ionicToast.show('Internet online', 'middle', false, 2500);
+                // ionicToast.show('Internet online', 'middle', false, 2500);
             })
             $rootScope.$on('$cordovaNetwork:offline', function(event, networkState) {
                 // alert('offline good sir');

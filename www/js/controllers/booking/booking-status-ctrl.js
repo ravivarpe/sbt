@@ -1,12 +1,12 @@
 angular.module('starter.bookingList', ['ionic', 'ionic-timepicker', 'ionic-datepicker'])
 
 
-.controller('booking-list-ctrl', function($scope, $stateParams, BookingListFact, stringDBrepo, sortBookingPopupFact) {
+.controller('booking-list-ctrl', function($scope,$ionicNavBarDelegate, $stateParams, BookingListFact, stringDBrepo, sortBookingPopupFact) {
     $scope.bookingListArray = [];
 
     sortBookingPopupFact.initSortPopup($scope);
 
-
+    $ionicNavBarDelegate.showBackButton(true);
 
     // console.log($stateParams);
     $scope.sortingPopUpMethod = function() {

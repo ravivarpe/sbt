@@ -1,7 +1,7 @@
 angular.module('starter.home', ['ionic', 'ionic-toast'])
 
 
-.controller('calendar-ctrl', function($scope, ionicToast, $http, CalendarDetailsFact, VendorInfoFact, stringDBrepo, UpdateService) {
+.controller('calendar-ctrl', function($scope, ionicToast, $ionicNavBarDelegate, $http, CalendarDetailsFact, VendorInfoFact, stringDBrepo, UpdateService) {
 
 
 
@@ -29,15 +29,20 @@ angular.module('starter.home', ['ionic', 'ionic-toast'])
     $scope.$on('$stateChangeSuccess', function(event, toState) {
         if (toState.name == "vendor-app.home") {
             $scope.initObjFuntion();
-
+            $ionicNavBarDelegate.showBackButton(false);
         }
     });
 
-   
+
+    
+
+
+
+
 
     $scope.initObjFuntion = function() {
 
-        
+
 
         $scope.calendarTable.dayCount = 7;
         $scope.daySelectHighlighter = "calendar-col-box";
