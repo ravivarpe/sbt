@@ -45,7 +45,6 @@
                                 <span class="booking-large-element-font">{{bookingListItem.PickDropString}}</span>
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col">
                                 <i class="ion-model-s vehicle-icon-fort-param"></i>
@@ -56,13 +55,23 @@
                                 <span class="booking-address-element-font">Regular, Washing</span>
                             </div> -->
                         </div>
-                        <div class="row">
-                            <div class="col col-25 col-offset-50"><a ui-sref="vendor-app.bookingDetails({ bookingDetailsInfo: bookingListItem})" class="bookings-details-button-grey"><span class="bookings-request-status-font">Details</span></a></div>
-                            <div class="col col-25">
+                        <div class="row booking-list-button">
+                            <div class="col col-25 col-offset-50">
+                                <button class="button button-small button-balanced" ui-sref="vendor-app.bookingDetails({ bookingDetailsInfo: bookingListItem})">
+                                    Details
+                                </button>
+                            </div>
+                            <!-- <div class="col col-25 col-offset-50"><a ui-sref="vendor-app.bookingDetails({ bookingDetailsInfo: bookingListItem})" class="bookings-details-button-grey"><span class="bookings-request-status-font">Details</span></a></div> -->
+                            <div class="col col-25" ng-if='bookingListItem.requestAcceptString != "discard"'>
+                                <button class="button button-small button-positive" ng-click="bookingStatusModal(bookingListItem,$index)">
+                                    {{bookingListItem.requestAcceptString}}
+                                </button>
+                            </div>
+                            <!-- <div class="col col-25">
                                 <div ng-if='bookingListItem.requestAcceptString != "discard"'>
                                     <a href="#" class="bookings-request-status-button" ng-click="bookingStatusModal(bookingListItem,$index)"><span class="bookings-request-status-font">{{bookingListItem.requestAcceptString}}</span></a>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <!-- </div> -->

@@ -36,7 +36,7 @@ angular.module('starter', ['ionic', 'ionic-toast', 'ngCordova', 'signup.services
 
     })
     $ionicPlatform.registerBackButtonAction(function(event) {
-        if ($state.is('vendor-app.home')) {
+        if ($state.is('vendor-app.home') || $state.is('login')){
             navigator.app.exitApp();
         } else {
             // navigator.app.backHistory();

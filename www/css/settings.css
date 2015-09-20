@@ -308,3 +308,28 @@ label.input-edit-box.has-error input {
     /*vertical-align: middle;*/
     margin-left: 5px;
 }
+
+
+
+
+
+/***************************search************/
+.input-search-box input {
+    width: 100%;
+    /*border: 1px solid red;*/
+    
+    height: 30px;
+    border-bottom: 2px solid #ffffff;
+    /*margin-left: 10%;*/
+    /*border-radius: 10px;*/
+    background-color: rgba(54, 25, 25, .0);
+    color: #47639E;
+    margin-top: -10px;
+    /*background-color: white;*/
+}
+.input-search-box div {
+    color: white;
+    /*background-color: white;*/
+    /*margin-left: 10%;*/
+}
+

@@ -85,7 +85,7 @@
 }
 
 .booking-pending-status {
-    color: #FFFF00;
+    color: #47639E;
 }
 
 .booking-waiting-status {
@@ -435,7 +435,16 @@
     margin-top: 14px;
 }
 
-
+.booking-list-button button{
+    width: 60px;
+    height: 10px;
+    font-size: 8px;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 1.5px;
+    text-align: center;
+    box-shadow: 0 5px 5px -5px #000000;
+}
 
 /****************************************************************************************/
 
