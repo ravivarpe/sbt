@@ -5,6 +5,7 @@ angular.module('starter.serviceConfig', ['ionic'])
 
 	$scope.serviceListArrayItems = [];
 	$scope.vehicleListArrayItems = [];
+	$scope.overviewInfo = {};
 	$scope.localString = {};
 	$scope.localString.ApplyButton = "Save Changes";
 	$scope.localString.SupportedServices = "Supported Services";
@@ -14,8 +15,9 @@ angular.module('starter.serviceConfig', ['ionic'])
 
 	$scope.serviceListArrayItems = serviceConfigFact.generateServicesJson(serviceConfigFact.globalServicesJson, serviceConfigFact.userServicesJson);
 	// $scope.vehicleListArrayItems = serviceConfigFact.generateServicesJson(serviceConfigFact.globalVehicleJson, serviceConfigFact.userVehicleJson);
-	serviceConfigFact.getGlobalAndLocalServicesList("services", $scope);
-	serviceConfigFact.getGlobalAndLocalServicesList("vehicles", $scope);
+	// serviceConfigFact.getGlobalAndLocalServicesList("services", $scope);
+	// serviceConfigFact.getGlobalAndLocalServicesList("vehicles", $scope);
+	serviceConfigFact.getVendorOverviewInfoServices($scope);
 
 	// serviceConfigFact.parseInputSubmittedJson($scope.serviceListArrayItems);
 	// console.log(serviceConfigFact.parseInputSubmittedJson($scope.serviceListArrayItems));

@@ -44,10 +44,25 @@ angular.module('starter.serviceConfig')
     // }];
 
     /*******************************************http***********************************************/
-    factoryObj.getGlobalListInformation = function(serviceType, scope) {
+    factoryObj.getVendorOverviewInfoServices = function(scope) {
         var response;
-        // console.log(stringDBrepo.vGlobalServiceListInfoURL(serviceType));
-        httpOperationFact.sendHttpGetRequest(stringDBrepo.vGlobalServiceListInfoURL(serviceType))
+        // console.log(stringDBrepo.vBookingStatusCount(uniqueId, month, year));
+        httpOperationFact.sendHttpGetRequest(stringDBrepo.vOverviewInfoURL(stringDBrepo.vendorUniqueId))
+            .then(function(data) {
+                    scope.overviewInfo = data;
+                    factoryObj.getGlobalAndLocalServicesList("services", scope, scope.overviewInfo.vendorVehicleServiceType);
+                    factoryObj.getGlobalAndLocalServicesList("vehicles", scope, scope.overviewInfo.vendorVehicleServiceType);
+                    // console.log(scope.overviewInfo);
+                },
+                function(response) {
+                    console.log('albums retrieval failed.')
+                });
+    };
+
+    factoryObj.getGlobalListInformation = function(serviceType, scope, vehicleType) {
+        var response;
+        console.log(stringDBrepo.vGlobalServiceListInfoURL(serviceType, vehicleType));
+        httpOperationFact.sendHttpGetRequest(stringDBrepo.vGlobalServiceListInfoURL(serviceType, vehicleType))
             .then(function(data) {
                     if (serviceType == "services") {
                         factoryObj.globalServicesJson = data;
@@ -55,7 +70,7 @@ angular.module('starter.serviceConfig')
                         factoryObj.globalVehicleJson = data;
                     }
                     factoryObj.getLocalListInformation(stringDBrepo.vendorUniqueId, serviceType, scope);
-                    // console.log(data);
+                    console.log(data);
                     // factoryObj.showReceivedBookingInfo(scope, data);
                 },
                 function(response) {
@@ -115,8 +130,8 @@ angular.module('starter.serviceConfig')
     /**************************************************************************************************/
 
 
-    factoryObj.getGlobalAndLocalServicesList = function(seriveType, scope) {
-        factoryObj.getGlobalListInformation(seriveType, scope);
+    factoryObj.getGlobalAndLocalServicesList = function(seriveType, scope, vehicleType) {
+        factoryObj.getGlobalListInformation(seriveType, scope, vehicleType);
         // factoryObj.getLocalListInformation(stringDBrepo.vendorUniqueId, seriveType, scope);
     };
 
@@ -213,7 +228,7 @@ angular.module('starter.serviceConfig')
             var ignoreObj = {};
             primaryObj.list = [];
             ignoreObj.list = [];
-            
+
             if (value.checked == true) {
                 primaryObj.list.push(value.ServiceType);
                 ignoreObj.list.push(value.ServiceType);

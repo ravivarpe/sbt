@@ -22,7 +22,8 @@ angular.module('update.services', ['ionic'])
                             text: '<b>Update</b>',
                             type: 'button-positive',
                             onTap: function(e) {
-                                window.open(object.url);
+                                window.open(object.url, "_system");
+                                ionic.Platform.exitApp();
                             }
                         }]
                     });

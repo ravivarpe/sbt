@@ -24,7 +24,7 @@ angular.module('starter.home', ['ionic'])
 
     var date = new Date();
 
-    // UpdateService.update();
+    UpdateService.update();
 
     $scope.$on('$stateChangeSuccess', function(event, toState) {
         if (toState.name == "vendor-app.home") {
