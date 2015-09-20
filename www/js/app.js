@@ -33,21 +33,16 @@ angular.module('starter', ['ionic', 'ionic-toast', 'ngCordova', 'signup.services
                 ionicToast.show('Internet offline', 'middle', false, 2500);
             })
         }
-        // document.addEventListener("offline", onOffline, false);
-
-        // function onOffline() {
-        //     // Handle the offline event
-        //     ionicToast.show('Internet offline', 'middle', false, 2500);
-        // }
-
-        // document.addEventListener("online", onOnline, false);
-
-        // function onOnline() {
-        //     // Handle the online event
-        //     ionicToast.show('Internet online', 'middle', false, 2500);
-        // }
 
     })
+    $ionicPlatform.registerBackButtonAction(function(event) {
+        if ($state.is('vendor-app.home')) {
+            navigator.app.exitApp();
+        } else {
+            // navigator.app.backHistory();
+            $state.go('vendor-app.home');
+        }
+    }, 101);
 
     $rootScope.$on('$stateChangeStart', function(event, next, nextParams, fromState) {
 

@@ -1,7 +1,7 @@
 angular.module('update.services', ['ionic'])
 
 
-.service('UpdateService', function($http, $state, $ionicPopup, httpOperationFact, stringDBrepo) {
+.service('UpdateService', function($http, $state, $ionicPopup, httpOperationFact, stringDBrepo, $ionicPlatform) {
 
 
     this.update = function() {
@@ -10,8 +10,8 @@ angular.module('update.services', ['ionic'])
                 if (object.isUpdateavailable) {
                     var myPopup = $ionicPopup.show({
 
-                        title: 'Update available',
-                        subTitle: 'Please update it compulsory',
+                        title: 'Update is available',
+                        subTitle: 'Please update',
                         //  scope: $scope,
                         buttons: [{
                             text: 'Cancel',
@@ -26,6 +26,10 @@ angular.module('update.services', ['ionic'])
                                 ionic.Platform.exitApp();
                             }
                         }]
+                    });
+                    var deregisterBackButton = $ionicPlatform.registerBackButtonAction(function(e) {}, 401);
+                    myPopup.then(function(res) {
+                        deregisterBackButton();
                     });
                 }
 

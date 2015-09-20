@@ -44,6 +44,14 @@ angular.module('starter')
                 requireLogin: true // this property will apply to all children of 'vendor-app'
             }
         })
+        .state('vendor-app.logout', {
+            url: "/logout",
+            view: {
+                'menuContent': {
+                    templateUrl: "templates/login.html",
+                }
+            }
+        })
         .state('vendor-app.holidays', {
             url: "/holidays",
             views: {

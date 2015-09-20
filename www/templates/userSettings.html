@@ -32,7 +32,7 @@
                         </div>
                     </div>
                 </div>
-                <form name="vendorAccountForm" ng-submit="SavePersonalInfo()" novalidate>
+                <form name="vendorAccountForm" ng-submit="SavePersonalInfo(vendorAccountForm)" novalidate>
                     <button class="button button-full button-assertive" type="submit" ng-click="submitted=true" ng-keyup="submitted=false">
                         Save Changes
                     </button>

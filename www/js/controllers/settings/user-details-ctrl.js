@@ -111,9 +111,9 @@ angular.module('starter.userSettings', ['ionic', 'ngMessages'])
 
 
 
-    $scope.SavePersonalInfo = function() {
+    $scope.SavePersonalInfo = function(checkForm) {
         // console.log($scope.selectedServiceType.value);
-        if (!vendorAccountForm.$valid)
+        if (!checkForm.$valid)
             return;
 
         $scope.overviewInfo.vendorVehicleServiceType = $scope.selectedServiceType.value;

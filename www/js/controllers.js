@@ -25,9 +25,9 @@ angular.module('starter.controllers', [])
 
     $scope.logout = function() {
         AuthService.logout();
-        $state.go('login', {}, {
-            reload: true
-        });
+        // $state.go('login', {}, {
+        //     reload: true
+        // });
     };
 
 })
