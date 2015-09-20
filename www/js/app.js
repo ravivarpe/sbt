@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'signup.services' ,'login.services','starter.holidays','starter.feedback','starter.controllers', 'starter.home', 'starter.bookingList', 'starter.bookingDetails', 'starter.menu', 'starter.serviceConfig', 'starter.userSettings'])
+angular.module('starter', ['ionic', 'signup.services' ,'update.services', 'login.services','starter.holidays','starter.feedback','starter.controllers', 'starter.home', 'starter.bookingList', 'starter.bookingDetails', 'starter.menu', 'starter.serviceConfig', 'starter.userSettings'])
 
 
 .run(function ($ionicPlatform,$rootScope, $state, AuthService, AUTH_EVENTS) {
@@ -25,7 +25,7 @@ $ionicPlatform.ready(function() {
 
  })
 
-  $rootScope.$on('$stateChangeStart', function ($event,next, nextParams, fromState) {
+  $rootScope.$on('$stateChangeStart', function (event,next, nextParams, fromState) {
 
     if ('data' in next && 'authorizedRoles' in next.data) {
       var authorizedRoles = next.data.authorizedRoles;
@@ -36,8 +36,10 @@ $ionicPlatform.ready(function() {
       }
     }
    
-    if(fromState.name == 'login' && next.name == 'signup'){
-          event.preventDefault();
+    if(fromState.name === 'login' && next.name === 'signup'){
+          console.log("test");
+          // event.preventDefault();
+          // $state.go('signup');
     }else{
        if (!AuthService.isAuthenticated()) {
            if(next.name !== 'login') {

@@ -50,11 +50,11 @@ angular.module('starter')
 
 
 
-    factoryObj.vGlobalServiceListInfoURL = function(serviceType) {
-        return factoryObj.baseUrl + "global/" + serviceType;
+    factoryObj.vGlobalServiceListInfoURL = function(serviceType, vehicleType) {
+        return factoryObj.baseUrl + "global/" + serviceType + "/?type=" + vehicleType;
     };
-    factoryObj.vUpdateGlobalServiceListInfoURL = function(serviceType, options) {
-        return factoryObj.baseUrl + options + "/global/" + serviceType;
+    factoryObj.vUpdateGlobalServiceListInfoURL = function(serviceType, options, vehicleType) {
+        return factoryObj.baseUrl + options + "/global/" + serviceType + "/?type=" + vehicleType;
     };
 
     factoryObj.vLocalServiceListInfoURL = function(uniqueId, serviceType) {
@@ -108,6 +108,12 @@ angular.module('starter')
     factoryObj.createVendor = function(passwd) {
         return factoryObj.baseUrl + "vendor/signup/" + passwd;
     };
+
+
+    factoryObj.updateService = function() {
+        return factoryObj.baseUrl + "update/popup/service/";
+    };
+
     /****************************************************************************************************************************/
 
     return factoryObj;

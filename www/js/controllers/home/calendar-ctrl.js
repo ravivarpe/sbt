@@ -1,7 +1,7 @@
 angular.module('starter.home', ['ionic'])
 
 
-.controller('calendar-ctrl', function($scope, $http, CalendarDetailsFact, VendorInfoFact, stringDBrepo) {
+.controller('calendar-ctrl', function($scope, $http, CalendarDetailsFact, VendorInfoFact, stringDBrepo, UpdateService) {
 
 
 
@@ -24,6 +24,7 @@ angular.module('starter.home', ['ionic'])
 
     var date = new Date();
 
+    // UpdateService.update();
 
     $scope.$on('$stateChangeSuccess', function(event, toState) {
         if (toState.name == "vendor-app.home") {

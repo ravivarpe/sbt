@@ -1,3 +1,12 @@
+.login-logo{
+    width: 150px;
+    height: 150px;
+    margin-top: 10%;
+    margin-left: 26%;
+}
+
+
+
 map {
     display: block;
     width: 100%;
@@ -95,8 +104,25 @@ map {
     /*float: right;*/
 }
 
+.expand-toggle-arrow-font-error {
+    /*border: 1px solid white;*/
+    
+    color: black;
+    font-size: 25px;
+    /*border: 1px solid white;*/
+    /*margin-bottomx: 10px;*/
+    /*float: right;*/
+}
+
 .bg-item-divide-setting {
     background-color: #47639E;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    /*padding-top: 10px;*/
+    /*padding-bottom: 5px;*/
+}
+.bg-item-divide-setting-error {
+    background-color: red;
     border-top: 1px solid white;
     border-bottom: 1px solid white;
     /*padding-top: 10px;*/
@@ -170,7 +196,7 @@ label.input-edit-box.has-error input {
 
 .input-checkbox-par div i {
     color: #47639E;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: 700;
@@ -196,11 +222,12 @@ label.input-edit-box.has-error input {
 
 .input-select-option-par {
     margin-top: 15px;
+    /*border-radius: 10px;*/
 }
 
 .input-select-option-par i {
     color: #47639E;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: 700;
@@ -211,13 +238,14 @@ label.input-edit-box.has-error input {
 }
 
 .input-select-option-par select {
-    background-color: #47639E;
-    width: 140px;
+    /*background-color: #47639E;*/
+    width: 130px;
     height: 30px;
     margin-left: 20px;
     border: 1px solid #47639E;
-    color: white;
+    color: #47639E;
     text-align: center;
+    border-radius: 10px;
 }
 
 .button-modeling button {

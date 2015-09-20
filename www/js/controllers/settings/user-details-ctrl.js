@@ -74,17 +74,34 @@ angular.module('starter.userSettings', ['ionic', 'ngMessages'])
         "Saturday": 0
     };
 
+    $scope.vendorVerification = [{
+        "status": "Not verified",
+        "index" :0
+    },
+    {
+        "status": "verified",
+        "index":1
+    },
+    {
+        "status": "Silver Premium",
+        "index":2
+    },
+    {
+        "status": "Gold Premium",
+        "index":3
+    }];
+
 
     $scope.vendorServiceVehicleType = [{
-        "type": "Car Service only",
+        "type": "Car Service",
         "value": 0
     }, {
-        "type": "Bike Service only",
+        "type": "Bike Service",
         "value": 1
     }];
 
     $scope.selectedServiceType = {
-         value: 0
+        value: 0
     };
 
     userDetailsFact.getPersonalOverviewInfo($scope);
@@ -96,6 +113,9 @@ angular.module('starter.userSettings', ['ionic', 'ngMessages'])
 
     $scope.SavePersonalInfo = function() {
         // console.log($scope.selectedServiceType.value);
+        if (!vendorAccountForm.$valid)
+            return;
+
         $scope.overviewInfo.vendorVehicleServiceType = $scope.selectedServiceType.value;
         userDetailsFact.updateVendorOverviewInfo($scope);
         userDetailsFact.updatePersonalOverviewInfo($scope);

@@ -8,10 +8,10 @@ angular.module('starter')
     $scope.MoblieNumber = "";
 
 
-    if (!AuthService.isAuthenticated()) {
-            event.preventDefault();
-            $state.go('login');
-    }
+    // if (!AuthService.isAuthenticated()) {
+    //         event.preventDefault();
+    //         $state.go('login');
+    // }
 
     $scope.searchByMobile = function(searchContent) {
         var SelectedDateBookingInfo = {};

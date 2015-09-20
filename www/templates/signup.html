@@ -1,19 +1,83 @@
 <ion-view view-title="Sign-Up" name="signup-view">
-  <ion-content class="padding">
-      <div class="list list-inset">
-          <label class="item item-input">
-              <input type="text" placeholder="Email Id" ng-model="data.email">
-          </label>
-          <label class="item item-input">
-              <input type="text" placeholder="Phone Number" ng-model="data.phonenumber">
-          </label>
-          <label class="item item-input">
-              <input type="password" placeholder="Password" ng-model="data.password">
-          </label>
-          <label class="item item-input">
-              <input type="password" placeholder="Confirm Password" ng-model="data.cpassword">
-          </label>
-      </div>
-      <button class="button button-block button-positive" ng-click="signup(data)">Create Account</button>
-  </ion-content>
+    <ion-content class="padding">
+        <!-- <div class="list list-inset">
+            <label class="item item-input">
+                <input type="text" placeholder="Email Id" ng-model="data.email">
+            </label>
+            <label class="item item-input">
+                <input type="text" placeholder="Phone Number" ng-model="data.phonenumber">
+            </label>
+            <label class="item item-input">
+                <input type="password" placeholder="Password" ng-model="data.password">
+            </label>
+            <label class="item item-input">
+                <input type="password" placeholder="Confirm Password" ng-model="data.cpassword">
+            </label>
+        </div> -->
+        <div>
+            <img class="vehito-logo-font login-logo" src="img/login_logo.png">
+        </div>
+        <form name="signUpForm">
+            <label class="input-edit-box" ng-class="{ 'has-error' : submitted && signUpForm.email.$invalid}">
+                <span ng-if="(signUpForm.email.$dirty && data.email) || data.email">Email Id *</span>
+                <input type="email" name="email" ng-model="data.email" placeholder="Email Id *" ng-minlength="5" required />
+                <div ng-if='submitted' ng-messages="signUpForm.email.$error">
+                    <div ng-message="required">This field is required</div>
+                    <div ng-message="email">Your email is invalid</div>
+                    <div ng-message="minlength">This field is must be at least 5 characters.</div>
+                </div>
+            </label>
+            <label class="input-edit-box" ng-class="{ 'has-error' : submitted && signUpForm.phonenumber.$invalid}">
+                <span ng-if="(signUpForm.phonenumber.$dirty && data.phonenumber) || data.phonenumber">Mobile Number *</span>
+                <input type="text" name="phonenumber" ng-model="data.phonenumber" placeholder="Mobile Number *" maxlength="15" ng-minlength="4" ng-pattern="/[0-9]+/" required />
+                <div ng-if='submitted' ng-messages="signUpForm.phonenumber.$error">
+                    <div ng-message="required">This field is required</div>
+                    <div ng-message="pattern">This must contain only number</div>
+                    <div ng-message="minlength">This field is must be at least 5 characters.</div>
+                    <div ng-message="maxlength">This field is must be maximum 15 characters.</div>
+                </div>
+            </label>
+            <label class="input-edit-box" ng-class="{ 'has-error' : submitted && signUpForm.password.$invalid}">
+                <span ng-if="(signUpForm.password.$dirty && data.password) || data.password">Password *</span>
+                <input name="password" ng-model="data.password" placeholder="Password *" ng-minlength="5" ng-maxlength="15" type="password" required />
+                <div ng-if='submitted' ng-messages="signUpForm.password.$error">
+                    <div ng-message="required">This field is required</div>
+                    <div ng-message="minlength">This field is must be at least 5 characters.</div>
+                    <div ng-message="maxlength">This field is must be maximum 15 characters.</div>
+                </div>
+            </label>
+            <label class="input-edit-box" ng-class="{ 'has-error' : submitted && signUpForm.cpassword.$invalid}">
+                <span ng-if="(signUpForm.cpassword.$dirty && data.cpassword) || data.cpassword">Confirm Password *</span>
+                <input name="cpassword" ng-model="data.cpassword" placeholder="Confirm Password *" ng-minlength="5" ng-maxlength="15" type="password" required />
+                <div ng-if='submitted' ng-messages="signUpForm.cpassword.$error">
+                    <div ng-message="required">This field is required</div>
+                    <div ng-message="minlength">This field is must be at least 5 characters.</div>
+                    <div ng-message="maxlength">This field is must be maximum 15 characters.</div>
+                </div>
+            </label>
+            <div class="row input-select-option-par">
+                <div class="col">
+                    <i>Service Type</i></div>
+                <div class="col">
+                    <select ng-model="selectedServiceType.value" ng-options="serviceType.value as serviceType.type for serviceType in vendorServiceVehicleType" ng-change="changeVehicleTypeOption(selectedServiceType)">
+                    </select>
+                </div>
+            </div>
+            <div class="row input-checkbox-par">
+                <div class="col col-80" style="margin-top:0px; margin-left:0px;"><i>Authorized vendor</i></div>
+                <div class="col col-20" style="margin-top:-9px; margin-left:10px;">
+                    <div ionic-expand-arrow-switcher class="icon ion-android-checkbox-outline-blank" on-icon="ion-android-checkbox-outline-blank" off-icon="ion-android-checkbox-outline" ng-model="autherizedVendorSelect.Checked"></div>
+                </div>
+            </div>
+            <div class="row input-select-option-par" ng-show="autherizedVendorSelect.Checked === true">
+                <div class="col">
+                    <i>Vehicle</i></div>
+                <div class="col">
+                    <select ng-model="selectedVehicle.index" ng-options="vehicleType.index as vehicleType.name for vehicleType in vendorGlobalVehicleList" ng-change="changeVehicleOption(selectedServiceType)">
+                    </select>
+                </div>
+            </div>
+            <button type="submit" ng-click="signup(data, signUpForm);submitted=true" ng-keyup="submitted=false" class="button button-block button-positive">Create Account</button>
+        </form>
+    </ion-content>
 </ion-view>
