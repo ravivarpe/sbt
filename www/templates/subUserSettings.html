@@ -6,7 +6,7 @@
         <div ng-controller="sub-user-settings-ctrl" class="controller-placing">
             <div ng-controller="vendor-addr-ctrl">
                 <div class="vendor-status-card" ng-if="true">
-                    <form name="vendorAccountForm" ng-submit="SavePersonalInfo(vendorAccountForm)" novalidate>
+                    <form name="vendorAccountForm" ng-submit="SavePersonalInfo(vendorAccountForm, selectedItemListIndex);changePassword(vendorAccountForm, selectedItemListIndex)" novalidate>
                         <!-- <div class="row">
                             <div class="col col-30">
                                 <button class="button button-full button-assertive" type="submit" ng-click="submitted=true" ng-keyup="submitted=false" style="width:9em;">
@@ -71,7 +71,7 @@
                         <!-- contact information -->
                         <!-- <form name="vendorAccountForm"> -->
                         <div ng-if="selectedItemListIndex == 1">
-                            <div class="row bg-item-divide-setting" ng-class="{ 'bg-item-divide-setting-error' :  submitted && (vendorAccountForm.address.$invalid || vendorAccountForm.primaryEmailID.$invalid || vendorAccountForm.primaryPhoneNumber.$invalid || vendorAccountForm.zipCode.$invalid)}">
+                            <div class="row bg-item-divide-setting" ng-class="{ 'bg-item-divide-setting-error' :  submitted && (vendorAccountForm.address.$invalid || vendorAccountForm.primaryEmailID.$invalid || vendorAccountForm.primaryPhoneNumber.$invalid || vendorAccountForm.zipCode.$invalid || vendorAccountForm.primaryMobileNumber.$invalid)}">
                                 <div class="col col-70 setting-item-header">
                                     <span>{{itemInformation[selectedItemListIndex].Heading}}</span>
                                 </div>
@@ -97,7 +97,7 @@
                                 </label> -->
                                 <label class="input-edit-box" ng-class="{ 'has-error' :  submitted && vendorAccountForm.primaryMobileNumber.$invalid}">
                                     <span ng-if="(vendorAccountForm.primaryMobileNumber.$dirty && personalInfo.primaryMobileNumber) || personalInfo.primaryMobileNumber">Alt Mobile Number</span>
-                                    <input type="text" name="primaryMobileNumber" ng-model="personalInfo.primaryMobileNumber" placeholder="Alt Mobile Number" maxlength="15" ng-minlength="4" ng-pattern="/[0-9]+/" />
+                                    <input type="text" name="primaryMobileNumber" ng-model="personalInfo.primaryMobileNumber" placeholder="Alt Mobile Number" maxlength="15" ng-minlength="4" ng-pattern="/[0-9]+/" required />
                                     <div ng-if='submitted' ng-messages="vendorAccountForm.primaryMobileNumber.$error">
                                         <div ng-message="required">This field is required</div>
                                         <div ng-message="pattern">This must contain only number</div>
@@ -273,6 +273,8 @@
                                 </label>
                             </div>
                         </div>
+
+                        
                         <div ng-if="selectedItemListIndex == 4">
                             <div class="row bg-item-divide-setting" ng-class="{ 'bg-item-divide-setting-error' :  submitted && (vendorAccountForm.vendorName.$invalid || vendorAccountForm.vendorTitle.$invalid || vendorAccountForm.description.$invalid || vendorAccountForm.yearOfEstablish.$invalid)}">
                                 <div class="col col-80 setting-item-header">
@@ -284,8 +286,17 @@
                                     </button>
                                 </div>
                             </div>
+                            <!-- <div ng-if="passwordObj.status === passwordStatus.confirmState" style="color:red">
+                                password has
+                            </div> -->
+                            <div ng-show="passwordObj.status === passwordStatus.mismatch"  style="color:red">
+                                password mismatched
+                            </div>
+                            <div ng-show="passwordObj.status === passwordStatus.pwdFail"  style="color:red">
+                                Old password is wrong or network problem
+                            </div>
                             <div class="list">
-                                <label class="input-edit-box" ng-class="{ 'has-error' :  submitted && vendorAccountForm.primaryPhoneNumber.$invalid}">
+                                <!-- <label class="input-edit-box" ng-class="{ 'has-error' :  submitted && vendorAccountForm.primaryPhoneNumber.$invalid}">
                                     <span ng-if="(vendorAccountForm.primaryPhoneNumber.$dirty && overviewInfo.primaryPhoneNumber) || overviewInfo.primaryPhoneNumber">Mobile Number *</span>
                                     <input type="text" name="primaryPhoneNumber" ng-model="overviewInfo.primaryPhoneNumber" placeholder="Mobile Number *" maxlength="15" ng-minlength="4" ng-pattern="/[0-9]+/" required />
                                     <div ng-if='submitted' ng-messages="vendorAccountForm.primaryPhoneNumber.$error">
@@ -294,29 +305,29 @@
                                         <div ng-message="minlength">This field is must be at least 5 characters.</div>
                                         <div ng-message="maxlength">This field is must be maximum 15 characters.</div>
                                     </div>
-                                </label>
-                                <label class="input-edit-box" ng-class="{ 'has-error' : submitted && vendorAccountForm.vendorName.$invalid}">
-                                    <span ng-if="(vendorAccountForm.vendorName.$dirty && personalInfo.vendorName) || personalInfo.vendorName">Old Password *</span>
-                                    <input type="text" name="vendorName" ng-model="personalInfo.vendorName" placeholder="Old Password *" ng-minlength="5" ng-pattern="/^[A-Za-z0-9 ]+$/" required />
-                                    <div ng-if='submitted' ng-messages="vendorAccountForm.vendorName.$error">
+                                </label> -->
+                                <label class="input-edit-box" ng-class="{ 'has-error' : submitted && vendorAccountForm.oldPassword.$invalid}">
+                                    <span ng-if="(vendorAccountForm.oldPassword.$dirty && passwordObj.oldPassword) || passwordObj.oldPassword">Old Password *</span>
+                                    <input type="password" name="oldPassword" ng-model="passwordObj.oldPassword" placeholder="Old Password *" ng-minlength="5" ng-pattern="/^[A-Za-z0-9 ]+$/" required />
+                                    <div ng-if='submitted' ng-messages="vendorAccountForm.oldPassword.$error">
                                         <div ng-message="required">This field is required</div>
                                         <div ng-message="pattern">This must contain only letters or number</div>
                                         <div ng-message="minlength">This field is must be at least 5 characters.</div>
                                     </div>
                                 </label>
-                                <label class="input-edit-box" ng-class="{ 'has-error' :  submitted && vendorAccountForm.vendorTitle.$invalid}">
-                                    <span ng-if="(vendorAccountForm.vendorTitle.$dirty && personalInfo.vendorTitle) || personalInfo.vendorTitle">New Password *</span>
-                                    <input type="text" name="vendorTitle" ng-model="personalInfo.vendorTitle" placeholder="New Password *" ng-minlength="5" ng-pattern="/^[A-Za-z0-9 ]+$/" required />
-                                    <div ng-if='submitted' ng-messages="vendorAccountForm.vendorTitle.$error">
+                                <label class="input-edit-box" ng-class="{ 'has-error' :  submitted && vendorAccountForm.newPassword.$invalid}">
+                                    <span ng-if="(vendorAccountForm.newPassword.$dirty && passwordObj.newPassword) || passwordObj.newPassword">New Password *</span>
+                                    <input type="password" name="newPassword" ng-model="passwordObj.newPassword" placeholder="New Password *" ng-minlength="5" ng-pattern="/^[A-Za-z0-9 ]+$/" required />
+                                    <div ng-if='submitted' ng-messages="vendorAccountForm.newPassword.$error">
                                         <div ng-message="required">This field is required</div>
                                         <div ng-message="pattern">This must contain only letters or number</div>
                                         <div ng-message="minlength">This field is must be at least 5 characters.</div>
                                     </div>
                                 </label>
-                                <label class="input-edit-box" ng-class="{ 'has-error' :  submitted && vendorAccountForm.description.$invalid}">
-                                    <span ng-if="(vendorAccountForm.description.$dirty && personalInfo.description) || personalInfo.description">Confirm New Password *</span>
-                                    <input type="text" name="description" ng-model="personalInfo.description" placeholder="Confirm New Password *" ng-minlength="5" ng-maxlength="20" ng-pattern="/^[A-Za-z0-9 ]+$/" required />
-                                    <div ng-if='submitted' ng-messages="vendorAccountForm.description.$error">
+                                <label class="input-edit-box" ng-class="{ 'has-error' :  submitted && vendorAccountForm.confirmPassword.$invalid}">
+                                    <span ng-if="(vendorAccountForm.confirmPassword.$dirty && passwordObj.confirmPassword) || passwordObj.confirmPassword">Confirm New Password *</span>
+                                    <input type="password" name="confirmPassword" ng-model="passwordObj.confirmPassword" placeholder="Confirm New Password *" ng-minlength="5" ng-maxlength="20" ng-pattern="/^[A-Za-z0-9 ]+$/" required />
+                                    <div ng-if='submitted' ng-messages="vendorAccountForm.confirmPassword.$error">
                                         <div ng-message="required">This field is required</div>
                                         <div ng-message="pattern">This must contain only letters or number</div>
                                         <div ng-message="minlength">This field is must be at least 5 characters.</div>

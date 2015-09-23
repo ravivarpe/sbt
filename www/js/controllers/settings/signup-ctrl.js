@@ -63,7 +63,7 @@ angular.module('starter.auth')
         if (!formCheck.$valid)
             return;
 
-       
+       signUpForm.reset();
 
         if (data.password == data.cpassword) {
             SignupService.checkemail(data.email).then(function(authenticated) {

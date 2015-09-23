@@ -38,16 +38,22 @@ angular.module('starter')
     factoryObj.vdeleteHolidayInfoURL = function(uniqueId) {
         return factoryObj.baseUrl + "update/vendor/" + uniqueId + "/holiday/delete";
     };
+    /**
+     * change password
+     */
+    factoryObj.vChangePasswordURL = function(uniqueId) {
+        return factoryObj.baseUrl + "update/vendor/" + uniqueId + "/password";
+    };
 
 
     /**
      * FORGOT PASSWORD URL
      */
     factoryObj.vForgotPasswordURL = function(emailId, sendToForTest) {
-        if(sendToForTest)
-            return factoryObj.baseUrl + "user/" +emailId+"/forgotpassword?sendto="+sendToForTest;
+        if (sendToForTest)
+            return factoryObj.baseUrl + "user/" + emailId + "/forgotpassword?sendto=" + sendToForTest;
         else
-            return factoryObj.baseUrl + "user/" +emailId+"/forgotpassword";
+            return factoryObj.baseUrl + "user/" + emailId + "/forgotpassword";
     };
 
     /**

@@ -92,6 +92,20 @@ angular.module('starter.userSettings')
     }
 
 
+    factoryObj.updatePasswordInfo = function(scope) {
+        var response;
+        console.log(scope.overviewInfo);
+        httpOperationFact.sendHttpPutJsonRequest(stringDBrepo.vChangePasswordURL(stringDBrepo.vendorUniqueId), scope.passwordObj)
+            .then(function(data) {
+                    scope.passwordObj.status = scope.passwordStatus.confirmState;
+                },
+                function(response) {
+                    scope.passwordObj.status = scope.passwordStatus.pwdFail;
+                    console.log('albums retrieval failed.')
+                });
+    }
+
+
 
     return factoryObj;
 });

@@ -1,4 +1,4 @@
-angular.module('starter.subUserSettings', ['ionic', 'ngMessages'])
+angular.module('starter.subUserSettings', ['ionic', 'ngMessages', 'ngCordova'])
 
 
 .controller('sub-user-settings-ctrl', function($scope, userDetailsFact, $stateParams) {
@@ -22,7 +22,7 @@ angular.module('starter.subUserSettings', ['ionic', 'ngMessages'])
         "Checked": false,
         "index": 3
     }, {
-        "Heading": "Profile Settings",
+        "Heading": "Change Password",
         "Checked": false,
         "index": 4
     }];
@@ -120,24 +120,53 @@ angular.module('starter.subUserSettings', ['ionic', 'ngMessages'])
     userDetailsFact.getVendorOverviewInfo($scope);
     userDetailsFact.getVendorDailySlotsInfo($scope);
 
-   $scope.changePickUpDropOption = function(option){
-    $scope.overviewInfo.pickUpOrDrop = option.value;
-   };
+    $scope.changePickUpDropOption = function(option) {
+        $scope.overviewInfo.pickUpOrDrop = option.value;
+    };
 
-   
+
     // $scope.selectedOptionType.value = $scope.overviewInfo.pickUpOrDrop;
-   
+    $scope.passwordObj = {
+        "oldPassword": "",
+        "newPassword": "",
+        "confirmPassword": "",
+        "status": 0
+    };
+
+    $scope.passwordStatus = {
+        "initialState": 0,
+        "confirmState": 1,
+        "mismatch": 2,
+        "pwdFail": 3
+    };
+
+    $scope.changePassword = function(checkForm, index) {
+        if (!checkForm.$valid)
+            return;
+
+        if(index != 4)
+            return;
+
+        console.log($scope.passwordObj);
 
 
-    $scope.SavePersonalInfo = function(checkForm) {
+        if ($scope.passwordObj.newPassword == $scope.passwordObj.confirmPassword) {
+            userDetailsFact.updatePasswordInfo($scope);
+        } else
+            $scope.passwordObj.status = $scope.passwordStatus.mismatch;
+    };
+
+    $scope.SavePersonalInfo = function(checkForm, index) {
         // console.log(checkForm);
+        if(index == 4)
+            return;
         if (!checkForm.$valid)
             return;
         console.log($scope);
         userDetailsFact.updateVendorOverviewInfo($scope);
         userDetailsFact.updatePersonalOverviewInfo($scope);
         userDetailsFact.updateVendorDailySlotsInfo($scope);
-    }
+    };
 
 
 

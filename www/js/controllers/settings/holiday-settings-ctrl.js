@@ -113,6 +113,7 @@ angular.module('starter.holidays', ['ionic', 'ionic-datepicker'])
 
             var selectedDate = $scope.getTimeInSeconds(selectedDateInSecs.getFullYear(), selectedDateInSecs.getMonth(), selectedDateInSecs.getDate(), 0, 0)
             if (selectedDate > currentDate) {
+                $scope.AddHolidayFlag = false;
                 // console.log($scope.holidayDescription.description);
                 holidayAddForm.reset();
                 holidayGlobalTmp.date = selectedDate;
