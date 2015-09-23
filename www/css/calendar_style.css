@@ -211,7 +211,7 @@
 .calendar-col-box-selected {
     line-height: 85%;
     /*border: 1px solid white;*/
-    background: #FFF500;
+    background: #C8C8C8 ;
     border-radius: .6em;
     /*width: 100px;*/
 }

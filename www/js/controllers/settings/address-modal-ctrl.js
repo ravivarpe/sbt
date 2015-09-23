@@ -17,31 +17,53 @@ angular.module('starter.userSettings')
     };
 
     // Open the login modal
-    $scope.showMapView = function() {
-        $scope.modal.show();
-    };
+    $scope.showMapView = function(info) {
 
+        $scope.modal.show();
+
+        if (!info.latitude && !info.longitude)
+            return;
+
+        $scope.loading = $ionicLoading.show({
+            content: 'Getting current location...',
+            showBackdrop: false
+        });
+
+        navigator.geolocation.getCurrentPosition(function(pos) {
+
+            var latlng = new google.maps.LatLng(info.latitude, info.longitude);
+            $scope.map.setCenter(latlng);
+            $scope.placeMarker(latlng);
+
+            $ionicLoading.hide();
+        }, function(error) {
+            alert('Unable to get location: ' + error.message);
+        });
+
+    };
+    // "neighborhood", "sublocality_level_1", "sublocality_level_2"
     $scope.assignLocationInfo = function() {
         var coordKeys = Object.keys(locationCoordinates);
         for (i in userLocationInfo) {
             $scope.overviewInfo.latitude = locationCoordinates[coordKeys[0]];
             $scope.overviewInfo.longitude = locationCoordinates[coordKeys[1]];
-            for(j in userLocationInfo[i].address_components){
+            for (j in userLocationInfo[i].address_components) {
                 console.log(userLocationInfo[i].address_components[j].types[0]);
-                if(userLocationInfo[i].address_components[j].types[0] == "postal_code"){
-                   $scope.overviewInfo.zipCode = userLocationInfo[i].address_components[j].long_name;
-                }
-                else if(userLocationInfo[i].address_components[j].types[0] == "country"){
+                if (userLocationInfo[i].address_components[j].types[0] == "postal_code") {
+                    $scope.overviewInfo.zipCode = userLocationInfo[i].address_components[j].long_name;
+                } else if (userLocationInfo[i].address_components[j].types[0] == "country") {
                     $scope.personalInfo.country = userLocationInfo[i].address_components[j].long_name;
-                }
-                else if(userLocationInfo[i].address_components[j].types[0] == "administrative_area_level_1"){
+                } else if (userLocationInfo[i].address_components[j].types[0] == "administrative_area_level_1") {
                     $scope.personalInfo.state = userLocationInfo[i].address_components[j].long_name;
-                }
-                else if(userLocationInfo[i].address_components[j].types[0] == "locality"){
+                } else if (userLocationInfo[i].address_components[j].types[0] == "locality") {
                     $scope.personalInfo.city = userLocationInfo[i].address_components[j].long_name;
-                }
+                } 
+                
+
             }
-            alert($scope.personalInfo.city + ", "  + $scope.personalInfo.state + ", " + $scope.personalInfo.country + ", " +$scope.overviewInfo.zipCode);
+            $scope.overviewInfo.gpsAddress = userLocationInfo[i].formatted_address;
+
+            alert($scope.overviewInfo);
             break;
         }
         console.log($scope.personalInfo);
@@ -54,7 +76,7 @@ angular.module('starter.userSettings')
         google.maps.event.addDomListener($scope.map, 'click', function(e) {
             // e.preventDefault();
             // $scope.map.clearMarkers();
-            
+
             var geocoder = new google.maps.Geocoder();
             var coordKeys = Object.keys(e.latLng);
             console.log(coordKeys);
@@ -77,6 +99,7 @@ angular.module('starter.userSettings')
     };
     var marker;
     $scope.placeMarker = function(location) {
+        // console.log(location);
         if (marker)
             marker.setMap(null);
         marker = new google.maps.Marker({

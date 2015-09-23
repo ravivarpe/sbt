@@ -5,27 +5,30 @@ angular.module('starter.userSettings', ['ionic', 'ngMessages'])
 
     // $scope.checkedInfo = true;
     $scope.personalInfoTitle = {
-        "Heading": "Personal information",
-        "Checked": false
+        "Heading": "General",
+        "Checked": false,
+        "index":0
     };
     $scope.contactInfoTitle = {
-        "Heading": "Contact information",
-        "Checked": false
+        "Heading": "Contact",
+        "Checked": false,
+        "index":1
     };
     $scope.serviceInfoTitle = {
-        "Heading": "Services information",
-        "Checked": false
+        "Heading": "Services",
+        "Checked": false,
+        "index":2
     };
     $scope.soltInfoTitle = {
-        "Heading": "Slot information",
-        "Checked": false
+        "Heading": "Slots",
+        "Checked": false,
+        "index":4
     };
-
-    $scope.options = {
-        types: '(cities)',
-        country: 'in'
+    $scope.accountInfoTitle = {
+        "Heading": "Profile",
+        "Checked": false,
+        "index":5
     };
-
 
     $scope.overviewInfo = {
         "authorization": "",
@@ -64,39 +67,34 @@ angular.module('starter.userSettings', ['ionic', 'ngMessages'])
         "primaryLandLineNum": ""
     };
 
-    $scope.vendorSlotInfo = {
-        "Sunday": 0,
-        "Monday": 0,
-        "Tuesday": 0,
-        "Wednesday": 0,
-        "Thursday": 0,
-        "Friday": 0,
-        "Saturday": 0
-    };
 
     $scope.vendorVerification = [{
         "status": "Not verified",
-        "index" :0
+        "index" :0,
+        "color":"#FA3F05"
     },
     {
         "status": "verified",
-        "index":1
+        "index":1,
+        "color":"#09AC09"
     },
     {
         "status": "Silver Premium",
-        "index":2
+        "index":2,
+        "color":"#1D9683"
     },
     {
         "status": "Gold Premium",
-        "index":3
+        "index":3,
+        "color":"#BCA210"
     }];
 
 
     $scope.vendorServiceVehicleType = [{
-        "type": "Car Service",
+        "type": "Car",
         "value": 0
     }, {
-        "type": "Bike Service",
+        "type": "Bike",
         "value": 1
     }];
 
@@ -106,23 +104,6 @@ angular.module('starter.userSettings', ['ionic', 'ngMessages'])
 
     userDetailsFact.getPersonalOverviewInfo($scope);
     userDetailsFact.getVendorOverviewInfo($scope);
-    userDetailsFact.getVendorDailySlotsInfo($scope);
-
-
-
-
-    $scope.SavePersonalInfo = function(checkForm) {
-        // console.log($scope.selectedServiceType.value);
-        if (!checkForm.$valid)
-            return;
-
-        $scope.overviewInfo.vendorVehicleServiceType = $scope.selectedServiceType.value;
-        userDetailsFact.updateVendorOverviewInfo($scope);
-        userDetailsFact.updatePersonalOverviewInfo($scope);
-        userDetailsFact.updateVendorDailySlotsInfo($scope);
-    }
-
-
 
 
 

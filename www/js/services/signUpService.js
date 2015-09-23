@@ -1,4 +1,4 @@
-angular.module('signup.services', ['ionic'])
+angular.module('starter.auth')
 
 .service('SignupService', function($q, $http, httpOperationFact, stringDBrepo) {
     var globalServicesJson;

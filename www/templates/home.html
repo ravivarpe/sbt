@@ -30,11 +30,11 @@
             <div class="card vendor-highlevel-info-box">
                 <div class="row">
                     <div class="col col-55">
-                        <span class="vendor-rating-text-font">Rating:</span>                      
-                            <i ng-repeat="i in [] | range:VendorRatingValue" class="ion-ios-star rating-icon">                  
+                        <span class="vendor-rating-text-font">Rating:</span>
+                        <i ng-repeat="i in [] | range:VendorRatingValue" class="ion-ios-star rating-icon">                  
                             </i>
-                            <i ng-repeat="i in [] | range:(5-VendorRatingValue)" class="ion-ios-star-outline rating-icon">                  
-                            </i>                        
+                        <i ng-repeat="i in [] | range:(5-VendorRatingValue)" class="ion-ios-star-outline rating-icon">                  
+                            </i>
                     </div>
                     <!-- <div class="col col-10"></div> -->
                     <div class="col col-25 col-offset-10">
@@ -105,8 +105,11 @@
                         </div>
                         <!-- <i class="ion-record pending-service-count-details"></i> -->
                     </div>
-                    <div class="col col-20">
-                        <button class="button button-icon" ui-sref="vendor-app.bookingList({ calendarDetails: SelectedDateBookingInfo })"><span class="bookings-details-button col-box-day">Bookings</span></button>
+                    <div class="col col-20 booking-list-button">
+                        <button class="button button-small button-positive" ui-sref="vendor-app.bookingList({ calendarDetails: SelectedDateBookingInfo })">
+                            Bookings
+                        </button>
+                        <!-- <button class="button button-icon" ui-sref="vendor-app.bookingList({ calendarDetails: SelectedDateBookingInfo })"><span class="bookings-details-button col-box-day">Bookings</span></button> -->
                         <!-- <a ui-sref="vendor-app.bookingList({ calendarDetails: DateInSeconds })" class="hvr-fade"><span class="col-box-day">Bookings</span></a> -->
                         <!-- <button class="button button-icon"><i class="ion-chevron-right calendar-arrow-box"></i></button> -->
                     </div>

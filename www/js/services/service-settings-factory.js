@@ -61,7 +61,7 @@ angular.module('starter.serviceConfig')
 
     factoryObj.getGlobalListInformation = function(serviceType, scope, vehicleType) {
         var response;
-        console.log(stringDBrepo.vGlobalServiceListInfoURL(serviceType, vehicleType));
+        // console.log(stringDBrepo.vGlobalServiceListInfoURL(serviceType, vehicleType));
         httpOperationFact.sendHttpGetRequest(stringDBrepo.vGlobalServiceListInfoURL(serviceType, vehicleType))
             .then(function(data) {
                     if (serviceType == "services") {
@@ -103,6 +103,7 @@ angular.module('starter.serviceConfig')
                         factoryObj.processGlobalServiceSupportListInfo(scope);
                     } else if (serviceType == "vehicles") {
                         factoryObj.userVehicleJson = data;
+                        console.log(factoryObj.userVehicleJson);
                         factoryObj.processGlobalVehicleSupportListInfo(scope);
                     }
                     // console.log(data);
@@ -137,13 +138,13 @@ angular.module('starter.serviceConfig')
 
     factoryObj.processGlobalServiceSupportListInfo = function(scope) {
         if (factoryObj.globalServicesJson.length) {
-            scope.serviceListArrayItems = factoryObj.generateServicesJson(factoryObj.globalServicesJson, factoryObj.userServicesJson);
+            scope.serviceListArrayItems = factoryObj.generateServicesJson(factoryObj.globalServicesJson, factoryObj.userServicesJson, scope);
         }
     };
 
     factoryObj.processGlobalVehicleSupportListInfo = function(scope) {
-        if (factoryObj.globalServicesJson.length) {
-            scope.vehicleListArrayItems = factoryObj.generateServicesJson(factoryObj.globalVehicleJson, factoryObj.userVehicleJson);
+        if (factoryObj.globalVehicleJson.length) {
+            scope.vehicleListArrayItems = factoryObj.generateServicesJson(factoryObj.globalVehicleJson, factoryObj.userVehicleJson, scope);
             // console.log(scope.vehicleListArrayItems);
             // factoryObj.parseInputServiceSubmittedJson(scope.vehicleListArrayItems);
         }
@@ -157,7 +158,7 @@ angular.module('starter.serviceConfig')
     };
 
 
-    factoryObj.generateServicesJson = function(globalJson, userJson) {
+    factoryObj.generateServicesJson = function(globalJson, userJson, scope) {
         var mainObj = [];
         mainObj.length = 0;
         /*global opertaions*/
@@ -176,6 +177,7 @@ angular.module('starter.serviceConfig')
 
         angular.forEach(globalJson, function(value, key) {
             var primaryObj = {};
+            // console.log(scope.overviewInfo.brandSupportName);
 
             primaryObj.ServiceType = value.name;
             primaryObj.checked = false;
@@ -186,7 +188,9 @@ angular.module('starter.serviceConfig')
                 secondaryObj.checked = false;
                 primaryObj.SubServices.push(secondaryObj);
             }
-            mainObj.push(primaryObj);
+            if ((angular.equals(value.name, scope.overviewInfo.brandSupportName) == true) || (value.name == "")) {
+                mainObj.push(primaryObj);
+            }
         });
         // console.log(mainObj);
         factoryObj.checkExistingServiceConfig(userJson, mainObj);
@@ -201,7 +205,7 @@ angular.module('starter.serviceConfig')
 
             angular.forEach(GlobalJsonArray, function(valueG, keyG) {
 
-                if (angular.equals(valueS.list[0], valueG.ServiceType) == true) {
+                if ((angular.equals(valueS.list[0], valueG.ServiceType) == true) && (valueS.list.length > 1)) {
                     valueG.checked = true;
                     for (var i = 1; i < valueS.list.length; i++) {
                         for (var j in valueG.SubServices) {

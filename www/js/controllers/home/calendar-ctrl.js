@@ -31,9 +31,15 @@ angular.module('starter.home', ['ionic', 'ionic-toast'])
             $scope.initObjFuntion();
             $ionicNavBarDelegate.showBackButton(false);
         }
+        else
+            $ionicNavBarDelegate.showBackButton(true);
     });
 
+    // $scope.onGesture('swipedown', gestureCallBack, element, options);
 
+    // var gestureCallBack = function(){
+
+    // };
     
 
 

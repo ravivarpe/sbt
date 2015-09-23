@@ -3,7 +3,8 @@ angular.module('starter')
 .factory('stringDBrepo', function($http, $q) {
     var factoryObj = {};
     /***********************************************http urls***************************************************************/
-    factoryObj.baseUrl = 'http://52.88.98.165/vehito/';
+    // factoryObj.baseUrl = 'http://52.88.98.165/vehito/';
+    factoryObj.baseUrl = 'http://api.vehito.com/vehito/';
 
     /*****************************vendor home page url***********************************************************************/
     factoryObj.vendorUniqueId = "";
@@ -39,6 +40,19 @@ angular.module('starter')
     };
 
 
+    /**
+     * FORGOT PASSWORD URL
+     */
+    factoryObj.vForgotPasswordURL = function(emailId, sendToForTest) {
+        if(sendToForTest)
+            return factoryObj.baseUrl + "user/" +emailId+"/forgotpassword?sendto="+sendToForTest;
+        else
+            return factoryObj.baseUrl + "user/" +emailId+"/forgotpassword";
+    };
+
+    /**
+     * 
+     */
 
 
     factoryObj.vDailySlotsInfoURL = function(uniqueId) {

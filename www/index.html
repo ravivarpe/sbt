@@ -12,7 +12,6 @@
     <link href="css/settings.css" rel="stylesheet">
     <!-- <link href="lib/Hover/css/demo-page.css" rel="stylesheet"> -->
     <!-- <link href="lib/Hover/css/hover-min.css" rel="stylesheet"> -->
-    
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
@@ -28,14 +27,13 @@
     <script src="lib/angular-messages/angular-messages.js"></script>
     <script src="lib/angular-resource/angular-resource.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/controllers/settings/login-ctrl.js"></script>
+    <script src="js/controllers/settings/forgot-password-ctrl.js"></script>
+    <script src="js/controllers/settings/signup-ctrl.js"></script>
+    
     <script src="js/controllers.js"></script>
     <script src="js/services/string-ref-repo-factory.js"></script>
     <script src="lib/ionic-toast/dist/ionic-toast.bundle.min.js"></script>
-    
-    
-     <script src="js/services/auth.js"></script>
-      <script src="js/services/signUpService.js"></script>
-
     <!-- home page scripts -->
     <script src="js/configure/home-config.js"></script>
     <script src="js/controllers/home/search-ctrl.js"></script>
@@ -50,8 +48,13 @@
     <script src="js/controllers/settings/address-modal-ctrl.js"></script>
     <script src="js/controllers/settings/holiday-settings-ctrl.js"></script>
     <script src="js/controllers/settings/feedback-ctrl.js"></script>
-
+    
+    
+    <script src="js/controllers/settings/sub-user-setting-ctrl.js"></script>
+    
     <!-- booking list -->
+    <script src="js/services/auth.js"></script>
+    <script src="js/services/signUpService.js"></script>
     <script src="js/configure/booking-config.js"></script>
     <script src="js/controllers/booking/booking-status-ctrl.js"></script>
     <script src="js/controllers/booking/booking-details-ctrl.js"></script>
@@ -65,20 +68,14 @@
     <script src="js/services/data-loader.js"></script>
     <script src="js/services/user-details-factory.js"></script>
     <script src="js/services/UpdateService.js"></script>
-    
-
-
     <!-- popups -->
     <script src="js/popups/sort-booking-popup.js"></script>
-
     <!-- directives -->
     <script src="js/directive/auto-complete-directive.js"></script>
     <script src="js/directive/toggle-icon-directives.js"></script>
     <script src="js/directive/button-click-toggle-directive.js"></script>
     <script src="js/directive/radio-button-directive.js"></script>
     <script src="js/directive/map-directive.js"></script>
-    
-    
 </head>
 
 <body ng-app="starter" ng-controller="AppCtrl">

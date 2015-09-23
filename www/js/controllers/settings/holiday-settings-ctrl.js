@@ -56,7 +56,7 @@ angular.module('starter.holidays', ['ionic', 'ionic-datepicker'])
     $scope.processInputHolidayList = function(data) {
         for (i in data) {
             var dateInfo = new Date(data[i].date * 1000);
-            data[i].dateFormat = ("0" + dateInfo.getDate()).slice(-2) + "-" + ("0" + dateInfo.getMonth()).slice(-2) + "-" + dateInfo.getDate();
+            data[i].dateFormat = ("0" + dateInfo.getDate()).slice(-2) + "-" + ("0" + dateInfo.getMonth()).slice(-2) + "-" + dateInfo.getFullYear();
         }
         // console.log(data);
         $scope.holidaysArrayObj = data;
@@ -102,10 +102,10 @@ angular.module('starter.holidays', ['ionic', 'ionic-datepicker'])
         return Math.round(dateObj.getTime() / 1000);
     };
 
-    $scope.AddHolidayList = function(holidayAddForm) {
+    $scope.AddHolidayList = function(formCheck) {
         
 
-        if (!holidayAddForm.$valid)
+        if (!formCheck.$valid)
             return;
 
         if (selectedDateInSecs) {
@@ -114,10 +114,14 @@ angular.module('starter.holidays', ['ionic', 'ionic-datepicker'])
             var selectedDate = $scope.getTimeInSeconds(selectedDateInSecs.getFullYear(), selectedDateInSecs.getMonth(), selectedDateInSecs.getDate(), 0, 0)
             if (selectedDate > currentDate) {
                 // console.log($scope.holidayDescription.description);
+                holidayAddForm.reset();
                 holidayGlobalTmp.date = selectedDate;
                 holidayGlobalTmp.description = $scope.holidayDescription.description;
                 $scope.updateHolidayInfo(holidayGlobalTmp, "add");
+                $scope.holidayDescription.dateValidation = true;
             }
+            else
+                $scope.holidayDescription.dateValidation = false;
 
         }
 
@@ -137,7 +141,7 @@ angular.module('starter.holidays', ['ionic', 'ionic-datepicker'])
 
 
     $scope.datepickerObject = {
-        titleLabel: 'Title', //Optional
+        titleLabel: 'Date Picker', //Optional
         todayLabel: 'Today', //Optional
         closeLabel: 'Close', //Optional
         setLabel: 'Set', //Optional

@@ -1,4 +1,4 @@
-angular.module('login.services', ['ionic'])
+angular.module('starter.auth')
 
 .service('AuthService', function($q, $state, $http, $ionicPopup, USER_ROLES, httpOperationFact, stringDBrepo) {
     var LOCAL_TOKEN_KEY = 'yourTokenKey';

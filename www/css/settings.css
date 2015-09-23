@@ -137,15 +137,14 @@ map {
 }
 
 .item-heading-user-info {
-    color: #ffffff;
-    text-transform: uppercase;
+    color: #47639E;
+    /*text-transform: uppercase;*/
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 700;
     letter-spacing: 1.5px;
-    /*text-align: center;*/
-    
-    padding-top: 9px;
+    /*text-align: center;*/    
+    /*padding-top: 9px;*/    
 }
 
 .input-edit-box input {
@@ -159,13 +158,15 @@ map {
     
     color: #47639E;
     background-color: white;
+    text-indent: inherit;
 }
+
 /*.input-edit-box input:hover{
     border-bottom: 3px solid green;
 }*/
 
 .input-edit-box span {
-    color: green;
+    color: grey;
     text-transform: uppercase;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
@@ -309,7 +310,22 @@ label.input-edit-box.has-error input {
     margin-left: 5px;
 }
 
+/**
+ * item header font information
+ */
 
+.setting-item-header{
+    color: #ffffff;
+    /*text-transform: uppercase;*/
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    /*text-align: center;*/
+    /*vertical-align: middle;*/
+    margin-left: 5px;
+    margin-top: 5px;
+}
 
 
 
@@ -333,3 +349,37 @@ label.input-edit-box.has-error input {
     /*margin-left: 10%;*/
 }
 
+/**
+ *set vendor status information
+ */
+.vendor-status-card{
+    background: rgba(248, 248, 248, 0.9);
+    border-top: 2px solid #47639E;
+    /*border-bottom: 2px solid #47639E;*/
+    box-shadow: 0 10px 10px -5px #47639E;
+
+    margin-top: 20px;
+    /*padding-bottom: 10px;*/
+}
+
+.vendor-status-card h{
+    color: #47639E;
+    /*text-transform: uppercase;*/
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    /*text-align: center;*/
+    /*vertical-align: middle;*/
+    /*margin-left: 5px;*/
+}
+
+
+
+.setting-arrow-fonts{
+    font-size: 10px;
+}
+
+.loading-container .loading{
+        background-color: rgba(0, 0, 0, 0.0); !important
+}

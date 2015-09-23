@@ -29,12 +29,11 @@ angular.module('starter')
         .state('login', {
             url: '/login',
             templateUrl: 'templates/login.html',
-            controller: 'LoginCtrl'
-        })
+        })                
         .state('signup', {
             url: '/signup',
             templateUrl: 'templates/signup.html',
-            controller: 'SignupCtrl'
+            // controller: 'SignupCtrl'
         })
         .state('vendor-app', {
             url: "/vendor-app",
@@ -93,6 +92,15 @@ angular.module('starter')
             views: {
                 'menuContent': {
                     templateUrl: "templates/userSettings.html",
+                    // controller: 'homeCtrl'
+                }
+            }
+        })
+        .state('vendor-app.subUserSettings', {
+            url: "/userSettings/:settingsID",
+            views: {
+                'menuContent': {
+                    templateUrl: "templates/subUserSettings.html",
                     // controller: 'homeCtrl'
                 }
             }

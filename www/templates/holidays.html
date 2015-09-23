@@ -15,12 +15,12 @@
                     </div>
                 </div>
                 <div ng-if="AddHolidayFlag === true">
-                    <div ng-if="holidayDescription.dateValidation === false" style="color:red; margin-left:10px;">
-                        Error: Date is older or equal to today date
+                    <div ng-if="holidayDescription.dateValidation === false" style="color:red; margin-left:10px; text-align=center;">
+                        Error: Selected date should be next day date.
                     </div>
                     <div class="row">
                         <div class="col">
-                            <ionic-datepicker input-obj="datepickerObject">
+                            <ionic-datepicker input-obj="datepickerObject" style="width:100%;">
                                 <button type="input" class="button button-block button-positive"> {{datepickerObject.inputDate | date:'dd - MMMM - yyyy'}}</button>
                             </ionic-datepicker>
                         </div>

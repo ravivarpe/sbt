@@ -1,6 +1,6 @@
 angular.module('starter.userSettings')
 
-.factory('userDetailsFact', function(httpOperationFact, stringDBrepo) {
+.factory('userDetailsFact', function(httpOperationFact, stringDBrepo, $ionicHistory) {
     var factoryObj = {};
 
     factoryObj.setUserPersonalInfo = function(scope) {
@@ -27,6 +27,10 @@ angular.module('starter.userSettings')
         httpOperationFact.sendHttpGetRequest(stringDBrepo.vOverviewInfoURL(stringDBrepo.vendorUniqueId))
             .then(function(data) {
                     scope.overviewInfo = data;
+
+                    if ($ionicHistory.currentStateName() == "vendor-app.subUserSettings")
+                        scope.selectedOptionType.value = scope.overviewInfo.pickUpOrDrop;
+
                     console.log(data);
                 },
                 function(response) {

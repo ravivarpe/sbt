@@ -1,4 +1,4 @@
-angular.module('update.services', ['ionic'])
+angular.module('starter.home')
 
 
 .service('UpdateService', function($http, $state, $ionicPopup, httpOperationFact, stringDBrepo, $ionicPlatform) {

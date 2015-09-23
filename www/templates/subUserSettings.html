@@ -1,0 +1,333 @@
+<ion-view>
+    <ion-nav-title>
+        <span class="title-header-large-font">Account Settings</span>
+    </ion-nav-title>
+    <ion-content scrollbar-y="false" has-bouncing="true" class="home-background-image">
+        <div ng-controller="sub-user-settings-ctrl" class="controller-placing">
+            <div ng-controller="vendor-addr-ctrl">
+                <div class="vendor-status-card" ng-if="true">
+                    <form name="vendorAccountForm" ng-submit="SavePersonalInfo(vendorAccountForm)" novalidate>
+                        <!-- <div class="row">
+                            <div class="col col-30">
+                                <button class="button button-full button-assertive" type="submit" ng-click="submitted=true" ng-keyup="submitted=false" style="width:9em;">
+                                    Save Changes
+                                </button>
+                            </div>
+                        </div> -->
+                        <!-- personal information -->
+                        <div ng-if="selectedItemListIndex == 0">
+                            <div class="row bg-item-divide-setting" ng-class="{ 'bg-item-divide-setting-error' :  submitted && (vendorAccountForm.vendorName.$invalid || vendorAccountForm.vendorTitle.$invalid || vendorAccountForm.description.$invalid || vendorAccountForm.yearOfEstablish.$invalid)}">
+                                <div class="col col-80 setting-item-header">
+                                    <span>{{itemInformation[selectedItemListIndex].Heading}}</span>
+                                </div>
+                                <div class="col col-20 button-modeling">
+                                    <button class="button button-small" type="submit" ng-click="submitted=true" ng-keyup="submitted=false">
+                                        <i>Save</i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="list">
+                                <label class="input-edit-box" ng-class="{ 'has-error' : submitted && vendorAccountForm.vendorName.$invalid}">
+                                    <span ng-if="(vendorAccountForm.vendorName.$dirty && personalInfo.vendorName) || personalInfo.vendorName">Contact person name *</span>
+                                    <input type="text" name="vendorName" ng-model="personalInfo.vendorName" placeholder="Contact person name *" ng-minlength="5" ng-pattern="/^[A-Za-z0-9 ]+$/" required />
+                                    <div ng-if='submitted' ng-messages="vendorAccountForm.vendorName.$error">
+                                        <div ng-message="required">This field is required</div>
+                                        <div ng-message="pattern">This must contain only letters or number</div>
+                                        <div ng-message="minlength">This field is must be at least 5 characters.</div>
+                                    </div>
+                                </label>
+                                <label class="input-edit-box" ng-class="{ 'has-error' :  submitted && vendorAccountForm.vendorTitle.$invalid}">
+                                    <span ng-if="(vendorAccountForm.vendorTitle.$dirty && personalInfo.vendorTitle) || personalInfo.vendorTitle">Service center name *</span>
+                                    <input type="text" name="vendorTitle" ng-model="personalInfo.vendorTitle" placeholder="Service center name *" ng-minlength="5" ng-pattern="/^[A-Za-z0-9 ]+$/" required />
+                                    <div ng-if='submitted' ng-messages="vendorAccountForm.vendorTitle.$error">
+                                        <div ng-message="required">This field is required</div>
+                                        <div ng-message="pattern">This must contain only letters or number</div>
+                                        <div ng-message="minlength">This field is must be at least 5 characters.</div>
+                                    </div>
+                                </label>
+                                <label class="input-edit-box" ng-class="{ 'has-error' :  submitted && vendorAccountForm.description.$invalid}">
+                                    <span ng-if="(vendorAccountForm.description.$dirty && personalInfo.description) || personalInfo.description">Description *</span>
+                                    <input type="text" name="description" ng-model="personalInfo.description" placeholder="Description *" ng-minlength="5" ng-maxlength="20" ng-pattern="/^[A-Za-z0-9 ]+$/" required />
+                                    <div ng-if='submitted' ng-messages="vendorAccountForm.description.$error">
+                                        <div ng-message="required">This field is required</div>
+                                        <div ng-message="pattern">This must contain only letters or number</div>
+                                        <div ng-message="minlength">This field is must be at least 5 characters.</div>
+                                        <div ng-message="maxlength">This field is must be maximum 50 characters.</div>
+                                    </div>
+                                </label>
+                                <label class="input-edit-box" ng-class="{ 'has-error' :  submitted && vendorAccountForm.yearOfEstablish.$invalid}">
+                                    <span ng-if="(vendorAccountForm.yearOfEstablish.$dirty && personalInfo.yearOfEstablish) || personalInfo.yearOfEstablish">Year of establishment (YYYY) *</span>
+                                    <input type="text" name="yearOfEstablish" ng-model="personalInfo.yearOfEstablish" placeholder="Year of establishment (YYYY) *" maxlength="4" ng-minlength="4" ng-pattern="/[0-9]+/" required />
+                                    <div ng-if='submitted' ng-messages="vendorAccountForm.yearOfEstablish.$error">
+                                        <div ng-message="required">This field is required</div>
+                                        <div ng-message="pattern">This must contain only number</div>
+                                        <div ng-message="minlength">This field is must be at least 4 characters.</div>
+                                        <div ng-message="maxlength">This field is must be maximum 50 characters.</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- </form> -->
+                        <!-- contact information -->
+                        <!-- <form name="vendorAccountForm"> -->
+                        <div ng-if="selectedItemListIndex == 1">
+                            <div class="row bg-item-divide-setting" ng-class="{ 'bg-item-divide-setting-error' :  submitted && (vendorAccountForm.address.$invalid || vendorAccountForm.primaryEmailID.$invalid || vendorAccountForm.primaryPhoneNumber.$invalid || vendorAccountForm.zipCode.$invalid)}">
+                                <div class="col col-70 setting-item-header">
+                                    <span>{{itemInformation[selectedItemListIndex].Heading}}</span>
+                                </div>
+                                <div class="col col-10">
+                                    <div class="ion-ios-location expand-toggle-arrow-font" ionic-button-click-toggle on-icon="calendar-arrow-box" off-icon="calendar-arrow-box-fade" ng-click="showMapView(overviewInfo)" ng-class="{ 'expand-toggle-arrow-font-error' :  submitted && (vendorAccountForm.zipCode.$invalid)}"></div>
+                                </div>
+                                <div class="col col-20 button-modeling">
+                                    <button class="button button-small" type="submit" ng-click="submitted=true" ng-keyup="submitted=false">
+                                        <i>Save</i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="list">
+                                <!-- <label class="input-edit-box" ng-class="{ 'has-error' :  submitted && vendorAccountForm.primaryEmailID.$invalid}">
+                                    <span ng-if="(vendorAccountForm.primaryEmailID.$dirty && overviewInfo.primaryEmailID) || overviewInfo.primaryEmailID">Email ID *</span>
+                                    <input type="email" name="primaryEmailID" ng-model="overviewInfo.primaryEmailID" placeholder="Email ID *" ng-minlength="5" required />
+                                    <div ng-if='submitted' ng-messages="vendorAccountForm.primaryEmailID.$error">
+                                        <div ng-message="required">This field is required</div>
+                                        <div ng-message="email">Your email address is invalid</div>
+                                        <div ng-message="pattern">This must contain only letters or number</div>
+                                        <div ng-message="minlength">This field is must be at least 5 characters.</div>
+                                    </div>
+                                </label> -->
+                                <label class="input-edit-box" ng-class="{ 'has-error' :  submitted && vendorAccountForm.primaryMobileNumber.$invalid}">
+                                    <span ng-if="(vendorAccountForm.primaryMobileNumber.$dirty && personalInfo.primaryMobileNumber) || personalInfo.primaryMobileNumber">Alt Mobile Number</span>
+                                    <input type="text" name="primaryMobileNumber" ng-model="personalInfo.primaryMobileNumber" placeholder="Alt Mobile Number" maxlength="15" ng-minlength="4" ng-pattern="/[0-9]+/" />
+                                    <div ng-if='submitted' ng-messages="vendorAccountForm.primaryMobileNumber.$error">
+                                        <div ng-message="required">This field is required</div>
+                                        <div ng-message="pattern">This must contain only number</div>
+                                        <div ng-message="minlength">This field is must be at least 5 characters.</div>
+                                        <div ng-message="maxlength">This field is must be maximum 15 characters.</div>
+                                    </div>
+                                </label>
+                                <label class="input-edit-box" ng-class="{ 'has-error' :  submitted && vendorAccountForm.address.$invalid}">
+                                    <span ng-if="(vendorAccountForm.address.$dirty && personalInfo.address) || personalInfo.address">Address *</span>
+                                    <input type="text" name="address" ng-model="personalInfo.address" placeholder="Address *" ng-minlength="10" ng-maxlength="100" required />
+                                    <div ng-if='submitted' ng-messages="vendorAccountForm.address.$error">
+                                        <div ng-message="required">This field is required</div>
+                                        <div ng-message="minlength">This field is must be at least 5 characters.</div>
+                                        <div ng-message="maxlength">This field is must be maximum 50 characters.</div>
+                                    </div>
+                                </label>
+                                <div ng-show="overviewInfo.longitude != 0 && overviewInfo.latitude != 0">
+                                    <label class="input-edit-box">
+                                        <span>City *</span>
+                                        <input type="text" ng-model="personalInfo.city" placeholder="City *" />
+                                    </label>
+                                    <label class="input-edit-box">
+                                        <span>State *</span>
+                                        <input type="text" ng-model="personalInfo.state" placeholder="State *" />
+                                    </label>
+                                    <label class="input-edit-box">
+                                        <span>Country *</span>
+                                        <input type="text" ng-model="personalInfo.country" placeholder="Country *" />
+                                    </label>
+                                    <label class="input-edit-box" ng-class="{ 'has-error' :  submitted && vendorAccountForm.zipCode.$invalid}">
+                                        <span ng-if="(vendorAccountForm.zipCode.$dirty && overviewInfo.zipCode) || overviewInfo.zipCode">ZipCode *</span>
+                                        <input type="text" name="zipCode" ng-model="overviewInfo.zipCode" placeholder="ZipCode *" maxlength="15" ng-minlength="4" ng-pattern="/[0-9]+/" required />
+                                        <div ng-if='submitted' ng-messages="vendorAccountForm.zipCode.$error">
+                                            <div ng-message="required">This field is required</div>
+                                            <div ng-message="pattern">This must contain only number</div>
+                                            <div ng-message="minlength">This field is must be at least 5 characters.</div>
+                                            <div ng-message="maxlength">This field is must be maximum 15 characters.</div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- </form> -->
+                        <!-- <form name="vendorAccountForm"> -->
+                        <div ng-if="selectedItemListIndex == 2">
+                            <div class="row bg-item-divide-setting" ng-class="{ 'bg-item-divide-setting-error' :  submitted && (vendorAccountForm.minServiceCharge.$invalid || vendorAccountForm.minWaitingTime.$invalid)}">
+                                <div class="col col-80 setting-item-header">
+                                    <span>{{itemInformation[selectedItemListIndex].Heading}}</span>
+                                </div>
+                                <div class="col col-20 button-modeling">
+                                    <button class="button button-small" type="submit" ng-click="submitted=true" ng-keyup="submitted=false">
+                                        <i>Save</i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="list">
+                                <label class="input-edit-box" ng-class="{ 'has-error' :  submitted && vendorAccountForm.minServiceCharge.$invalid}">
+                                    <span ng-if="(vendorAccountForm.minServiceCharge.$dirty && overviewInfo.minServiceCharge) || overviewInfo.minServiceCharge">Min Service Charge *</span>
+                                    <input type="text" name="minServiceCharge" ng-model="overviewInfo.minServiceCharge" placeholder="Min Service Charge *" maxlength="15" ng-minlength="2" ng-pattern="/[0-9]+/" required />
+                                    <div ng-if='submitted' ng-messages="vendorAccountForm.minServiceCharge.$error">
+                                        <div ng-message="required">This field is required</div>
+                                        <div ng-message="pattern">This must contain only number</div>
+                                        <div ng-message="minlength">This field is must be at least 2 characters.</div>
+                                        <div ng-message="maxlength">This field is must be maximum 15 characters.</div>
+                                    </div>
+                                </label>
+                                <label class="input-edit-box" ng-class="{ 'has-error' :  submitted && vendorAccountForm.minWaitingTime.$invalid}">
+                                    <span ng-if="(vendorAccountForm.minWaitingTime.$dirty && overviewInfo.minWaitingTime) || overviewInfo.minWaitingTime">Vehicle Delivery Time (hrs) *</span>
+                                    <input type="text" name="minWaitingTime" ng-model="overviewInfo.minWaitingTime" placeholder="Vehicle Delivery Time (hrs) *" maxlength="3" ng-minlength="2" ng-pattern="/[0-9]+/" required />
+                                    <div ng-if='submitted' ng-messages="vendorAccountForm.minWaitingTime.$error">
+                                        <div ng-message="required">This field is required</div>
+                                        <div ng-message="pattern">This must contain only number</div>
+                                        <div ng-message="minlength">This field is must be at least 2 characters.</div>
+                                        <div ng-message="maxlength">This field is must be maximum 3 characters.</div>
+                                    </div>
+                                </label>
+                                <div class="row input-select-option-par" style="margin-left:-13px">
+                                    <div class="col">
+                                        <i>Pickup/Drop</i></div>
+                                    <div class="col">
+                                        <select ng-model="selectedOptionType.value" ng-options="serviceType.value as serviceType.type for serviceType in vendorPickUpDropOptions" ng-change="changePickUpDropOption(selectedOptionType)">
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- <span class="input-checkbox-par">
+                                    <div ionic-expand-arrow-switcher class="icon ion-android-checkbox-outline-blank" on-icon="ion-android-checkbox-outline-blank" off-icon="ion-android-checkbox-outline" ng-model="overviewInfo.pickUpOrDrop"><i>Pickup/Drop</i></div>
+                                </span> -->
+                            </div>
+                        </div>
+                        <!-- </form> -->
+                        <!-- <form name="vendorAccountForm"> -->
+                        <div ng-if="selectedItemListIndex == 3">
+                            <div class="row bg-item-divide-setting">
+                                <div class="col col-80 setting-item-header">
+                                    <span>{{itemInformation[selectedItemListIndex].Heading}}</span>
+                                </div>
+                                <div class="col col-20 button-modeling">
+                                    <button class="button button-small" type="submit" ng-click="submitted=true" ng-keyup="submitted=false">
+                                        <i>Save</i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="list">
+                                <label class="input-edit-box" ng-class="{ 'has-error' :  submitted && vendorAccountForm.Sunday.$invalid}">
+                                    <span>Sunday *</span>
+                                    <input type="text" name="Sunday" ng-model="vendorSlotInfo.Sunday" placeholder="Sunday *" maxlength="3" ng-minlength="1" ng-pattern="/[0-9]+/" />
+                                    <div ng-if='submitted' ng-messages="vendorAccountForm.Sunday.$error">
+                                        <div ng-message="required">This field is required</div>
+                                        <div ng-message="pattern">This must contain only number</div>
+                                        <div ng-message="minlength">This field is must be at least 1 characters.</div>
+                                        <div ng-message="maxlength">This field is must be maximum 3 characters.</div>
+                                    </div>
+                                </label>
+                                <label class="input-edit-box" ng-class="{ 'has-error' :  submitted && vendorAccountForm.Monday.$invalid}">
+                                    <span>Monday *</span>
+                                    <input type="text" name="Monday" ng-model="vendorSlotInfo.Monday" placeholder="Monday *" maxlength="3" ng-minlength="1" ng-pattern="/[0-9]+/" />
+                                    <div ng-if='submitted' ng-messages="vendorAccountForm.Monday.$error">
+                                        <div ng-message="required">This field is required</div>
+                                        <div ng-message="pattern">This must contain only number</div>
+                                        <div ng-message="minlength">This field is must be at least 1 characters.</div>
+                                        <div ng-message="maxlength">This field is must be maximum 3 characters.</div>
+                                    </div>
+                                </label>
+                                <label class="input-edit-box" ng-class="{ 'has-error' :  submitted && vendorAccountForm.Tuesday.$invalid}">
+                                    <span>Tuesday *</span>
+                                    <input type="text" name="Tuesday" ng-model="vendorSlotInfo.Tuesday" placeholder="Tuesday *" maxlength="3" ng-minlength="1" ng-pattern="/[0-9]+/" />
+                                    <div ng-if='submitted' ng-messages="vendorAccountForm.Tuesday.$error">
+                                        <div ng-message="required">This field is required</div>
+                                        <div ng-message="pattern">This must contain only number</div>
+                                        <div ng-message="minlength">This field is must be at least 1 characters.</div>
+                                        <div ng-message="maxlength">This field is must be maximum 3 characters.</div>
+                                    </div>
+                                </label>
+                                <label class="input-edit-box" ng-class="{ 'has-error' :  submitted && vendorAccountForm.Wednesday.$invalid}">
+                                    <span>Wednesday *</span>
+                                    <input type="text" name="Wednesday" ng-model="vendorSlotInfo.Wednesday" placeholder="Wednesday *" maxlength="3" ng-minlength="1" ng-pattern="/[0-9]+/" />
+                                    <div ng-if='submitted' ng-messages="vendorAccountForm.Wednesday.$error">
+                                        <div ng-message="required">This field is required</div>
+                                        <div ng-message="pattern">This must contain only number</div>
+                                        <div ng-message="minlength">This field is must be at least 1 characters.</div>
+                                        <div ng-message="maxlength">This field is must be maximum 3 characters.</div>
+                                    </div>
+                                </label>
+                                <label class="input-edit-box" ng-class="{ 'has-error' :  submitted && vendorAccountForm.Thursday.$invalid}">
+                                    <span>Thursday *</span>
+                                    <input type="text" name="Thursday" ng-model="vendorSlotInfo.Thursday" placeholder="Thursday *" maxlength="3" ng-minlength="1" ng-pattern="/[0-9]+/" />
+                                    <div ng-if='submitted' ng-messages="vendorAccountForm.Thursday.$error">
+                                        <div ng-message="required">This field is required</div>
+                                        <div ng-message="pattern">This must contain only number</div>
+                                        <div ng-message="minlength">This field is must be at least 1 characters.</div>
+                                        <div ng-message="maxlength">This field is must be maximum 3 characters.</div>
+                                    </div>
+                                </label>
+                                <label class="input-edit-box" ng-class="{ 'has-error' :  submitted && vendorAccountForm.Friday.$invalid}">
+                                    <span>Friday *</span>
+                                    <input type="text" name="Friday" ng-model="vendorSlotInfo.Friday" placeholder="Friday *" maxlength="3" ng-minlength="1" ng-pattern="/[0-9]+/" />
+                                    <div ng-if='submitted' ng-messages="vendorAccountForm.Friday.$error">
+                                        <div ng-message="required">This field is required</div>
+                                        <div ng-message="pattern">This must contain only number</div>
+                                        <div ng-message="minlength">This field is must be at least 1 characters.</div>
+                                        <div ng-message="maxlength">This field is must be maximum 3 characters.</div>
+                                    </div>
+                                </label>
+                                <label class="input-edit-box" ng-class="{ 'has-error' :  submitted && vendorAccountForm.Saturday.$invalid}">
+                                    <span>Saturday *</span>
+                                    <input type="text" name="Saturday" ng-model="vendorSlotInfo.Saturday" placeholder="Saturday *" maxlength="3" ng-minlength="1" ng-pattern="/[0-9]+/" />
+                                    <div ng-if='submitted' ng-messages="vendorAccountForm.Saturday.$error">
+                                        <div ng-message="required">This field is required</div>
+                                        <div ng-message="pattern">This must contain only number</div>
+                                        <div ng-message="minlength">This field is must be at least 1 characters.</div>
+                                        <div ng-message="maxlength">This field is must be maximum 3 characters.</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div ng-if="selectedItemListIndex == 4">
+                            <div class="row bg-item-divide-setting" ng-class="{ 'bg-item-divide-setting-error' :  submitted && (vendorAccountForm.vendorName.$invalid || vendorAccountForm.vendorTitle.$invalid || vendorAccountForm.description.$invalid || vendorAccountForm.yearOfEstablish.$invalid)}">
+                                <div class="col col-80 setting-item-header">
+                                    <span>{{itemInformation[selectedItemListIndex].Heading}}</span>
+                                </div>
+                                <div class="col col-20 button-modeling">
+                                    <button class="button button-small" type="submit" ng-click="submitted=true" ng-keyup="submitted=false">
+                                        <i>Save</i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="list">
+                                <label class="input-edit-box" ng-class="{ 'has-error' :  submitted && vendorAccountForm.primaryPhoneNumber.$invalid}">
+                                    <span ng-if="(vendorAccountForm.primaryPhoneNumber.$dirty && overviewInfo.primaryPhoneNumber) || overviewInfo.primaryPhoneNumber">Mobile Number *</span>
+                                    <input type="text" name="primaryPhoneNumber" ng-model="overviewInfo.primaryPhoneNumber" placeholder="Mobile Number *" maxlength="15" ng-minlength="4" ng-pattern="/[0-9]+/" required />
+                                    <div ng-if='submitted' ng-messages="vendorAccountForm.primaryPhoneNumber.$error">
+                                        <div ng-message="required">This field is required</div>
+                                        <div ng-message="pattern">This must contain only number</div>
+                                        <div ng-message="minlength">This field is must be at least 5 characters.</div>
+                                        <div ng-message="maxlength">This field is must be maximum 15 characters.</div>
+                                    </div>
+                                </label>
+                                <label class="input-edit-box" ng-class="{ 'has-error' : submitted && vendorAccountForm.vendorName.$invalid}">
+                                    <span ng-if="(vendorAccountForm.vendorName.$dirty && personalInfo.vendorName) || personalInfo.vendorName">Old Password *</span>
+                                    <input type="text" name="vendorName" ng-model="personalInfo.vendorName" placeholder="Old Password *" ng-minlength="5" ng-pattern="/^[A-Za-z0-9 ]+$/" required />
+                                    <div ng-if='submitted' ng-messages="vendorAccountForm.vendorName.$error">
+                                        <div ng-message="required">This field is required</div>
+                                        <div ng-message="pattern">This must contain only letters or number</div>
+                                        <div ng-message="minlength">This field is must be at least 5 characters.</div>
+                                    </div>
+                                </label>
+                                <label class="input-edit-box" ng-class="{ 'has-error' :  submitted && vendorAccountForm.vendorTitle.$invalid}">
+                                    <span ng-if="(vendorAccountForm.vendorTitle.$dirty && personalInfo.vendorTitle) || personalInfo.vendorTitle">New Password *</span>
+                                    <input type="text" name="vendorTitle" ng-model="personalInfo.vendorTitle" placeholder="New Password *" ng-minlength="5" ng-pattern="/^[A-Za-z0-9 ]+$/" required />
+                                    <div ng-if='submitted' ng-messages="vendorAccountForm.vendorTitle.$error">
+                                        <div ng-message="required">This field is required</div>
+                                        <div ng-message="pattern">This must contain only letters or number</div>
+                                        <div ng-message="minlength">This field is must be at least 5 characters.</div>
+                                    </div>
+                                </label>
+                                <label class="input-edit-box" ng-class="{ 'has-error' :  submitted && vendorAccountForm.description.$invalid}">
+                                    <span ng-if="(vendorAccountForm.description.$dirty && personalInfo.description) || personalInfo.description">Confirm New Password *</span>
+                                    <input type="text" name="description" ng-model="personalInfo.description" placeholder="Confirm New Password *" ng-minlength="5" ng-maxlength="20" ng-pattern="/^[A-Za-z0-9 ]+$/" required />
+                                    <div ng-if='submitted' ng-messages="vendorAccountForm.description.$error">
+                                        <div ng-message="required">This field is required</div>
+                                        <div ng-message="pattern">This must contain only letters or number</div>
+                                        <div ng-message="minlength">This field is must be at least 5 characters.</div>
+                                        <div ng-message="maxlength">This field is must be maximum 50 characters.</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
