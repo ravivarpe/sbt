@@ -35,9 +35,11 @@ angular.module('starter.auth', ['ionic', 'ngMessages'])
 
 .controller('LoginCtrl', function($scope, $state, $ionicPopup, AuthService) {
     $scope.data = {};
-
+    
     $scope.login = function(data) {
+        
         AuthService.login(data);
+        loginOprForm.reset();
         //   AuthService.login(data).then(function(authenticated) {
         //     $state.go('vendor-app.home', {}, {reload: true});
         //     $scope.setCurrentUsername(data.username);

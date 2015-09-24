@@ -8,15 +8,17 @@
                     </div>
                 </div>
                 <div ng-show="switchBetweenLoginAndPassword === false">
-                    <div class="list list-inset">
-                        <label class="input-edit-box">
-                            <input type="email" placeholder="Email ID" ng-model="data.loginId">
-                        </label>
-                        <label class="input-edit-box">
-                            <input type="password" placeholder="Password" ng-model="data.loginPassword">
-                        </label>
-                    </div>
-                    <button class="button button-block button-positive" ng-click="login(data)">Login</button>
+                    <form name="loginOprForm">
+                        <div class="list list-inset">
+                            <label class="input-edit-box">
+                                <input type="email" placeholder="Email ID" ng-model="data.loginId">
+                            </label>
+                            <label class="input-edit-box">
+                                <input type="password" placeholder="Password" ng-model="data.loginPassword">
+                            </label>
+                        </div>
+                        <button type="submit" class="button button-block button-positive" ng-click="login(data)">Login</button>
+                    </form>
                     <p class="text-center" style="margin-top:30px;">
                         <a href="#/signup">Sign Up</a>
                     </p>
@@ -52,7 +54,6 @@
                         </label>
                         <button type="submit" ng-click="passwordModal(passwordChangeObj, passwordOprForm);submitted=true" ng-keyup="submitted=false" class="button button-block button-positive">Reset Password</button>
                         <button type="submit" ng-click="backToLogin()" class="button button-block button-assertive">Back To Login</button>
-                        
                     </form>
                 </div>
             </div>

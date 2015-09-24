@@ -15,7 +15,7 @@ angular.module('starter.userSettings', ['ionic', 'ngMessages'])
         "index":1
     };
     $scope.serviceInfoTitle = {
-        "Heading": "Services",
+        "Heading": "Cost & Delivery",
         "Checked": false,
         "index":2
     };

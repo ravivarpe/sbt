@@ -18,8 +18,10 @@ angular.module('starter.auth')
         "Checked": false
     };
 
-
-
+    /*
+    form reset
+     */
+     
 
     $scope.vendorGlobalVehicleList = [];    
 
@@ -63,7 +65,7 @@ angular.module('starter.auth')
         if (!formCheck.$valid)
             return;
 
-       signUpForm.reset();
+       
 
         if (data.password == data.cpassword) {
             SignupService.checkemail(data.email).then(function(authenticated) {
@@ -78,6 +80,7 @@ angular.module('starter.auth')
                         loginObject.loginPassword = data.password;
                         AuthService.login(loginObject);
                         $scope.setCurrentUsername(data);
+                        signUpForm.reset();
                     }, function(err) {
                         var alertPopup = $ionicPopup.alert({
                             title: 'Sorry Internal Server Error',

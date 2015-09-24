@@ -39,11 +39,19 @@
                     </div>
                 </div>
             </div>
-            <!-- <div ng-controller="camera-settings-ctrl">
-                <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
-                <img ng-show="imgURI === undefined" ng-src="http://placehold.it/300x300">
-                <button class="button" ng-click="takePicture()">Take Picture</button>
-            </div> -->
+            <div ng-controller="camera-settings-ctrl" style="margin-top:20px;">
+                <!--  <img ng-show="imgURI !== undefined" style="width:150px; height:100px;" src="http://api.vehito.com/vehito/storage/vendor/234567891443026896834/images/full.jpg">
+                <img ng-show="imgURI === undefined" style="width:150px; height:100px;" src="img/placeholder.png" ng-click="takePicture()">
+                <i class="icon ion-trash-b" style="font-size:30px;"></i>  -->
+                <div class="row">
+                    <div class="col" ng-repeat="imageItem in imageArrayObj">
+                        <span ng-show="imageItem.status === true"><img style="width:150px; height:100px;" ng-src="{{imageItem.path}}"></span>
+                        <span ng-show="imageItem.status === false"><img ng-if="imageItem.status === false" style="width:150px; height:100px;" src="img/placeholder.png" ng-click="takePicture(imageItem)"></span>
+                        <i class="icon ion-trash-b" style="font-size:30px; color:red; margin-top:-20px;" ng-click="deleteImage(imageItem)"></i>
+                    </div>
+                </div>
+                <!-- <img id="testImage" style="width:150px; height:100px;" src="http://api.vehito.com/vehito/storage/vendor/234567891443026896834/images/full.jpg"> -->
+            </div>
             <div class="vendor-status-card">
                 <a class="item item-icon-left item-icon-right" href="#/vendor-app/userSettings/0">
                     <i class="icon ion-gear-b calendar-arrow-box" style="font-size: 20px;color:grey;"></i>

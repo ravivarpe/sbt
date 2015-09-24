@@ -89,6 +89,7 @@ angular.module('starter')
         })
         .state('vendor-app.userSettings', {
             url: "/userSettings",
+            cache: false,
             views: {
                 'menuContent': {
                     templateUrl: "templates/userSettings.html",

@@ -60,6 +60,20 @@ angular.module('starter')
      * 
      */
 
+    /**
+     * camera url
+     */
+    factoryObj.vUpdateCameraPicURL = function(uniqueId) {
+        return factoryObj.baseUrl + "vendor/" + uniqueId +"/files/upload";
+    };
+    factoryObj.vDeleteCameraPicURL = function(uniqueId, imageName) {
+        return factoryObj.baseUrl + "vendor/" + uniqueId +"/delete/image/file?name="  + imageName;
+    };
+    factoryObj.vGetCameraPicURL = function(uniqueId, imageName) {
+        return factoryObj.baseUrl + "storage/vendor/" + uniqueId +"/images/"  + imageName;
+    };
+
+
 
     factoryObj.vDailySlotsInfoURL = function(uniqueId) {
         return factoryObj.baseUrl + "meta/vendor/" + uniqueId + "/slots";

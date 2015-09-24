@@ -148,17 +148,18 @@ map {
 }
 
 .input-edit-box input {
-    width: 100%;
+    width: 96%;
     /*border: 1px solid red;*/
     
     height: 50px;
     border-bottom: 1px solid #47639E;
-    /*margin-left: 10%;*/
+    margin-left: 2%;
     /*border-radius: 10px;*/
     
     color: #47639E;
     background-color: white;
     text-indent: inherit;
+
 }
 
 /*.input-edit-box input:hover{
@@ -174,12 +175,13 @@ map {
     letter-spacing: 1.5px;
     /*text-align: center;*/
     /*padding-top: 9px;*/
+    margin-left: 2%;
 }
 
 .input-edit-box div {
     color: red;
     background-color: white;
-    /*margin-left: 10%;*/
+    margin-left: 2%;
 }
 
 label.input-edit-box.has-error input {
@@ -353,7 +355,7 @@ label.input-edit-box.has-error input {
  *set vendor status information
  */
 .vendor-status-card{
-    background: rgba(248, 248, 248, 0.9);
+    background: white;
     border-top: 2px solid #47639E;
     /*border-bottom: 2px solid #47639E;*/
     box-shadow: 0 10px 10px -5px #47639E;

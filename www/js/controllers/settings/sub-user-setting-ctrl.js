@@ -14,7 +14,7 @@ angular.module('starter.subUserSettings', ['ionic', 'ngMessages', 'ngCordova'])
         "Checked": false,
         "index": 1
     }, {
-        "Heading": "Services Settings",
+        "Heading": "Cost & Delivery",
         "Checked": false,
         "index": 2
     }, {
@@ -148,6 +148,7 @@ angular.module('starter.subUserSettings', ['ionic', 'ngMessages', 'ngCordova'])
             return;
 
         console.log($scope.passwordObj);
+        vendorAccountForm.reset();
 
 
         if ($scope.passwordObj.newPassword == $scope.passwordObj.confirmPassword) {

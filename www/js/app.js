@@ -39,8 +39,8 @@ angular.module('starter', ['ionic', 'ionic-toast', 'ngCordova', 'starter.auth', 
         if ($state.is('vendor-app.home') || $state.is('login')) {
             navigator.app.exitApp();
         } else {
-            // navigator.app.backHistory();
-            $state.go('vendor-app.home');
+            navigator.app.backHistory();
+            // $state.go('vendor-app.home');
         }
     }, 101);
 
