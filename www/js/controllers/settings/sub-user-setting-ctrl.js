@@ -116,9 +116,17 @@ angular.module('starter.subUserSettings', ['ionic', 'ngMessages', 'ngCordova'])
         value: $scope.overviewInfo.pickUpOrDrop
     };
 
-    userDetailsFact.getPersonalOverviewInfo($scope);
-    userDetailsFact.getVendorOverviewInfo($scope);
-    userDetailsFact.getVendorDailySlotsInfo($scope);
+
+    $scope.onloadFunction = function() {
+
+        
+
+        userDetailsFact.getPersonalOverviewInfo($scope);
+        userDetailsFact.getVendorOverviewInfo($scope);
+        userDetailsFact.getVendorDailySlotsInfo($scope);
+    }
+    $scope.onloadFunction();
+
 
     $scope.changePickUpDropOption = function(option) {
         $scope.overviewInfo.pickUpOrDrop = option.value;
@@ -144,7 +152,7 @@ angular.module('starter.subUserSettings', ['ionic', 'ngMessages', 'ngCordova'])
         if (!checkForm.$valid)
             return;
 
-        if(index != 4)
+        if (index != 4)
             return;
 
         console.log($scope.passwordObj);
@@ -159,7 +167,7 @@ angular.module('starter.subUserSettings', ['ionic', 'ngMessages', 'ngCordova'])
 
     $scope.SavePersonalInfo = function(checkForm, index) {
         // console.log(checkForm);
-        if(index == 4)
+        if (index == 4)
             return;
         if (!checkForm.$valid)
             return;

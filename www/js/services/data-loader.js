@@ -5,7 +5,7 @@ angular.module('starter')
     this.show = function() {
         $ionicLoading.show({
             // template: '<ion-spinner icon="android"></ion-spinner>',
-            template: '<img  style="width:90px; height:90px" src="img/loader.gif">',
+            template: '<img  style="width:70px; height:70px" src="img/loader.gif">',
             animation: 'fade-in',
             noBackdrop: false,
             maxWidth: 0

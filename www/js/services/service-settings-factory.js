@@ -1,6 +1,6 @@
 angular.module('starter.serviceConfig')
 
-.factory('serviceConfigFact', function(httpOperationFact, stringDBrepo) {
+.factory('serviceConfigFact', function(httpOperationFact, stringDBrepo, ionicToast) {
     var factoryObj = {};
     factoryObj.name = '';
 
@@ -86,6 +86,7 @@ angular.module('starter.serviceConfig')
         httpOperationFact.sendHttpPostJsonRequest(stringDBrepo.vUpdateGlobalServiceListInfoURL(serviceType, options), bookingJson)
             .then(function(data) {
                     // console.log(data);
+                    ionicToast.show('Saved Successfully', 'middle', false, 2500);
                 },
                 function(response) {
                     console.log('albums retrieval failed.')
@@ -122,6 +123,7 @@ angular.module('starter.serviceConfig')
         httpOperationFact.sendHttpPostJsonRequest(stringDBrepo.vUpdateLocalServiceListInfoURL(uniqueId, serviceType, options), bookingJson)
             .then(function(data) {
                     console.log(data);
+                    ionicToast.show('Saved Successfully', 'middle', false, 2500);
                 },
                 function(response) {
                     console.log('albums retrieval failed.')
@@ -188,9 +190,7 @@ angular.module('starter.serviceConfig')
                 secondaryObj.checked = false;
                 primaryObj.SubServices.push(secondaryObj);
             }
-            if ((angular.equals(value.name, scope.overviewInfo.brandSupportName) == true) || (value.name == "")) {
                 mainObj.push(primaryObj);
-            }
         });
         // console.log(mainObj);
         factoryObj.checkExistingServiceConfig(userJson, mainObj);

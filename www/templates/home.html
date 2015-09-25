@@ -25,7 +25,7 @@
             </div>
         </form>
         </div> -->
-        <div ng-controller="calendar-ctrl">
+        <div ng-controller="calendar-ctrl" on-swipe-down="refreshHomeScreen()">
             <!-- <img class="loader-font-para" src="img/loader.gif"> -->
             <div class="card vendor-highlevel-info-box">
                 <div class="row">
@@ -105,7 +105,7 @@
                         </div>
                         <!-- <i class="ion-record pending-service-count-details"></i> -->
                     </div>
-                    <div class="col col-20 booking-list-button">
+                    <div class="col col-20 col-offset-10 booking-list-button">
                         <button class="button button-small button-positive" ui-sref="vendor-app.bookingList({ calendarDetails: SelectedDateBookingInfo })">
                             Bookings
                         </button>

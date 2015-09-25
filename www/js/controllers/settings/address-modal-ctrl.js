@@ -63,7 +63,7 @@ angular.module('starter.userSettings')
             }
             $scope.overviewInfo.gpsAddress = userLocationInfo[i].formatted_address;
 
-            alert($scope.overviewInfo);
+            // alert($scope.overviewInfo.latitude);
             break;
         }
         console.log($scope.personalInfo);

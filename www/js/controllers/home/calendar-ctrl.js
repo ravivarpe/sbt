@@ -42,7 +42,9 @@ angular.module('starter.home', ['ionic', 'ionic-toast'])
     // };
     
 
-
+    $scope.refreshHomeScreen = function(){
+        $scope.initObjFuntion();
+    }
 
 
 

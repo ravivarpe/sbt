@@ -1,7 +1,7 @@
 angular.module('starter.bookingList', ['ionic', 'ionic-timepicker', 'ionic-datepicker'])
 
 
-.controller('booking-list-ctrl', function($scope,$ionicNavBarDelegate, $stateParams, BookingListFact, stringDBrepo, sortBookingPopupFact) {
+.controller('booking-list-ctrl', function($scope, $ionicNavBarDelegate, $stateParams, BookingListFact, stringDBrepo, sortBookingPopupFact) {
     $scope.bookingListArray = [];
 
     sortBookingPopupFact.initSortPopup($scope);
@@ -35,6 +35,18 @@ angular.module('starter.bookingList', ['ionic', 'ionic-timepicker', 'ionic-datep
         $scope.HeaderDetails = $stateParams.calendarDetails.searchMobileNumber;
         BookingListFact.getUserBookingDetailsUsingMobileNum(stringDBrepo.vendorUniqueId, $scope, $stateParams.calendarDetails.searchMobileNumber);
     }
+
+    $scope.refreshBookingList = function() {
+        var month = ("0" + $stateParams.calendarDetails.month).slice(-2);
+        var dateNum = ("0" + $stateParams.calendarDetails.dayNumber).slice(-2);
+
+        $scope.HeaderTitle = "Booking Date";
+
+        $scope.HeaderDetails = dateNum + "/" + month + "/" + $stateParams.calendarDetails.year;
+
+        // if (($stateParams.calendarDetails.requestPending) || ($stateParams.calendarDetails.vehiclePending))
+        BookingListFact.getBookingInfoUsingDate(stringDBrepo.vendorUniqueId, $scope, $stateParams.calendarDetails.dateInSecs);
+    };
 
 
 });

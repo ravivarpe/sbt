@@ -48,6 +48,7 @@ angular.module('starter.auth')
         var response;
         httpOperationFact.sendHttpPostJsonRequest(stringDBrepo.vLoginInfo(), data).then(function(object) {
                 console.log(object.uniqueId);
+                loginOprForm.reset();
                 storeUserCredentials(object.uniqueId);
                 $state.go('vendor-app.home', {}, {
                     reload: true

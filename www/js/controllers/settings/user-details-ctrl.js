@@ -1,8 +1,13 @@
 angular.module('starter.userSettings', ['ionic', 'ngMessages'])
 
 
-.controller('user-settings-ctrl', function($scope, userDetailsFact) {
+.controller('user-settings-ctrl', function($scope, userDetailsFact,$ionicHistory) {
 
+
+   
+    // console.log( $ionicHistory.viewHistory());
+    $ionicHistory.clearCache();
+    $ionicHistory.clearHistory();
     // $scope.checkedInfo = true;
     $scope.personalInfoTitle = {
         "Heading": "General",
@@ -25,7 +30,7 @@ angular.module('starter.userSettings', ['ionic', 'ngMessages'])
         "index":4
     };
     $scope.accountInfoTitle = {
-        "Heading": "Profile",
+        "Heading": "Change Password",
         "Checked": false,
         "index":5
     };

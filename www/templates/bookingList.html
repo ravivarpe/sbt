@@ -3,8 +3,8 @@
         <!-- <img class="logo-size" src="img/carone_logo.png"> -->
         <span class="title-header-large-font">Booking List</span>
     </ion-nav-title>
-    <ion-content scrollbar-y="false" has-bouncing="true" class="home-background-image">
-        <div ng-controller="booking-list-ctrl">
+    <ion-content scrollbar-y="false" has-bouncing="true" class="home-background-image" style="padding-bottom: 30px;">
+        <div ng-controller="booking-list-ctrl" on-swipe-down="refreshBookingList()">
             <div ng-controller="booking-list-modal-ctrl">
                 <ion-list>
                     <div class="list card booking-details-status-color-box booking-details-color-box-param">

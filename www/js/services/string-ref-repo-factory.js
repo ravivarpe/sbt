@@ -8,6 +8,7 @@ angular.module('starter')
 
     /*****************************vendor home page url***********************************************************************/
     factoryObj.vendorUniqueId = "";
+    factoryObj.gBookingListInfo = "";
 
     factoryObj.setUserUUID = function(name) {
         this.vendorUniqueId = name;
