@@ -1,14 +1,14 @@
 <ion-view view-title="Sign-In" name="login-view">
-    <ion-content class="padding">
+    <ion-content>
         <div ng-controller="LoginCtrl">
             <div ng-controller="forgot-password-ctrl">
                 <div class="row">
                     <!-- <span class="col col-30"></span> -->
                     <!-- <span class="col col-center"> -->
-                        <img class="login-logo col col-center" src="img/login_logo.png">
+                        <img class="col col-30 col-center" src="img/logo-small.png">
                     <!-- </span> -->
                 </div>
-                <div ng-show="switchBetweenLoginAndPassword === false">
+                <div ng-show="switchBetweenLoginAndPassword === false" style="margin-top:-5em;">
                     <form name="loginOprForm">
                         <div class="list list-inset">
                             <label class="input-edit-box">
@@ -27,7 +27,7 @@
                         <a href="#" ng-click="switchViews()">Forgotten your password?</a>
                     </p>
                 </div>
-                <div ng-show="switchBetweenLoginAndPassword === true">
+                <div ng-show="switchBetweenLoginAndPassword === true" style="margin-top:-5em;">
                     <p ng-if="statusIndation === true" style="text-align: center; color:red">
                         Wrong credentials
                     </p>

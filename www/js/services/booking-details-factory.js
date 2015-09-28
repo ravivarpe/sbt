@@ -203,17 +203,17 @@ angular.module('starter.bookingDetails')
 
 
     factoryObj.bookingStatusArray = [{name:"Request Pending", flag:true},
-        {name:"Request Confirmed", flag:true},
+        {name:"Confirm Booking", flag:true},
         {name:"Request Cancelled", flag:false},
-        {name:"Pickup in progress", flag:true},
-        {name:"Vehicle got picked", flag:true},
-        {name:"Vehicle received", flag:true},
-        {name:"Service in progress", flag:true},
+        {name:"Initiate Pickup", flag:true},
+        {name:"Pickup Vehicle", flag:true},
+        {name:"Vehicle reached", flag:true},
+        {name:"Initiate Service", flag:true},
         {name:"Waiting for response", flag:false},
-        {name:"Completed vehicle service", flag:true},
+        {name:"Update Service", flag:true},
         {name:"Vehicle Drop in progress", flag:true},
-        {name:"Vehicle is delivered", flag:true},
-        {name:"paid service amount", flag:true},
+        {name:"Deliver Vehicle", flag:true},
+        {name:"Amount Paid", flag:true},
         {name:"Got feedback", flag:false}
     ];
 

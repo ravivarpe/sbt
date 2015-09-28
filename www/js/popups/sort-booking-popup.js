@@ -21,27 +21,27 @@ angular.module('starter.bookingList')
             key: "day",
             status: 1
         }, {
-            name: "Pending request",
+            name: "Pending",
             value: "pending",
             key: "day",
             status: 2
-        }, {
-            name: "pendings services",
+        },{
+            name: "Accepted",
             value: "confirmed",
             key: "day",
             status: 3
-        }, {
-            name: "Previous pending",
-            value: "pending",
-            key: "all",
+        },{
+            name: "On Going",
+            value: "progress",
+            key: "day",
             status: 4
-        }, {
-            name: "completed services",
+        },{
+            name: "Completed",
             value: "completed",
             key: "day",
             status: 5
         }, {
-            name: "cancelled services",
+            name: "Cancelled",
             value: "cancelled",
             key: "day",
             status: 6
@@ -56,7 +56,7 @@ angular.module('starter.bookingList')
         factoryObj.sortingPopup = $ionicPopup.show({
             templateUrl: 'templates/bookingSortPopup.html',
             scope: $scope,
-            title: "sort options",
+            title: "SEARCH FILTER"
         });
         // sortingPopup.then(function(res) {
         //     console.log('Tapped!', res);
@@ -72,11 +72,7 @@ angular.module('starter.bookingList')
     factoryObj.sortBookingOnselect = function(scope, selectedOption, dateInSecs) {
         console.log(selectedOption);
         console.log(selectedOption.value);
-        if (selectedOption.key == 'day') {
-            BookingListFact.getDayStatusList(stringDBrepo.vendorUniqueId, scope, selectedOption.value, dateInSecs, '', '');
-        } else {
-            BookingListFact.getAllStatusLists(stringDBrepo.vendorUniqueId, scope, selectedOption.value, '', '');
-        }
+        BookingListFact.getDayStatusList(stringDBrepo.vendorUniqueId, scope, selectedOption.value, dateInSecs, '', '');
         factoryObj.sortingPopup.close();
     };
 

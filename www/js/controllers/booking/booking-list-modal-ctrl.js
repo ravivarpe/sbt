@@ -11,7 +11,7 @@ angular.module('starter.bookingList')
     $scope.showDateAndTime = true;
 
     $scope.modalInfo = {
-        confirmString: "Confirm",
+        confirmString: "Accept",
         cancelString: "Cancel"
     };
 
@@ -90,20 +90,49 @@ angular.module('starter.bookingList')
     };
 
 
+    $scope.selectConfirmOptions = function(changeOption) {
+        // console.log(changeOption);
+        if(changeOption.status == 1)
+            $scope.showDateAndTime = true;
+        else
+            $scope.showDateAndTime = false;
 
+    }
 
     // Perform the login action when the user submits the login form
     $scope.applyBookingStatus = function(choice) {
-        // console.log(choice);
-        if ($scope.updateBookingDate == false || $scope.updateBookingTime == false)
-            return;
+        console.log(choice.data.status);
+        // console.log(BookingListFact.venderDeliveryTime.getUTCHours());
+        if (choice.data.status == 1) {
+
+
+            if ($scope.updateBookingDate == false || $scope.updateBookingTime == false)
+                return;
+
+
+            $scope.bookingListArray[bookingIndex].vehicleDeliveredTime = BookingListFact.getTimeInSeconds(BookingListFact.venderDeliveryDate.getFullYear(),
+                BookingListFact.venderDeliveryDate.getMonth(),
+                BookingListFact.venderDeliveryDate.getDate(),
+                BookingListFact.venderDeliveryTime.getHours(),
+                BookingListFact.venderDeliveryTime.getMinutes());
+
+            var date = new Date();
+            var currentDate = BookingListFact.getTimeInSeconds(date.getFullYear(),
+                date.getMonth(),
+                date.getDate(),
+                date.getHours(),
+                date.getMinutes());
+
+            if ($scope.bookingListArray[bookingIndex].vehicleDeliveredTime < currentDate)
+                return;
+
+        }
 
         if (choice.status == 1) {
             $scope.bookingListArray[bookingIndex].bookingStatus |= BookingDetailsFact.confirmRequest;
         } else {
             $scope.bookingListArray[bookingIndex].bookingStatus |= BookingDetailsFact.cancelRequest;
         }
-
 
         $scope.setBookingStatusInfo($scope.bookingListArray[bookingIndex]);
         $scope.updateBookingInfoInServer($scope.bookingListArray[bookingIndex]);
@@ -116,11 +145,7 @@ angular.module('starter.bookingList')
         // object = bookingObj;
 
 
-        bookingObj.vehicleDeliveredTime = BookingListFact.getTimeInSeconds(BookingListFact.venderDeliveryDate.getFullYear(),
-            BookingListFact.venderDeliveryDate.getMonth(),
-            BookingListFact.venderDeliveryDate.getDate(),
-            BookingListFact.venderDeliveryTime.getUTCHours(),
-            BookingListFact.venderDeliveryTime.getUTCMinutes());
+
 
 
         bookingObj.vehicleDeliveredTimeFormat = BookingListFact.convertSecsToDate(bookingObj.vehicleDeliveredTime);
@@ -139,19 +164,29 @@ angular.module('starter.bookingList')
 
     $scope.setBookingStatusInfo = function(bookingObj) {
 
-        if (bookingObj.bookingStatus & BookingDetailsFact.requestPending) {
+         if (bookingObj.bookingStatus & BookingDetailsFact.requestPending) {
             bookingObj.BookingStatusColor = "booking-pending-status";
             bookingObj.BookingStatusString = "Pending";
-            bookingObj.requestAcceptString = "Confirm";
+            bookingObj.requestAcceptString = "Accept";
         }
         if ((bookingObj.bookingStatus & BookingDetailsFact.confirmRequest) || (bookingObj.bookingStatus >= BookingDetailsFact.sendPersonForPickup)) {
             bookingObj.BookingStatusColor = "booking-confirm-status";
-            bookingObj.BookingStatusString = "Confirm";
+            bookingObj.BookingStatusString = "Accepted";
             bookingObj.requestAcceptString = "Cancel";
+        }
+        if((bookingObj.bookingStatus & BookingDetailsFact.serviceInProgress)){
+            bookingObj.BookingStatusColor = "booking-ongoing-status";
+            bookingObj.BookingStatusString = "On Going";
+            bookingObj.requestAcceptString = "discard";
         }
         if (bookingObj.bookingStatus & BookingDetailsFact.cancelRequest) {
             bookingObj.BookingStatusColor = "booking-cancel-status";
             bookingObj.BookingStatusString = "Cancelled";
+            bookingObj.requestAcceptString = "discard";
+        }
+        if (bookingObj.bookingStatus & BookingDetailsFact.userPaidFullAmount) {
+            bookingObj.BookingStatusColor = "booking-complete-status";
+            bookingObj.BookingStatusString = "Completed";
             bookingObj.requestAcceptString = "discard";
         }
     };
@@ -176,11 +211,13 @@ angular.module('starter.bookingList')
         if (typeof(val) === 'undefined') {
             console.log('Time not selected');
         } else {
+            console.log(val);
             var selectedTime = new Date(val * 1000);
             BookingListFact.venderDeliveryTime = selectedTime;
+            console.log(BookingListFact.venderDeliveryTime);
             $scope.updateBookingTime = true;
             $scope.timePickerObject.TimeRepresent = ("0" + selectedTime.getUTCHours()).slice(-2) + ":" + ("0" + selectedTime.getUTCMinutes()).slice(-2);
-            // console.log('Selected epoch is : ', val, 'and the time is ', selectedTime.getUTCHours(), ':', selectedTime.getUTCMinutes(), 'in UTC');
+            console.log('Selected epoch is : ', val, 'and the time is ', selectedTime.getUTCHours(), ':', selectedTime.getUTCMinutes(), 'in UTC');
 
         }
     }

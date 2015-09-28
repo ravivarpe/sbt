@@ -50,11 +50,11 @@ angular.module('starter')
     /**
      * FORGOT PASSWORD URL
      */
-    factoryObj.vForgotPasswordURL = function(emailId, sendToForTest) {
+    factoryObj.vForgotPasswordURL = function(sendToForTest) {
         if (sendToForTest)
-            return factoryObj.baseUrl + "user/" + emailId + "/forgotpassword?sendto=" + sendToForTest;
+            return factoryObj.baseUrl + "vendor/login/forgotpassword?sendto=" + sendToForTest;
         else
-            return factoryObj.baseUrl + "user/" + emailId + "/forgotpassword";
+            return factoryObj.baseUrl + "vendor/login/forgotpassword";
     };
 
     /**
@@ -71,7 +71,7 @@ angular.module('starter')
         return factoryObj.baseUrl + "vendor/" + uniqueId + "/delete/image/file?name=" + imageName;
     };
     factoryObj.vGetCameraPicURL = function(uniqueId, imageName) {
-        return factoryObj.baseUrl + "storage/vendor/" + uniqueId + "/images/" + imageName;
+        return factoryObj.baseUrl + "storage/vendor/data/" + uniqueId + "/images/" + imageName;
     };
 
 

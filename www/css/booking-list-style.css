@@ -77,15 +77,15 @@
 }
 
 .booking-confirm-status {
-    color: #00FF00;
+    color: #FF8000;
 }
 
 .booking-cancel-status {
-    color: #0000FF;
+    color: #FF0000;
 }
 
 .booking-pending-status {
-    color: #47639E;
+    color: #0000FF;
 }
 
 .booking-waiting-status {
@@ -97,7 +97,7 @@
 }
 
 .booking-complete-status {
-    color: #2F4F4F;
+    color: #80FF00;
 }
 
 .booking-postpone-status {

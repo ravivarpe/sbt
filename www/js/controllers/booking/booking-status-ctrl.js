@@ -4,6 +4,7 @@ angular.module('starter.bookingList', ['ionic', 'ionic-timepicker', 'ionic-datep
 .controller('booking-list-ctrl', function($scope, $ionicNavBarDelegate, $stateParams, BookingListFact, stringDBrepo, sortBookingPopupFact) {
     $scope.bookingListArray = [];
 
+
     sortBookingPopupFact.initSortPopup($scope);
 
     $ionicNavBarDelegate.showBackButton(true);
@@ -26,6 +27,7 @@ angular.module('starter.bookingList', ['ionic', 'ionic-timepicker', 'ionic-datep
         $scope.HeaderTitle = "Booking Date";
 
         $scope.HeaderDetails = dateNum + "/" + month + "/" + $stateParams.calendarDetails.year;
+        $scope.globalDateValue = $scope.HeaderDetails;
 
         // if (($stateParams.calendarDetails.requestPending) || ($stateParams.calendarDetails.vehiclePending))
         if ($stateParams.calendarDetails.pullType == "total") {

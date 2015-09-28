@@ -60,17 +60,16 @@ angular.module('starter.home', ['ionic', 'ionic-toast', 'ChartAngular'])
 
     $scope.morrisLineChartScope = function(dataArray) {
         angular.element($('#area-data-chart')).html('');
-        Morris.Area({
+        Morris.Line({
             element: "area-data-chart",
             data: dataArray,
             lineColors: [
                 '#86d2f4',
                 '#f6c510',
-                '#d0d0d0',
             ],
             xkey: 'y',
-            ykeys: ['a', 'b', 'c'],
-            labels: ['New Bookings', 'In Queue', 'Complete'],
+            ykeys: ['a', 'b'],
+            labels: ['New Requests', 'On Going'],
             parseTime: false
         });
     };
@@ -88,13 +87,13 @@ angular.module('starter.home', ['ionic', 'ionic-toast', 'ChartAngular'])
         Morris.Donut({
             element: "donut-data-chart",
             data: [{
-                label: "New Bookings",
+                label: "New Requests",
                 value: dataObject.pending
             }, {
-                label: "In Queue",
+                label: "On Going",
                 value: dataObject.confirmed + dataObject.progress
             }, {
-                label: "Complete",
+                label: "Completed",
                 value: dataObject.completed
             }],
             colors: [

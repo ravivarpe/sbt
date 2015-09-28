@@ -5,7 +5,7 @@ angular.module('starter.bookingDetails', ['ionic', 'ionic-datepicker'])
 	$scope.bookingDetailsArray = [];
 	$scope.bookingStatusArrayItems = [];
 	$scope.bookingDetailsArray.length = 0;
-	// console.log($stateParams.bookingDetailsInfo);
+	console.log($stateParams.bookingDetailsInfo);
 	$scope.bookingDetailsArray.push($stateParams.bookingDetailsInfo);
 	$scope.sendPickupPersonIndex = $scope.bookingDetailsArray[0].bookingStatus & BookingDetailsFact.sendPersonForPickup;
 	console.log();

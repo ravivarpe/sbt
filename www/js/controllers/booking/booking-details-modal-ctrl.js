@@ -62,9 +62,11 @@ angular.module('starter.bookingDetails')
         console.log($scope.modalDisplayInfo.statusIndex);
 
         if ($scope.modalDisplayInfo.statusIndex == BookingDetailsFact.sendPersonForPickup) {
-            if (!DetailsForm.$valid)
-                return;
-
+            console.log("came here");
+            // if (!DetailsForm.$valid)
+            //     return;
+            if(!$scope.pickDetailsInfo.phoneNum.length)
+                $scope.pickDetailsInfo.phoneNum = 0;                
             $scope.bookingDetailsArray[0].pickUpPersonName = $scope.pickDetailsInfo.personName;
             $scope.bookingDetailsArray[0].pickUpPersonNumber = $scope.pickDetailsInfo.phoneNum;
 
@@ -113,6 +115,7 @@ angular.module('starter.bookingDetails')
 
         $scope.sendPickupPersonIndex = $scope.bookingDetailsArray[0].bookingStatus & BookingDetailsFact.sendPersonForPickup;
         $scope.updateBookingDetails(state);
+        BookingListFact.setBookingStatusInfo($scope.bookingDetailsArray[0]);
         $scope.modal.hide();
     };
 

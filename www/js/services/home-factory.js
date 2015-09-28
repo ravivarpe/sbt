@@ -107,7 +107,7 @@ angular.module('starter.home')
         httpOperationFact.sendHttpGetRequest(stringDBrepo.getDeliveryListUrl(uniqueId, month, year))
             .then(function(data) {
                 var j=1;
-                    // console.log(overAllData);
+                    console.log(data);
                     scope.graphsDataArray.length = 0;
 
                     for (var i in overAllData) {
@@ -115,7 +115,7 @@ angular.module('starter.home')
                         tmpArray.y = j++ + "/"+ month ;
                         tmpArray.a = overAllData[i].count.request;
                         tmpArray.b = overAllData[i].count.service;
-                        tmpArray.c = data[i];
+                        // tmpArray.c = data[i];
 
                         scope.graphsDataArray.push(tmpArray);
                     }

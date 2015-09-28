@@ -76,7 +76,7 @@ angular.module('starter.bookingList')
                 break
             case 2:
                 bookingObj.BookingStatusColor = "booking-confirm-status";
-                bookingObj.BookingStatusString = "Confirm";
+                bookingObj.BookingStatusString = "Accepted";
                 break
             case 3:
                 bookingObj.BookingStatusColor = "booking-cancel-status";
@@ -88,7 +88,7 @@ angular.module('starter.bookingList')
                 break
             case 5:
                 bookingObj.BookingStatusColor = "booking-inprogress-status";
-                bookingObj.BookingStatusString = "Inprogress";
+                bookingObj.BookingStatusString = "On Going";
                 break
             case 6:
                 bookingObj.BookingStatusColor = "booking-waiting-status";

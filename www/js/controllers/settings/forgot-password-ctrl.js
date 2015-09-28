@@ -41,9 +41,10 @@ angular.module('starter.auth')
 
     $scope.updateBookingInformation = function(emailId) {
         var request={};
+        request.primaryEmailID = emailId;
         // var sendTo = "aravind.andagunda@gmail.com";
         // console.log(stringDBrepo.vBookingStatusCount(uniqueId, month, year));
-        httpOperationFact.sendHttpPostJsonRequest(stringDBrepo.vForgotPasswordURL(emailId), request)
+        httpOperationFact.sendHttpPostJsonRequest(stringDBrepo.vForgotPasswordURL(), request)
             .then(function(data) {
                 $scope.updatePasswordResetStatus = true;
                 $scope.statusIndation = false;

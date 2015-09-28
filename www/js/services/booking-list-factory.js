@@ -122,6 +122,7 @@ angular.module('starter.bookingList')
     factoryObj.getTimeInSeconds = function(yearInNumber, monthInNumber, dayInNumber, hoursInNumber, minInNumber) {
 
         dateFormat = yearInNumber + "/" + (monthInNumber + 1) + "/" + dayInNumber + " " + hoursInNumber + ":" + minInNumber + ":00 UTC";
+        console.log(dateFormat);
         var dateObj = new Date(dateFormat);
 
         factoryObj.timeInSeconds = Math.round(dateObj.getTime() / 1000);
@@ -225,12 +226,17 @@ angular.module('starter.bookingList')
         if (bookingObj.bookingStatus & BookingDetailsFact.requestPending) {
             bookingObj.BookingStatusColor = "booking-pending-status";
             bookingObj.BookingStatusString = "Pending";
-            bookingObj.requestAcceptString = "Confirm";
+            bookingObj.requestAcceptString = "Accept";
         }
         if ((bookingObj.bookingStatus & BookingDetailsFact.confirmRequest) || (bookingObj.bookingStatus >= BookingDetailsFact.sendPersonForPickup)) {
             bookingObj.BookingStatusColor = "booking-confirm-status";
-            bookingObj.BookingStatusString = "Confirm";
+            bookingObj.BookingStatusString = "Accepted";
             bookingObj.requestAcceptString = "Cancel";
+        }
+        if((bookingObj.bookingStatus & BookingDetailsFact.serviceInProgress)){
+            bookingObj.BookingStatusColor = "booking-ongoing-status";
+            bookingObj.BookingStatusString = "On Going";
+            bookingObj.requestAcceptString = "discard";
         }
         if (bookingObj.bookingStatus & BookingDetailsFact.cancelRequest) {
             bookingObj.BookingStatusColor = "booking-cancel-status";
@@ -238,8 +244,8 @@ angular.module('starter.bookingList')
             bookingObj.requestAcceptString = "discard";
         }
         if (bookingObj.bookingStatus & BookingDetailsFact.userPaidFullAmount) {
-            bookingObj.BookingStatusColor = "booking-confirm-status";
-            bookingObj.BookingStatusString = "Done";
+            bookingObj.BookingStatusColor = "booking-complete-status";
+            bookingObj.BookingStatusString = "Completed";
             bookingObj.requestAcceptString = "discard";
         }
         // console.log(bookingObj);

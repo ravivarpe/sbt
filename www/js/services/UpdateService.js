@@ -7,7 +7,7 @@ angular.module('starter.home')
     this.update = function() {
         httpOperationFact.sendHttpGetRequest(stringDBrepo.updateService()).then(function(object) {
                 console.log(object);
-                if (object.isUpdateavailable == "true") {
+                if (object.version == "0.25") {
                     var myPopup = $ionicPopup.show({
 
                         title: 'Update is available',
