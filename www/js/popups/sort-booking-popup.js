@@ -1,7 +1,7 @@
 angular.module('starter.bookingList')
 
 
-.factory('sortBookingPopupFact', function($ionicPopup) {
+.factory('sortBookingPopupFact', function($ionicPopup,BookingListFact,stringDBrepo) {
     var factoryObj = {};
     factoryObj.sortingPopup;
 
@@ -10,21 +10,41 @@ angular.module('starter.bookingList')
         scope.sortingChoice = {
             data: {
                 name: "Confirm Booking",
+                value: "confirmed",
+                key: "day",
                 status: 1
             }
         };
         scope.bookingSortOptions = [{
             name: "All",
+            value: "total",
+            key: "day",
             status: 1
         }, {
             name: "Pending request",
+            value: "pending",
+            key: "day",
             status: 2
         }, {
             name: "pendings services",
+            value: "confirmed",
+            key: "day",
             status: 3
         }, {
             name: "Previous pending",
+            value: "pending",
+            key: "all",
             status: 4
+        }, {
+            name: "completed services",
+            value: "completed",
+            key: "day",
+            status: 5
+        }, {
+            name: "cancelled services",
+            value: "cancelled",
+            key: "day",
+            status: 6
         }];
     };
 
@@ -49,10 +69,17 @@ angular.module('starter.bookingList')
         // }, 3000);
     };
 
-    factoryObj.sortBookingOnselect = function(scope, selectedOption) {
+    factoryObj.sortBookingOnselect = function(scope, selectedOption, dateInSecs) {
         console.log(selectedOption);
+        console.log(selectedOption.value);
+        if (selectedOption.key == 'day') {
+            BookingListFact.getDayStatusList(stringDBrepo.vendorUniqueId, scope, selectedOption.value, dateInSecs, '', '');
+        } else {
+            BookingListFact.getAllStatusLists(stringDBrepo.vendorUniqueId, scope, selectedOption.value, '', '');
+        }
         factoryObj.sortingPopup.close();
     };
+
 
 
     return factoryObj;

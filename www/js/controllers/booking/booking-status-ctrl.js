@@ -10,12 +10,12 @@ angular.module('starter.bookingList', ['ionic', 'ionic-timepicker', 'ionic-datep
 
     // console.log($stateParams);
     $scope.sortingPopUpMethod = function() {
-        $scope.sortingChoice.data = $scope.bookingSortOptions[0];
+        // $scope.sortingChoice.data = $scope.bookingSortOptions[0];
         sortBookingPopupFact.showPopup($scope);
     };
 
     $scope.selectedOptionEvent = function(option) {
-        sortBookingPopupFact.sortBookingOnselect($scope, option);
+        sortBookingPopupFact.sortBookingOnselect($scope, option, $stateParams.calendarDetails.dateInSecs);
     };
 
 
@@ -28,7 +28,12 @@ angular.module('starter.bookingList', ['ionic', 'ionic-timepicker', 'ionic-datep
         $scope.HeaderDetails = dateNum + "/" + month + "/" + $stateParams.calendarDetails.year;
 
         // if (($stateParams.calendarDetails.requestPending) || ($stateParams.calendarDetails.vehiclePending))
-        BookingListFact.getBookingInfoUsingDate(stringDBrepo.vendorUniqueId, $scope, $stateParams.calendarDetails.dateInSecs);
+        if ($stateParams.calendarDetails.pullType == "total") {
+            $scope.HeaderTitle = "All Bookings";
+            $scope.HeaderDetails = "";
+            BookingListFact.getAllStatusLists(stringDBrepo.vendorUniqueId, $scope, "total", "", "");
+        } else
+            BookingListFact.getBookingInfoUsingDate(stringDBrepo.vendorUniqueId, $scope, $stateParams.calendarDetails.dateInSecs);
 
     } else {
         $scope.HeaderTitle = "Person Number";
@@ -45,8 +50,19 @@ angular.module('starter.bookingList', ['ionic', 'ionic-timepicker', 'ionic-datep
         $scope.HeaderDetails = dateNum + "/" + month + "/" + $stateParams.calendarDetails.year;
 
         // if (($stateParams.calendarDetails.requestPending) || ($stateParams.calendarDetails.vehiclePending))
-        BookingListFact.getBookingInfoUsingDate(stringDBrepo.vendorUniqueId, $scope, $stateParams.calendarDetails.dateInSecs);
+        BookingListFact.getDayStatusList(stringDBrepo.vendorUniqueId, $scope, "total", $stateParams.calendarDetails.dateInSecs, 0, 9);
     };
+
+
+    //  $scope.loadMoreBookingList = function() {        
+    //     console.log("loading");
+    //     var len = $scope.bookingListArray.length;
+    //     BookingListFact.getDayStatusList(stringDBrepo.vendorUniqueId, $scope,"total", $stateParams.calendarDetails.dateInSecs,len,len+9);
+
+
+
+    //     $scope.$broadcast('scroll.infiniteScrollComplete');
+    // };
 
 
 });

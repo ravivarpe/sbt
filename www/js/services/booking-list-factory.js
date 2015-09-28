@@ -72,6 +72,27 @@ angular.module('starter.bookingList')
                 });
     };
 
+    factoryObj.getAllStatusLists = function(uniqueId, scope, status, from, to) {
+        httpOperationFact.sendHttpGetRequest(stringDBrepo.getAllStausList(uniqueId, status, from, to))
+            .then(function(data) {
+                    factoryObj.showReceivedBookingInfo(scope, data);
+                },
+                function(response) {
+                    console.log('status retrieval failed')
+                });
+    };
+
+
+    factoryObj.getDayStatusList = function(uniqueId, scope, status, dateInSecs, from, to) {
+        httpOperationFact.sendHttpGetRequest(stringDBrepo.getDayStatusList(uniqueId, status, dateInSecs, from, to))
+            .then(function(data) {
+                    factoryObj.showReceivedBookingInfo(scope, data);
+                },
+                function(response) {
+                    console.log('status retrieval failed')
+                });
+    };
+
 
     /*************************************************************************************************************************************/
     // AltPhoneNum: 0
@@ -252,9 +273,9 @@ angular.module('starter.bookingList')
         var dateNum = ("0" + dateInfo.getDate()).slice(-2);
 
         var dateHours = ("0" + dateInfo.getHours()).slice(-2);
-        var dateMins = ("0" + dateInfo.getMinutes()).slice(-2); 
+        var dateMins = ("0" + dateInfo.getMinutes()).slice(-2);
 
-        return (dateNum + "/" + month + "/" + dateInfo.getFullYear()+" "+ dateHours +":" + dateMins );
+        return (dateNum + "/" + month + "/" + dateInfo.getFullYear() + " " + dateHours + ":" + dateMins);
     };
 
 

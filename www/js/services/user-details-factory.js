@@ -63,6 +63,8 @@ angular.module('starter.userSettings')
 
     factoryObj.updatePersonalOverviewInfo = function(scope) {
         var response;
+        if (!scope.personalInfo.primaryMobileNumber.length)
+            scope.personalInfo.primaryMobileNumber = 0;
         // console.log(stringDBrepo.vBookingStatusCount(uniqueId, month, year));
         httpOperationFact.sendHttpPutJsonRequest(stringDBrepo.vUpdatePersonalInfoURL(stringDBrepo.vendorUniqueId), scope.personalInfo)
             .then(function(data) {
@@ -92,6 +94,12 @@ angular.module('starter.userSettings')
     factoryObj.updateVendorDailySlotsInfo = function(scope) {
         var response;
         console.log(scope.overviewInfo);
+
+        if (!scope.overviewInfo.minServiceCharge.length)
+            scope.overviewInfo.minServiceCharge = 0;
+        if (!scope.overviewInfo.minWaitingTime.length)
+            scope.overviewInfo.minWaitingTime = 0;
+
         httpOperationFact.sendHttpPutJsonRequest(stringDBrepo.vUpdateDailySlotsInfoURL(stringDBrepo.vendorUniqueId), scope.vendorSlotInfo)
             .then(function(data) {
                     ionicToast.show('Saved Successfully', 'middle', false, 2500);

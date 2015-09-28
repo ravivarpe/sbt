@@ -69,7 +69,8 @@ angular.module('starter.userSettings', ['ionic', 'ngMessages'])
         "vendorName": "",
         "state": "",
         "vendorTitle": "",
-        "primaryLandLineNum": ""
+        "primaryLandLineNum": "",
+        "gpsAddress" :""
     };
 
 

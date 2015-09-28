@@ -1,6 +1,6 @@
 .login-logo{
-    width: 150px;
-    height: 150px;
+    width: 10em;
+    height: 20em;
     /*margin-top: 10%;*/
     /*margin-left: 26%;*/
 }
@@ -385,3 +385,9 @@ label.input-edit-box.has-error input {
 .loading-container .loading{
         background-color: rgba(0, 0, 0, 0.0); !important
 }
+
+
+
+/**
+ * front 
+ */

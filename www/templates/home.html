@@ -25,96 +25,147 @@
             </div>
         </form>
         </div> -->
-        <div ng-controller="calendar-ctrl" on-swipe-down="refreshHomeScreen()">
+        <div ng-controller="calendar-ctrl" on-swipe-down="refreshHomeScreen()" class="dashboard-param">
             <!-- <img class="loader-font-para" src="img/loader.gif"> -->
-            <div class="card vendor-highlevel-info-box">
-                <div class="row">
-                    <div class="col col-55">
-                        <span class="vendor-rating-text-font">Rating:</span>
-                        <i ng-repeat="i in [] | range:VendorRatingValue" class="ion-ios-star rating-icon">                  
+            <!-- <div class="card vendor-highlevel-info-box"> -->
+            <div class="row" style="padding-top:1em">
+                <div class="col col-55">
+                    <span class="vendor-rating-text-font">Rating:</span>
+                    <i ng-repeat="i in [] | range:VendorRatingValue" class="ion-ios-star rating-icon">                  
                             </i>
-                        <i ng-repeat="i in [] | range:(5-VendorRatingValue)" class="ion-ios-star-outline rating-icon">                  
+                    <i ng-repeat="i in [] | range:(5-VendorRatingValue)" class="ion-ios-star-outline rating-icon">                  
                             </i>
-                    </div>
+                    <br>
+                    <!-- </div> -->
                     <!-- <div class="col col-10"></div> -->
-                    <div class="col col-25 col-offset-10">
-                        <!-- <span class="vendor-like-text-font"><i class="ion-thumbsup like-icon"></i>: {{VendorLikeValue}}</span> -->
-                        <i class="ion-thumbsup like-icon">:<span class="vendor-like-text-font">{{VendorLikeValue}}</span></i>
-                    </div>
+                    <!-- <div class="col col-25"> -->
+                    <!-- <span class="vendor-like-text-font"><i class="ion-thumbsup like-icon"></i>: {{VendorLikeValue}}</span> -->
+                    <i class="ion-thumbsup like-icon">:<span class="vendor-like-text-font">{{VendorLikeValue}}</span></i>
+                </div>
+                <div class="col col-10">
+                    <button class="button button-icon" ng-click="calendarHide= !calendarHide;"><i class="ion-android-calendar" style="color:#47639E; font-size:30px; margin-top:-2em; margin-left:-0.3em;"></i></button>
                 </div>
             </div>
-            <div class="card calendar-color-box">
-                <div class="row calendar-year-alignment">
-                    <div class="col col-10 " ng-click='DecrementMonthArrow()'>
-                        <!-- <span class="ion-chevron-left calendar-arrow-box" ionic-button-click-toggle on-icon="calendar-arrow-box" off-icon="calendar-arrow-box-fade"></span> -->
-                        <button class="button button-icon"><i class="ion-chevron-left calendar-arrow-box"></i></button>
-                    </div>
-                    <div class="col col-50 col-offset-20">
-                        <div class="month-year-element-font">{{calendarMonth}} {{calendarYear}}</div>
-                    </div>
-                    <div class="col col-10" ng-click='IncrementMonthArrow()'>
-                        <!-- <span class="ion-chevron-right calendar-arrow-box" ionic-button-click-toggle on-icon="calendar-arrow-box" off-icon="calendar-arrow-box-fade"></span> -->
-                        <button class="button button-icon"><i class="ion-chevron-right calendar-arrow-box"></i></button>
-                    </div>
+            <!-- </div> -->
+            <!-- <div class="row">
+                <div class="col" style="margin-top:-5em;">
+                    <donutchart id="donut-example" data-options="chart_options"  style="width:70%;height:70%"></donutchart>
                 </div>
-                <!-- <div ng-repeat="i in [] | range:calendarTable.rowCount" value="{{$rowIndex=$index}}"> -->
-                <!-- {{$test=$index}} -->
-                <div ng-repeat="i in [] | range:calendarTable.rowCount" value="{{$rowIndex=$index}}" class="row calendar-row-box">
-                    <div ng-repeat="n in [] | range:calendarTable.dayCount" value="{{$dateNumber= ($rowIndex*7)+($index+1)}}" class="col col-12 {{calendarArray[$dateNumber-1].daySelectHighlighter}}">
-                        <!-- {{$index+1}}  -->
-                        <!-- {{$test1= ($test*7)+$index}} -->
-                        <div ng-if="$dateNumber <= calendarTable.totalDayCount">
-                            <div ng-click='DateInformation(calendarArray[$dateNumber-1])' id={{( "0"+$dateNumber).slice(-2)}}>
-                                <div class="day-details-container">
-                                    <span class="col-box-day">{{calendarArray[$dateNumber-1].dayName}}</span>
-                                    <br><span class="date-element-font">{{("0"+$dateNumber).slice(-2)}}</span>
-                                    <br>
-                                    <span ng-if="calendarArray[$dateNumber-1].vehiclePending > 0">
+                <div class="col">
+                    <donutchart id="donut-example1" data-options="chart_options"></donutchart>
+                </div>
+            </div> -->
+            <!-- <div class="col"> -->
+            <!-- <donutchart id="donut-example1" data-options="chart_options" style="width:60%;height:60%;margin-top:-20%;margin-left:20%"></donutchart> -->
+            <!-- </div> -->
+            <!-- <div class="row">
+                <div class="col col-10 col-offset-80">
+                    <button class="button button-icon" ng-click="calendarHide= !calendarHide;"><i class="ion-android-calendar nav-icon-font-para" style="color:#47639E; font-size:30px"></i></button>
+                </div>
+            </div> -->
+            <div ng-show="calendarHide === true" style=" padding-bottom:50px;">
+                <div class="card calendar-color-box">
+                    <div class="row calendar-year-alignment">
+                        <div class="col col-10 " ng-click='DecrementMonthArrow()'>
+                            <!-- <span class="ion-chevron-left calendar-arrow-box" ionic-button-click-toggle on-icon="calendar-arrow-box" off-icon="calendar-arrow-box-fade"></span> -->
+                            <button class="button button-icon"><i class="ion-chevron-left calendar-arrow-box"></i></button>
+                        </div>
+                        <div class="col col-50 col-offset-20">
+                            <div class="month-year-element-font">{{calendarMonth}} {{calendarYear}}</div>
+                        </div>
+                        <div class="col col-10" ng-click='IncrementMonthArrow()'>
+                            <!-- <span class="ion-chevron-right calendar-arrow-box" ionic-button-click-toggle on-icon="calendar-arrow-box" off-icon="calendar-arrow-box-fade"></span> -->
+                            <button class="button button-icon"><i class="ion-chevron-right calendar-arrow-box"></i></button>
+                        </div>
+                    </div>
+                    <!-- <div ng-repeat="i in [] | range:calendarTable.rowCount" value="{{$rowIndex=$index}}"> -->
+                    <!-- {{$test=$index}} -->
+                    <div ng-repeat="i in [] | range:calendarTable.rowCount" value="{{$rowIndex=$index}}" class="row calendar-row-box">
+                        <div ng-repeat="n in [] | range:calendarTable.dayCount" value="{{$dateNumber= ($rowIndex*7)+($index+1)}}" class="col col-12 {{calendarArray[$dateNumber-1].daySelectHighlighter}}">
+                            <!-- {{$index+1}}  -->
+                            <!-- {{$test1= ($test*7)+$index}} -->
+                            <div ng-if="$dateNumber <= calendarTable.totalDayCount">
+                                <div ng-click='DateInformation(calendarArray[$dateNumber-1])' id={{( "0"+$dateNumber).slice(-2)}}>
+                                    <div class="day-details-container">
+                                        <span class="col-box-day">{{calendarArray[$dateNumber-1].dayName}}</span>
+                                        <br><span class="date-element-font">{{("0"+$dateNumber).slice(-2)}}</span>
+                                        <br>
+                                        <span ng-if="calendarArray[$dateNumber-1].vehiclePending > 0">
                                     <span class="booking-pending-service-indicator"></span>
-                                    </span>
-                                    <span ng-if="calendarArray[$dateNumber-1].requestPending > 0">
+                                        </span>
+                                        <span ng-if="calendarArray[$dateNumber-1].requestPending > 0">
                                     <span class="booking-pending-request-indicator"></span>
-                                    </span>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!-- </div> -->
                 </div>
-                <!-- </div> -->
-            </div>
-            <div class="card day-information-box">
-                <div class="row">
-                    <div class="col col-50 col-offset-10">
-                        <div class="align-status-info">
-                            <span ng-if="PendingServices > 0">                                                                       
+                <div class="card day-information-box">
+                    <div class="row">
+                        <div class="col col-50 col-offset-10">
+                            <div class="align-status-info">
+                                <span ng-if="PendingServices > 0">                                                                       
                             <span class="date-element-font">{{PendingServices}}</span>
-                            <span class="col-box-day home-booking-button-text"> Pending Vehicle Services</span>
-                            <span class="booking-pending-service-indicator"></span>
-                            <br>
-                            </span>
-                            <span ng-if="PendingRequests > 0">
+                                <span class="col-box-day home-booking-button-text"> Pending Vehicle Services</span>
+                                <span class="booking-pending-service-indicator"></span>
+                                <br>
+                                </span>
+                                <span ng-if="PendingRequests > 0">
                                     <span class="date-element-font">{{PendingRequests}}</span>
-                            <span class="col-box-day home-booking-button-text"> Pending Booking Requests</span>
-                            <span class="booking-pending-request-indicator"></span>
-                            <br>
-                            </span>
-                            <span ng-if="PendingRequests === 0 && PendingServices === 0">                                    
+                                <span class="col-box-day home-booking-button-text"> Pending Booking Requests</span>
+                                <span class="booking-pending-request-indicator"></span>
+                                <br>
+                                </span>
+                                <span ng-if="PendingRequests === 0 && PendingServices === 0">                                    
                                     <span class="date-element-font">NO&nbsp</span>
-                            <span class="col-box-day home-booking-button-text">Requests</span>
-                            </span>
+                                <span class="col-box-day home-booking-button-text">Requests</span>
+                                </span>
+                            </div>
+                            <!-- <i class="ion-record pending-service-count-details"></i> -->
                         </div>
-                        <!-- <i class="ion-record pending-service-count-details"></i> -->
-                    </div>
-                    <div class="col col-20 col-offset-10 booking-list-button">
-                        <button class="button button-small button-positive" ui-sref="vendor-app.bookingList({ calendarDetails: SelectedDateBookingInfo })">
-                            Bookings
-                        </button>
-                        <!-- <button class="button button-icon" ui-sref="vendor-app.bookingList({ calendarDetails: SelectedDateBookingInfo })"><span class="bookings-details-button col-box-day">Bookings</span></button> -->
-                        <!-- <a ui-sref="vendor-app.bookingList({ calendarDetails: DateInSeconds })" class="hvr-fade"><span class="col-box-day">Bookings</span></a> -->
-                        <!-- <button class="button button-icon"><i class="ion-chevron-right calendar-arrow-box"></i></button> -->
+                        <div class="col col-20 col-offset-10 booking-list-button">
+                            <button class="button button-small button-positive" ui-sref="vendor-app.bookingList({ calendarDetails: SelectedDateBookingInfo })">
+                                Bookings
+                            </button>
+                            <!-- <button class="button button-icon" ui-sref="vendor-app.bookingList({ calendarDetails: SelectedDateBookingInfo })"><span class="bookings-details-button col-box-day">Bookings</span></button> -->
+                            <!-- <a ui-sref="vendor-app.bookingList({ calendarDetails: DateInSeconds })" class="hvr-fade"><span class="col-box-day">Bookings</span></a> -->
+                            <!-- <button class="button button-icon"><i class="ion-chevron-right calendar-arrow-box"></i></button> -->
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- <div class="row donut-element" ng-show="selectDunotViews === false">
+                <donutchart id="donut-overall" data-options="chart_options" class="col"></donutchart>
+            </div> -->
+            <div class="row donut-element">
+                <div id="donut-data-chart" class="col col-80 col-offset-10"></div>
+                <!-- <donutchart id="donut-day" data-options="todayDonutChart" class="col col-80 col-offset-10" ng-show="selectDunotViews === false"></donutchart> -->
+                <!-- <donutchart id="donut-total" data-options="totalDonutChart" class="col col-80 col-offset-10" ng-show="selectDunotViews === true"></donutchart> -->
+                <!-- <i class="icon ion-arrow-right-b col" style="font-size:50px;margin-top:1.8em; color:#47639E;"></i> -->
+                <div class="row">
+                    <div class="col" style="margin-top:5em;margin-left:-1em">
+                        <button class="button button-icon" ui-sref="vendor-app.bookingList({ calendarDetails: SelectedDateBookingInfo })" ng-if="selectDunotViews === false"><i class="ion-arrow-right-b" style="font-size:50px;margin-top:0em; color:#47639E;"></i></button>
+                        <button class="button button-icon" ui-sref="vendor-app.bookingList({ calendarDetails: SelectedDateBookingInfo })" ng-if="selectDunotViews === true"><i class="ion-arrow-right-b" style="font-size:50px;margin-top:0em; color:#47639E;"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-20 col-offset-20 donut-deselected-button" ng-click="updateTotalInfo();" ng-class="{'donut-selected-button':selectDunotViews == true}">
+                    Total
+                </div>
+                <div class="col col-20 col-offset-20 donut-deselected-button" ng-click="updateTodayInfo();" ng-class="{'donut-selected-button':selectDunotViews == false}">
+                    Today
+                </div>
+            </div>
+            <div class="row graph-area-element">
+                <div id="area-data-chart" class="col col-80 col-offset-10" style="height:200px;"></div>
+                <!-- <areachart id="area-week" data-options="chart_area" class="col"></areachart> -->
+            </div>
+            <!-- <donutchart id="donut-example1" data-options="chart_options" style="width:60%;height:60%;margin-top:-20%;margin-left:20%; z-index: 1000;"></donutchart> -->
+            <!-- <areachart id="area-example" data-options="chart_area" style="height:200px; margin-top:-20%"></areachart> -->
         </div>
     </ion-content>
 </ion-view>

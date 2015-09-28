@@ -65,13 +65,13 @@ angular.module('starter')
      * camera url
      */
     factoryObj.vUpdateCameraPicURL = function(uniqueId) {
-        return factoryObj.baseUrl + "vendor/" + uniqueId +"/files/upload";
+        return factoryObj.baseUrl + "vendor/" + uniqueId + "/files/upload";
     };
     factoryObj.vDeleteCameraPicURL = function(uniqueId, imageName) {
-        return factoryObj.baseUrl + "vendor/" + uniqueId +"/delete/image/file?name="  + imageName;
+        return factoryObj.baseUrl + "vendor/" + uniqueId + "/delete/image/file?name=" + imageName;
     };
     factoryObj.vGetCameraPicURL = function(uniqueId, imageName) {
-        return factoryObj.baseUrl + "storage/vendor/" + uniqueId +"/images/"  + imageName;
+        return factoryObj.baseUrl + "storage/vendor/" + uniqueId + "/images/" + imageName;
     };
 
 
@@ -147,6 +147,27 @@ angular.module('starter')
 
     factoryObj.updateService = function() {
         return factoryObj.baseUrl + "update/popup/service/";
+    };
+
+
+    /**
+     * count and list information for home
+     */
+
+    factoryObj.getAllStatusCount = function(uniqueId) {
+        return factoryObj.baseUrl + "vendor/" + uniqueId + "/booking/status/all/count";
+    };
+    factoryObj.getDayStatusCount = function(uniqueId, dateInSecs) {
+        return factoryObj.baseUrl + "vendor/" + uniqueId + "/booking/day/status/count?date=" + dateInSecs;
+    };
+    factoryObj.getAllStausList = function(uniqueId, status, from, to) {
+        return factoryObj.baseUrl + "vendor/" + uniqueId + "/booking/status/" + status + "?from=" + from + "&to=" + to;
+    };
+    factoryObj.getDeliveryListUrl = function(uniqueId, month, year) {
+        return factoryObj.baseUrl + "vendor/" + uniqueId + "/booking/delivery?month" + month + "&year=" + year;
+    };
+    factoryObj.getDayStatusList = function(uniqueId, status, dateInSecs, from, to) {
+        return factoryObj.baseUrl + "vendor/" + uniqueId + "/booking/day/status/" + status + "?date=" + dateInSecs + "&from=" + from + "&to=" + to;
     };
 
     /****************************************************************************************************************************/

@@ -4,19 +4,19 @@
         <span class="title-header-large-font">Booking List</span>
     </ion-nav-title>
     <ion-content scrollbar-y="false" has-bouncing="true" class="home-background-image" style="padding-bottom: 30px;">
-        <div ng-controller="booking-list-ctrl" on-swipe-down="refreshBookingList()">
+        <div ng-controller="booking-list-ctrl">
             <div ng-controller="booking-list-modal-ctrl">
-                <ion-list>
-                    <div class="list card booking-details-status-color-box booking-details-color-box-param">
-                        <div class="row">
-                            <div class="col col-80 booking-header-loc">
-                                <span class="booking-large-element-font">{{HeaderTitle}}:&nbsp<span class="date-element-font">{{HeaderDetails}}</span></span>
-                            </div>
-                            <div class="col col-20">
-                                <span class="ion-android-options calendar-arrow-box" ionic-button-click-toggle on-icon="calendar-arrow-box" off-icon="calendar-arrow-box-fade" ng-click="sortingPopUpMethod()"></span>
-                            </div>
+                <div class="list card booking-details-status-color-box booking-details-color-box-param">
+                    <div class="row">
+                        <div class="col col-80 booking-header-loc">
+                            <span class="booking-large-element-font">{{HeaderTitle}}:&nbsp<span class="date-element-font">{{HeaderDetails}}</span></span>
+                        </div>
+                        <div class="col col-20">
+                            <span class="ion-android-options calendar-arrow-box" ionic-button-click-toggle on-icon="calendar-arrow-box" off-icon="calendar-arrow-box-fade" ng-click="sortingPopUpMethod()"></span>
                         </div>
                     </div>
+                </div>
+                <ion-list>
                     <div class="list card user-booking-view-box" ng-repeat="bookingListItem in bookingListArray" value="{{$index}}" ng-if="bookingListItem.requestAcceptString">
                         <!-- <div class="list card user-booking-view-box"> -->
                         <div class="row">
@@ -76,6 +76,7 @@
                     </div>
                     <!-- </div> -->
                 </ion-list>
+                <!-- <ion-infinite-scroll on-infinite="loadMoreBookingList()" distance="1%"></ion-infinite-scroll> -->
             </div>
         </div>
         <!-- <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore()" distance="10%"></ion-infinite-scroll> -->
