@@ -61,18 +61,26 @@ angular.module('starter.auth')
                     template: 'Please check your credentials!'
                 });
             });
-        //   },function(err){
-        //     reject('Login Failed');
-        //   });
+        
+    };
 
-        // //   if ((name == 'admin' && pw == '9') || (name == 'user' && pw == '9')) {
-        // //     // Make a request and receive your auth token from your server
-        // //     storeUserCredentials(name + '.yourServerToken');
-        // //     resolve('Login success.');
-        // //   } else {
-        // //     reject('Login Failed.');
-        // //   }
-        //  });
+
+    var loginAfterSignUp = function(data) {
+        var response;
+        httpOperationFact.sendHttpPostJsonRequest(stringDBrepo.vLoginInfo(), data).then(function(object) {
+                console.log(object.uniqueId);
+                storeUserCredentials(object.uniqueId);
+                $state.go('vendor-app.home', {}, {
+                    reload: true
+                });
+            },
+            function(response) {
+                console.log('Wrong Credentials.');
+                var alertPopup = $ionicPopup.alert({
+                    title: 'Login failed!',
+                    template: 'Please check your credentials!'
+                });
+            });
     };
     // 
     var logout = function() {
@@ -91,6 +99,7 @@ angular.module('starter.auth')
     return {
         login: login,
         logout: logout,
+        loginAfterSignUp: loginAfterSignUp,
         isAuthorized: isAuthorized,
         isAuthenticated: function() {
             return isAuthenticated;

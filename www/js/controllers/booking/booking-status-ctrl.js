@@ -6,6 +6,16 @@ angular.module('starter.bookingList', ['ionic', 'ionic-timepicker', 'ionic-datep
     $scope.displayOption = "total";
     $scope.syncScroll = false;
 
+    $scope.$on('$stateChangeSuccess', function(event, toState , nextParams, fromState) {
+        if (fromState.name == "vendor-app.home") {
+            stringDBrepo.gBookingListInfo = $stateParams;
+        }
+        else if(fromState.name == "vendor-app.bookingDetails"){
+            $stateParams = stringDBrepo.gBookingListInfo;
+        }        
+
+    });
+
 
     sortBookingPopupFact.initSortPopup($scope);
 

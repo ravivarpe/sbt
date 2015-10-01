@@ -166,11 +166,11 @@
                                 </label>
                                 <label class="input-edit-box" ng-class="{ 'has-error' :  submitted && vendorAccountForm.minWaitingTime.$invalid}">
                                     <span ng-if="(vendorAccountForm.minWaitingTime.$dirty && overviewInfo.minWaitingTime) || overviewInfo.minWaitingTime">Vehicle Delivery Time (hrs) *</span>
-                                    <input type="text" name="minWaitingTime" ng-model="overviewInfo.minWaitingTime" placeholder="Vehicle Delivery Time (hrs) *" maxlength="3" ng-minlength="2" ng-pattern="/[0-9]+/" required />
+                                    <input type="text" name="minWaitingTime" ng-model="overviewInfo.minWaitingTime" placeholder="Vehicle Delivery Time (hrs) *" maxlength="3" ng-minlength="1" ng-pattern="/[0-9]+/" required />
                                     <div ng-if='submitted' ng-messages="vendorAccountForm.minWaitingTime.$error">
                                         <div ng-message="required">This field is required</div>
                                         <div ng-message="pattern">This must contain only number</div>
-                                        <div ng-message="minlength">This field is must be at least 2 characters.</div>
+                                        <div ng-message="minlength">This field is must be at least 1 characters.</div>
                                         <div ng-message="maxlength">This field is must be maximum 3 characters.</div>
                                     </div>
                                 </label>

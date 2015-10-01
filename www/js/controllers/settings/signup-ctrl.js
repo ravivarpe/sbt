@@ -78,7 +78,7 @@ angular.module('starter.auth')
                         var loginObject = {};
                         loginObject.loginId = data.email;
                         loginObject.loginPassword = data.password;
-                        AuthService.login(loginObject);
+                        AuthService.loginAfterSignUp(loginObject);
                         $scope.setCurrentUsername(data);
                         signUpForm.reset();
                     }, function(err) {
