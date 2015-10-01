@@ -248,7 +248,7 @@ angular.module('starter.bookingList')
         if ((bookingObj.bookingStatus & BookingDetailsFact.serviceInProgress)) {
             bookingObj.BookingStatusColor = "booking-ongoing-status";
             bookingObj.BookingStatusString = "On Going";
-            bookingObj.requestAcceptString = "discard";
+            bookingObj.requestAcceptString = "Cancel";
         }
         if (bookingObj.bookingStatus & BookingDetailsFact.cancelRequest) {
             bookingObj.BookingStatusColor = "booking-cancel-status";
@@ -287,13 +287,13 @@ angular.module('starter.bookingList')
 
     factoryObj.convertSecsToDate = function(dateInSecs) {
         var dateInfo = new Date(dateInSecs * 1000);
-        var month = ("0" + dateInfo.getMonth()).slice(-2);
-        var dateNum = ("0" + dateInfo.getDate()).slice(-2);
+        var month = ("0" + dateInfo.getUTCMonth()).slice(-2);
+        var dateNum = ("0" + dateInfo.getUTCDate()).slice(-2);
 
-        var dateHours = ("0" + dateInfo.getHours()).slice(-2);
-        var dateMins = ("0" + dateInfo.getMinutes()).slice(-2);
+        var dateHours = ("0" + dateInfo.getUTCHours()).slice(-2);
+        var dateMins = ("0" + dateInfo.getUTCMinutes()).slice(-2);
 
-        return (dateNum + "/" + month + "/" + dateInfo.getFullYear() + " " + dateHours + ":" + dateMins);
+        return (dateNum + "/" + month + "/" + dateInfo.getUTCFullYear() + " " + dateHours + ":" + dateMins);
     };
 
 

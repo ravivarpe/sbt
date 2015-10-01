@@ -16,8 +16,33 @@ angular.module('starter.userSettings')
         $scope.modal.hide();
     };
 
+    $scope.checkLocation = function(info) {
+        if (window.cordova) {
+            cordova.plugins.diagnostic.isLocationEnabled(
+                function(e) {
+                    if (e) {
+                        $scope.showMapView(info);
+                        successFunctionCall();
+                    } else {
+                        alert("Location Not Turned ON");
+                        cordova.plugins.diagnostic.switchToLocationSettings();
+                        // $scope.modal.hide();
+                    }
+                },
+                function(e) {
+                    alert('Error ' + e);
+                }
+            );
+        }
+        else
+            $scope.showMapView(info);
+    }
+
     // Open the login modal
     $scope.showMapView = function(info) {
+        // $scope.checkLocation();
+
+
 
         $scope.modal.show();
 
@@ -44,8 +69,7 @@ angular.module('starter.userSettings')
     // "neighborhood", "sublocality_level_1", "sublocality_level_2"
     $scope.assignLocationInfo = function() {
 
-        if($scope.overviewInfo.latitude || $scope.overviewInfo.longitude)
-        {
+        if ($scope.overviewInfo.latitude || $scope.overviewInfo.longitude) {
             ionicToast.show('Please contact Vehito to change existing address', 'middle', false, 2500);
             return;
         }
@@ -63,8 +87,8 @@ angular.module('starter.userSettings')
                     $scope.personalInfo.state = userLocationInfo[i].address_components[j].long_name;
                 } else if (userLocationInfo[i].address_components[j].types[0] == "locality") {
                     $scope.personalInfo.city = userLocationInfo[i].address_components[j].long_name;
-                } 
-                
+                }
+
 
             }
             $scope.personalInfo.gpsAddress = userLocationInfo[i].formatted_address;

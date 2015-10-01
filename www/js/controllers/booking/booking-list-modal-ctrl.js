@@ -113,8 +113,8 @@ angular.module('starter.bookingList')
             $scope.bookingListArray[bookingIndex].vehicleDeliveredTime = BookingListFact.getTimeInSeconds(BookingListFact.venderDeliveryDate.getFullYear(),
                 BookingListFact.venderDeliveryDate.getMonth(),
                 BookingListFact.venderDeliveryDate.getDate(),
-                BookingListFact.venderDeliveryTime.getHours(),
-                BookingListFact.venderDeliveryTime.getMinutes());
+                0,
+                0) + BookingListFact.venderDeliveryTime;
 
             var date = new Date();
             var currentDate = BookingListFact.getTimeInSeconds(date.getFullYear(),
@@ -128,7 +128,7 @@ angular.module('starter.bookingList')
 
         }
 
-        if (choice.status == 1) {
+        if (choice.data.status == 1) {
             $scope.bookingListArray[bookingIndex].bookingStatus |= BookingDetailsFact.confirmRequest;
         } else {
             $scope.bookingListArray[bookingIndex].bookingStatus |= BookingDetailsFact.cancelRequest;
@@ -149,7 +149,7 @@ angular.module('starter.bookingList')
 
 
         bookingObj.vehicleDeliveredTimeFormat = BookingListFact.convertSecsToDate(bookingObj.vehicleDeliveredTime);
-        // console.log(object);
+        console.log(object);
 
 
         var object = JSON.parse(JSON.stringify(bookingObj));
@@ -177,7 +177,7 @@ angular.module('starter.bookingList')
         if((bookingObj.bookingStatus & BookingDetailsFact.serviceInProgress)){
             bookingObj.BookingStatusColor = "booking-ongoing-status";
             bookingObj.BookingStatusString = "On Going";
-            bookingObj.requestAcceptString = "discard";
+            bookingObj.requestAcceptString = "Cancel";
         }
         if (bookingObj.bookingStatus & BookingDetailsFact.cancelRequest) {
             bookingObj.BookingStatusColor = "booking-cancel-status";
@@ -213,11 +213,16 @@ angular.module('starter.bookingList')
         } else {
             console.log(val);
             var selectedTime = new Date(val * 1000);
-            BookingListFact.venderDeliveryTime = selectedTime;
-            console.log(BookingListFact.venderDeliveryTime);
+            BookingListFact.venderDeliveryTime = val;
+            console.log(BookingListFact.getTimeInSeconds(BookingListFact.venderDeliveryDate.getFullYear(),
+                BookingListFact.venderDeliveryDate.getMonth(),
+                BookingListFact.venderDeliveryDate.getDate(),
+                0,
+                0) + BookingListFact.venderDeliveryTime);
             $scope.updateBookingTime = true;
             $scope.timePickerObject.TimeRepresent = ("0" + selectedTime.getUTCHours()).slice(-2) + ":" + ("0" + selectedTime.getUTCMinutes()).slice(-2);
             console.log('Selected epoch is : ', val, 'and the time is ', selectedTime.getUTCHours(), ':', selectedTime.getUTCMinutes(), 'in UTC');
+
 
         }
     }
@@ -265,7 +270,11 @@ angular.module('starter.bookingList')
 
             BookingListFact.venderDeliveryDate = val;
             $scope.datepickerObject.inputDate = val;
-            // console.log('Selected date is : ', val)
+            console.log('Selected date is : ', BookingListFact.getTimeInSeconds(BookingListFact.venderDeliveryDate.getFullYear(),
+                BookingListFact.venderDeliveryDate.getMonth(),
+                BookingListFact.venderDeliveryDate.getDate(),
+                0,
+                0))
         }
     };
 

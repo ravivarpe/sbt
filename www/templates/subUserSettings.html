@@ -76,7 +76,7 @@
                                     <span>{{itemInformation[selectedItemListIndex].Heading}}</span>
                                 </div>
                                 <div class="col col-10">
-                                    <div class="ion-ios-location expand-toggle-arrow-font" ionic-button-click-toggle on-icon="calendar-arrow-box" off-icon="calendar-arrow-box-fade" ng-click="showMapView(overviewInfo)" ng-class="{ 'expand-toggle-arrow-font-error' :  submitted && (vendorAccountForm.zipCode.$invalid)}"></div>
+                                    <div class="ion-ios-location expand-toggle-arrow-font" ionic-button-click-toggle on-icon="calendar-arrow-box" off-icon="calendar-arrow-box-fade" ng-click="checkLocation(overviewInfo)" ng-class="{ 'expand-toggle-arrow-font-error' :  submitted && (vendorAccountForm.zipCode.$invalid)}"></div>
                                 </div>
                                 <div class="col col-20 button-modeling">
                                     <button class="button button-small" type="submit" ng-click="submitted=true" ng-keyup="submitted=false">
