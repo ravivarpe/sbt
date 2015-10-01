@@ -7,14 +7,6 @@
         "is_top_level": true,
         "variables": {}
     },
-    "cordova-plugin-console": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-console"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "cordova-plugin-whitelist": {
         "source": {
             "type": "registry",
@@ -141,6 +133,14 @@
         "is_top_level": false,
         "variables": {}
     },
+    "cordova.plugins.diagnostic": {
+        "source": {
+            "type": "registry",
+            "id": "cordova.plugins.diagnostic"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
     "cordova-plugin-globalization": {
         "source": {
             "type": "registry",
@@ -149,10 +149,10 @@
         "is_top_level": true,
         "variables": {}
     },
-    "cordova.plugins.diagnostic": {
+    "cordova-plugin-console": {
         "source": {
             "type": "registry",
-            "id": "cordova.plugins.diagnostic"
+            "id": "cordova-plugin-console"
         },
         "is_top_level": true,
         "variables": {}

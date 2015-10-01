@@ -82,10 +82,10 @@ angular.module('starter.auth')
                         $scope.setCurrentUsername(data);
                         signUpForm.reset();
                     }, function(err) {
-                        var alertPopup = $ionicPopup.alert({
-                            title: 'Sorry Internal Server Error',
-                            template: ''
-                        });
+                        // var alertPopup = $ionicPopup.alert({
+                        //     title: 'Sorry Internal Server Error',
+                        //     template: ''
+                        // });
                     });
                 }, function(err) {
                     var alertPopup = $ionicPopup.alert({

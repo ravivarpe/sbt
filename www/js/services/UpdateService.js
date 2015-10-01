@@ -35,10 +35,10 @@ angular.module('starter.home')
 
             },
             function(response) {
-                var alertPopup = $ionicPopup.alert({
-                    title: 'Sorry Internal Server Error',
-                    template: ''
-                });
+                // var alertPopup = $ionicPopup.alert({
+                //     title: 'Sorry Internal Server Error',
+                //     template: ''
+                // });
 
             });
     };

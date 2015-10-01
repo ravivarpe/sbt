@@ -180,16 +180,17 @@ angular.module('starter.bookingList')
 
     factoryObj.checkForAddressInfo = function(bookingInfo, object) {
         // bookingInfo.FullAddress = "";
-        if (object.HouseAddress)
-            bookingInfo.FullAddress = object.HouseAddress + " ";
-        if (object.City)
-            bookingInfo.FullAddress = object.City + " ";
-        if (object.State)
-            bookingInfo.FullAddress = object.State + " ";
-        if (object.CountryCode)
-            bookingInfo.FullAddress = object.CountryCode + " ";
-        if (object.ZipCode)
-            bookingInfo.FullAddress = object.ZipCode + " ";
+        // console.log(object);
+        if (object.address)
+            bookingInfo.FullAddress += object.address + ", ";
+        if (object.city)
+            bookingInfo.FullAddress  += object.city + ", ";
+        if (object.state)
+            bookingInfo.FullAddress += object.state + ", ";
+        if (object.country)
+            bookingInfo.FullAddress += object.country + ", ";
+        if (object.zipCode)
+            bookingInfo.FullAddress += object.zipCode + " ";
 
 
     };
