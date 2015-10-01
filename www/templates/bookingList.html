@@ -76,10 +76,10 @@
                     </div>
                     <!-- </div> -->
                 </ion-list>
-                <!-- <ion-infinite-scroll on-infinite="loadMoreBookingList()" distance="1%"></ion-infinite-scroll> -->
+                <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMoreBookingList()" distance="1%"></ion-infinite-scroll>
             </div>
         </div>
-        <!-- <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore()" distance="10%"></ion-infinite-scroll> -->
+        <!-- <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMoreBookingList()" distance="1%"></ion-infinite-scroll> -->
         <!-- <div ng-controller="booking-list-modal-ctrl">
             
         </div> -->

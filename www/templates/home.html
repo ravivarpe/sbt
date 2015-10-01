@@ -105,7 +105,7 @@
                 </div>
                 <div class="card day-information-box">
                     <div class="row">
-                        <div class="col col-50 col-offset-10">
+                        <div class="col col-70">
                             <div class="align-status-info">
                                 <span ng-if="PendingServices > 0">                                                                       
                             <span class="date-element-font">{{PendingServices}}</span>
@@ -126,7 +126,7 @@
                             </div>
                             <!-- <i class="ion-record pending-service-count-details"></i> -->
                         </div>
-                        <div class="col col-20 col-offset-10 booking-list-button">
+                        <div class="col col-20 booking-list-button">
                             <button class="button button-small button-positive" ui-sref="vendor-app.bookingList({ calendarDetails: SelectedDateBookingInfo })">
                                 Bookings
                             </button>
@@ -147,8 +147,8 @@
                 <!-- <i class="icon ion-arrow-right-b col" style="font-size:50px;margin-top:1.8em; color:#47639E;"></i> -->
                 <div class="row">
                     <div class="col" style="margin-top:5em;margin-left:-1em">
-                        <button class="button button-icon" ui-sref="vendor-app.bookingList({ calendarDetails: SelectedDateBookingInfo })" ng-if="selectDunotViews === false"><i class="ion-arrow-right-b" style="font-size:50px;margin-top:0em; color:#47639E;"></i></button>
-                        <button class="button button-icon" ui-sref="vendor-app.bookingList({ calendarDetails: SelectedDateBookingInfo })" ng-if="selectDunotViews === true"><i class="ion-arrow-right-b" style="font-size:50px;margin-top:0em; color:#47639E;"></i></button>
+                        <button class="button button-icon" ui-sref="vendor-app.bookingList({ calendarDetails: SelectedDateBookingInfo })"><i class="ion-arrow-right-b" style="font-size:50px;margin-top:0em; color:#47639E;"></i></button>
+                        <!-- <button class="button button-icon" ui-sref="vendor-app.bookingList({ calendarDetails: SelectedDateBookingInfo })" ng-if="selectDunotViews === true"><i class="ion-arrow-right-b" style="font-size:50px;margin-top:0em; color:#47639E;"></i></button> -->
                     </div>
                 </div>
             </div>

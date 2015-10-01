@@ -1,6 +1,6 @@
 angular.module('starter.userSettings')
 
-.controller('vendor-addr-ctrl', function($scope, $ionicModal, $timeout, $ionicLoading, $compile) {
+.controller('vendor-addr-ctrl', function($scope, $ionicModal, $timeout, $ionicLoading, $compile, ionicToast) {
 
     var userLocationInfo = [];
     var locationCoordinates = {};
@@ -43,6 +43,12 @@ angular.module('starter.userSettings')
     };
     // "neighborhood", "sublocality_level_1", "sublocality_level_2"
     $scope.assignLocationInfo = function() {
+
+        if($scope.overviewInfo.latitude || $scope.overviewInfo.longitude)
+        {
+            ionicToast.show('Please contact Vehito to change existing address', 'middle', false, 2500);
+            return;
+        }
         var coordKeys = Object.keys(locationCoordinates);
         for (i in userLocationInfo) {
             $scope.overviewInfo.latitude = locationCoordinates[coordKeys[0]];

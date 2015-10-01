@@ -76,6 +76,10 @@ angular.module('starter.bookingList')
         factoryObj.sortingPopup.close();
     };
 
+    factoryObj.closeSortingPopUp = function(){
+        factoryObj.sortingPopup.close();
+    };
+
 
 
     return factoryObj;

@@ -47,7 +47,7 @@
                                 </label>
                                 <label class="input-edit-box" ng-class="{ 'has-error' :  submitted && vendorAccountForm.description.$invalid}">
                                     <span ng-if="(vendorAccountForm.description.$dirty && personalInfo.description) || personalInfo.description">Description *</span>
-                                    <input type="text" name="description" ng-model="personalInfo.description" placeholder="Description *" ng-minlength="5" ng-maxlength="20" ng-pattern="/^[A-Za-z0-9 ]+$/" required />
+                                    <input type="text" name="description" ng-model="personalInfo.description" placeholder="Description *" ng-minlength="5" ng-maxlength="50" ng-pattern="/^[A-Za-z0-9 ]+$/" required />
                                     <div ng-if='submitted' ng-messages="vendorAccountForm.description.$error">
                                         <div ng-message="required">This field is required</div>
                                         <div ng-message="pattern">This must contain only letters or number</div>

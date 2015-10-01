@@ -7,6 +7,22 @@
             <div class="vendor-status-card">
                 <div class="item item-icon-left row">
                     <div class="col">
+                        <h>Email Id: </h>
+                    </div>
+                    <div class="col">
+                        <p ng-repeat="serviceItem in vendorServiceVehicleType" ng-if="overviewInfo.vendorVehicleServiceType === serviceItem.value">{{overviewInfo.primaryEmailID}}</p>
+                    </div>
+                </div>
+                <div class="item item-icon-left row">
+                    <div class="col">
+                        <h>Phone number: </h>
+                    </div>
+                    <div class="col">
+                        <p ng-repeat="serviceItem in vendorServiceVehicleType" ng-if="overviewInfo.vendorVehicleServiceType === serviceItem.value">{{overviewInfo.primaryPhoneNumber}}</p>
+                    </div>
+                </div>
+                <div class="item item-icon-left row">
+                    <div class="col">
                         <h>Status:&nbsp</h>
                     </div>
                     <div class="col">

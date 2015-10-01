@@ -71,6 +71,7 @@ angular.module('starter')
         })
         .state('vendor-app.home', {
             url: "/home",
+            cache: false,
             views: {
                 'menuContent': {
                     templateUrl: "templates/home.html",

@@ -74,10 +74,16 @@ angular.module('starter.bookingList')
 
     factoryObj.getAllStatusLists = function(uniqueId, scope, status, from, to) {
         httpOperationFact.sendHttpGetRequest(stringDBrepo.getAllStausList(uniqueId, status, from, to))
-            .then(function(data) {
+            .then(function(data) {                    
+                    if (!data.length)
+                        scope.noMoreItemsAvailable = true;
                     factoryObj.showReceivedBookingInfo(scope, data);
+                    scope.syncScroll = false;
+                    scope.$broadcast('scroll.infiniteScrollComplete');
                 },
                 function(response) {
+                    scope.noMoreItemsAvailable = true;
+                    scope.$broadcast('scroll.infiniteScrollComplete');
                     console.log('status retrieval failed')
                 });
     };
@@ -86,9 +92,15 @@ angular.module('starter.bookingList')
     factoryObj.getDayStatusList = function(uniqueId, scope, status, dateInSecs, from, to) {
         httpOperationFact.sendHttpGetRequest(stringDBrepo.getDayStatusList(uniqueId, status, dateInSecs, from, to))
             .then(function(data) {
+                    if (!data.length)
+                        scope.noMoreItemsAvailable = true;
+                    scope.syncScroll = false;
                     factoryObj.showReceivedBookingInfo(scope, data);
+                    scope.$broadcast('scroll.infiniteScrollComplete');
                 },
                 function(response) {
+                    scope.noMoreItemsAvailable = true;
+                    scope.$broadcast('scroll.infiniteScrollComplete');
                     console.log('status retrieval failed')
                 });
     };
@@ -133,7 +145,7 @@ angular.module('starter.bookingList')
     };
 
     factoryObj.showReceivedBookingInfo = function(scope, responseData) {
-        scope.bookingListArray.length = 0;
+        // scope.bookingListArray.length = 0;
 
 
         for (var i in responseData) {
@@ -233,7 +245,7 @@ angular.module('starter.bookingList')
             bookingObj.BookingStatusString = "Accepted";
             bookingObj.requestAcceptString = "Cancel";
         }
-        if((bookingObj.bookingStatus & BookingDetailsFact.serviceInProgress)){
+        if ((bookingObj.bookingStatus & BookingDetailsFact.serviceInProgress)) {
             bookingObj.BookingStatusColor = "booking-ongoing-status";
             bookingObj.BookingStatusString = "On Going";
             bookingObj.requestAcceptString = "discard";

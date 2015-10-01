@@ -7,7 +7,7 @@ angular.module('starter.userSettings', ['ionic', 'ngMessages'])
    
     // console.log( $ionicHistory.viewHistory());
     $ionicHistory.clearCache();
-    $ionicHistory.clearHistory();
+    // $ionicHistory.clearHistory();
     // $scope.checkedInfo = true;
     $scope.personalInfoTitle = {
         "Heading": "General",

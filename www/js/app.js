@@ -7,7 +7,7 @@
 angular.module('starter', ['ionic', 'ionic-toast', 'ngCordova', 'starter.auth', 'starter.holidays', 'starter.feedback', 'starter.controllers', 'starter.home', 'starter.bookingList', 'starter.bookingDetails', 'starter.menu', 'starter.serviceConfig', 'starter.userSettings', 'starter.subUserSettings'])
 
 
-.run(function($ionicPlatform, $rootScope, $state, AuthService, AUTH_EVENTS, ionicToast, $cordovaNetwork) {
+.run(function($ionicPlatform, $rootScope, $state, AuthService, AUTH_EVENTS, ionicToast, $cordovaNetwork, $ionicHistory) {
 
 
     $ionicPlatform.ready(function() {
@@ -23,6 +23,20 @@ angular.module('starter', ['ionic', 'ionic-toast', 'ngCordova', 'starter.auth', 
             StatusBar.styleDefault();
         }
 
+        // navigator.globalization.dateToString(
+        //     new Date(),
+        //     function(date) {
+        //         // alert('date: ' + date.value + '\n');
+        //         console.log(date);
+        //     },
+        //     function() {
+        //         // alert('Error getting dateString\n');
+        //     }, {
+        //         formatLength: 'short',
+        //         selector: 'date and time'
+        //     }
+        // );
+
         if (window.Connection) {
             $rootScope.$on('$cordovaNetwork:online', function(event, networkState) {
                 // alert('online good sir');
@@ -36,12 +50,16 @@ angular.module('starter', ['ionic', 'ionic-toast', 'ngCordova', 'starter.auth', 
 
     })
     $ionicPlatform.registerBackButtonAction(function(event) {
-        if ($state.is('vendor-app.home') || $state.is('login')) {
+        if ($state.is('vendor-app.bookingList') || $state.is('vendor-app.serviceConfig') || $state.is('vendor-app.holidays') || $state.is('vendor-app.feedback') || $state.is('vendor-app.userSettings')) {
+            $state.go('vendor-app.home');
+            // $ionicHistory.clearHistory();
+        } else if ($state.is('vendor-app.home') || $state.is('login')) {
             navigator.app.exitApp();
         } else {
             navigator.app.backHistory();
-            // $state.go('vendor-app.home');
+            $ionicHistory.clearHistory();
         }
+
     }, 101);
 
     $rootScope.$on('$stateChangeStart', function(event, next, nextParams, fromState) {
